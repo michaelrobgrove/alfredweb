@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us | Alfred Web Design & Shirts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Lato&display=swap" rel="stylesheet">
+  <style>
+    /* Include the same CSS from your original code */
+  </style>
+</head>
+<body>
+  <div class="background">
+    <div class="animated-gradient"></div>
+    <div class="dots" id="dots-container"></div>
+  </div>
+
+  <main class="container">
+    <img src="awd.png" alt="Alfred Web Design & Shirts Logo" class="logo">
+    <h1>About Us</h1>
+    <p>Welcome to Alfred Web Design & Shirts! We're a local, small-town business that’s passionate about serving our community. Whether it’s web design, graphic design, or custom apparel, we are here to help bring your ideas to life with quality and care.</p>
+    <p>We take pride in creating professional designs that speak to our roots, blending a modern approach with the heart of our community. Our goal is to make your brand shine in a way that’s as unique and personal as our hometown of Alfred Station.</p>
+    <p class="services">Web Design • Graphic Design • Custom Apparel</p>
+  </main>
+
+  <footer>
+    <p><small>&copy; 2018–<span id="year"></span> Alfred Web Design & Shirts</small></p>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    const colors = ['rgba(205,166,24,0.4)', 'rgba(255,255,255,0.4)', 'rgba(0,0,0,0.4)'];
+    const dotCount = 350;
+    const container = document.getElementById("dots-container");
+    const dots = [];
+
+    for (let i = 0; i < dotCount; i++) {
+      const dot = document.createElement("div");
+      dot.classList.add("dot");
+
+      const size = 5 + Math.random() * 8;
+      dot.style.width = `${size}px`;
+      dot.style.height = `${size}px`;
+      dot.style.top = `${Math.random() * 100}%`;
+      dot.style.left = `${Math.random() * 100}%`;
+      dot.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+      container.appendChild(dot);
+      dots.push({ el: dot, x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight, vx: -0.5 + Math.random(), vy: -0.5 + Math.random() });
+    }
+
+    let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    document.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+
+    function animateDots() {
+      for (let i = 0; i < dots.length; i++) {
+        const dot = dots[i];
+        dot.x += (mouse.x - dot.x) * 0.002 + dot.vx;
+        dot.y += (mouse.y - dot.y) * 0.002 + dot.vy;
+
+        if (dot.x < 0) dot.x = window.innerWidth;
+        if (dot.x > window.innerWidth) dot.x = 0;
+        if (dot.y < 0) dot.y = window.innerHeight;
+        if (dot.y > window.innerHeight) dot.y = 0;
+
+        dot.el.style.transform = `translate(${dot.x}px, ${dot.y}px)`;
+      }
+
+      requestAnimationFrame(animateDots);
+    }
+
+    animateDots();
+  </script>
+</body>
+</html>
