@@ -1,240 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alfred Web Design & Shirts</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alfred Web Design & Shirts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
 
-    <style>
-        :root {
-            --primary-purple: #592b94;
-            --primary-blue: #003c71;
-        }
+  <style>
+    :root {
+      --purple: #592b94;
+      --blue: #003c71;
+      --gold: #cda618;
+    }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: 'Cinzel', serif;
-            color: white;
-            background-color: #000;
-            text-align: center;
-            position: relative;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
+    body {
+      font-family: 'Cinzel', serif;
+      color: white;
+      background-color: black;
+      text-align: center;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
 
-        .background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            overflow: hidden;
-        }
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -2;
+    }
 
-        .split-background {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-purple) 48%, var(--primary-blue) 52%, var(--primary-blue) 100%);
-            animation: colorShift 12s ease-in-out infinite alternate;
-            z-index: -2;
-        }
+    .animated-gradient {
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(-45deg, var(--purple), var(--blue), var(--purple));
+      background-size: 400% 400%;
+      animation: gradientShift 30s ease infinite;
+      z-index: -2;
+    }
 
-        @keyframes colorShift {
-            0%, 100% {
-                background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-purple) 48%, var(--primary-blue) 52%, var(--primary-blue) 100%);
-            }
-            50% {
-                background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-purple) 40%, var(--primary-blue) 60%, var(--primary-blue) 100%);
-            }
-        }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 
-        .dots {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
+    .dots {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
 
-        .dot {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.08);
-            animation: floatDots 20s linear infinite;
-        }
+    .dot {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      opacity: 0.12;
+      animation: floatDot 20s linear infinite;
+    }
 
-        @keyframes floatDots {
-            0% {
-                transform: translate(0, 0) scale(1);
-                opacity: 0.2;
-            }
-            50% {
-                opacity: 0.4;
-            }
-            100% {
-                transform: translate(-50px, -100px) scale(1.2);
-                opacity: 0.1;
-            }
-        }
+    @keyframes floatDot {
+      0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.15;
+      }
+      50% {
+        opacity: 0.25;
+      }
+      100% {
+        transform: translate(-40px, -100px) scale(1.2);
+        opacity: 0.1;
+      }
+    }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            position: relative;
-            z-index: 1;
-        }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      position: relative;
+      z-index: 1;
+    }
 
-        .logo {
-            width: 100%;
-            max-width: 600px;
-            height: auto;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-        }
+    .logo {
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease;
+    }
 
-        .logo:hover {
-            transform: scale(1.02);
-        }
+    .logo:hover {
+      transform: scale(1.02);
+    }
 
-        .coming-soon {
-            font-size: 24px;
-            margin: 20px 0 10px;
-            letter-spacing: 1px;
-        }
+    .coming-soon {
+      font-size: 24px;
+      margin: 20px 0 10px;
+      letter-spacing: 1px;
+    }
 
-        .services {
-            margin-top: 10px;
-            font-size: 16px;
-            opacity: 0.9;
-        }
+    .services {
+      margin-top: 10px;
+      font-size: 16px;
+      opacity: 0.9;
+    }
 
-        .opening-info {
-            margin-top: 20px;
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 10px 15px;
-            border-radius: 5px;
-            font-size: 16px;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+    .opening-info {
+      margin-top: 20px;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px 15px;
+      border-radius: 5px;
+      font-size: 16px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-        .address {
-            font-size: 14px;
-            margin-top: 15px;
-        }
+    .address {
+      font-size: 14px;
+      margin-top: 15px;
+    }
 
-        .contact-link {
-            color: white;
-            text-decoration: underline;
-            font-weight: bold;
-            display: inline-block;
-            margin-top: 10px;
-        }
+    .contact-link {
+      color: white;
+      text-decoration: underline;
+      font-weight: bold;
+      display: inline-block;
+      margin-top: 10px;
+    }
 
-        .social-links {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
+    .social-links {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
 
-        .social-icon {
-            width: 30px;
-            height: 30px;
-            transition: transform 0.3s ease;
-        }
+    .social-icon {
+      width: 30px;
+      height: 30px;
+      transition: transform 0.3s ease;
+    }
 
-        .social-icon:hover {
-            transform: scale(1.2);
-        }
+    .social-icon:hover {
+      transform: scale(1.2);
+    }
 
-        footer {
-            padding: 20px;
-            font-size: 14px;
-            opacity: 0.6;
-        }
+    footer {
+      padding: 20px;
+      font-size: 14px;
+      opacity: 0.6;
+    }
 
-        @media (max-width: 768px) {
-            .logo {
-                max-width: 90%;
-            }
-
-            .coming-soon {
-                font-size: 20px;
-            }
-        }
-    </style>
+    @media (max-width: 768px) {
+      .logo {
+        max-width: 90%;
+      }
+      .coming-soon {
+        font-size: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="background">
-        <div class="split-background"></div>
-        <div class="dots" id="dots-container"></div>
+  <div class="background">
+    <div class="animated-gradient"></div>
+    <div class="dots" id="dots-container"></div>
+  </div>
+
+  <main class="container">
+    <img src="awd.png" alt="Alfred Web Design & Shirts Logo" class="logo">
+    <p class="coming-soon">Page Coming Soon</p>
+    <p class="services">Web Design • Graphic Design • Custom Apparel</p>
+
+    <div class="opening-info">
+      <p><strong>Opening May 1st, 2025</strong></p>
+      <p>Currently available by appointment only</p>
+      <p>Future hours: Monday–Friday 10am–6pm</p>
     </div>
 
-    <main class="container">
-        <img src="awd.png" alt="Alfred Web Design & Shirts Logo" class="logo">
-        <p class="coming-soon">Page Coming Soon</p>
-        <p class="services">Web Design • Graphic Design • Custom Apparel</p>
+    <p class="address">
+      6174 Depot St, Alfred Station, NY 14803<br>
+      <small>Mailing: PO Box 11, Alfred Station, NY 14803</small>
+    </p>
 
-        <div class="opening-info">
-            <p><strong>Opening May 1st, 2025</strong></p>
-            <p>Currently available by appointment only</p>
-            <p>Future hours: Monday–Friday 10am–6pm</p>
-        </div>
+    <p><a href="mailto:team@alfredwebdesign.com" class="contact-link">team@alfredwebdesign.com</a></p>
 
-        <p class="address">
-            6174 Depot St, Alfred Station, NY 14803<br>
-            <small>Mailing: PO Box 11, Alfred Station, NY 14803</small>
-        </p>
+    <div class="social-links">
+      <!-- Social icons go here -->
+    </div>
+  </main>
 
-        <p><a href="mailto:team@alfredwebdesign.com" class="contact-link">team@alfredwebdesign.com</a></p>
+  <footer>
+    <p><small>&copy; 2018–<span id="year"></span> Alfred Web Design & Shirts | Formerly Redneck Mobile Design & Shirts</small></p>
+  </footer>
 
-        <div class="social-links">
-            <!-- Social icons go here -->
-            <!-- Example:
-            <a href="https://facebook.com" target="_blank"><img src="facebook.svg" alt="Facebook" class="social-icon"></a>
-            -->
-        </div>
-    </main>
+  <script>
+    // Set current year
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-    <footer>
-        <p><small>&copy; 2018–<span id="year"></span> Alfred Web Design & Shirts | Formerly Redneck Mobile Design & Shirts</small></p>
-    </footer>
+    // Generate floating dots
+    const colors = [
+      'rgba(89,43,148,0.3)',   // purple
+      'rgba(0,60,113,0.3)',    // blue
+      'rgba(205,166,24,0.25)'  // gold
+    ];
 
-    <script>
-        // Set current year
-        document.getElementById("year").textContent = new Date().getFullYear();
+    const container = document.getElementById("dots-container");
+    const dotCount = 80;
 
-        // Generate moving dots
-        const dotCount = 100;
-        const container = document.getElementById("dots-container");
-
-        for (let i = 0; i < dotCount; i++) {
-            const dot = document.createElement("div");
-            dot.classList.add("dot");
-            const size = 4 + Math.random() * 6;
-            dot.style.width = `${size}px`;
-            dot.style.height = `${size}px`;
-            dot.style.top = `${Math.random() * 100}%`;
-            dot.style.left = `${Math.random() * 100}%`;
-            dot.style.animationDelay = `${Math.random() * 20}s`;
-            dot.style.animationDuration = `${10 + Math.random() * 20}s`;
-            container.appendChild(dot);
-        }
-    </script>
+    for (let i = 0; i < dotCount; i++) {
+      const dot = document.createElement("div");
+      dot.classList.add("dot");
+      const size = 3 + Math.random() * 7;
+      dot.style.width = `${size}px`;
+      dot.style.height = `${size}px`;
+      dot.style.top = `${Math.random() * 100}%`;
+      dot.style.left = `${Math.random() * 100}%`;
+      dot.style.background = colors[Math.floor(Math.random() * colors.length)];
+      dot.style.animationDelay = `${Math.random() * 20}s`;
+      dot.style.animationDuration = `${15 + Math.random() * 20}s`;
+      container.appendChild(dot);
+    }
+  </script>
 </body>
 </html>
