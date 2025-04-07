@@ -73,8 +73,8 @@
     .dot {
       position: absolute;
       border-radius: 50%;
-      opacity: 0.2;
-      transition: transform 0.2s ease-out;
+      opacity: 0.6;
+      transition: transform 0.4s ease-out;
     }
 
     .container {
@@ -203,12 +203,12 @@
     document.getElementById("year").textContent = new Date().getFullYear();
 
     const colors = [
-      'rgba(205,166,24,0.9)',   // gold
-      'rgba(255,255,255,0.9)',  // white
-      'rgba(0,0,0,0.7)'         // black
+      'rgba(205,166,24,0.4)',   // gold
+      'rgba(255,255,255,0.4)',  // white
+      'rgba(0,0,0,0.4)'         // black
     ];
 
-    const dotCount = 150;
+    const dotCount = 350;
     const container = document.getElementById("dots-container");
     const dots = [];
 
@@ -216,7 +216,7 @@
       const dot = document.createElement("div");
       dot.classList.add("dot");
 
-      const size = 4 + Math.random() * 8;
+      const size = 5 + Math.random() * 8;
       dot.style.width = `${size}px`;
       dot.style.height = `${size}px`;
       dot.style.top = `${Math.random() * 100}%`;
