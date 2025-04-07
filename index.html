@@ -8,9 +8,9 @@
 
   <style>
     :root {
-      --purple: #592b94;
-      --blue: #003c71;
       --gold: #cda618;
+      --white: #ffffff;
+      --black: #000000;
     }
 
     * {
@@ -73,23 +73,8 @@
     .dot {
       position: absolute;
       border-radius: 50%;
-      opacity: 0.25;
-      animation: floatDot 30s ease-in-out infinite;
-    }
-
-    @keyframes floatDot {
-      0% {
-        transform: translate(0, 0) scale(1);
-        opacity: 0.25;
-      }
-      50% {
-        transform: translate(-20px, -50px) scale(1.3);
-        opacity: 0.4;
-      }
-      100% {
-        transform: translate(20px, -100px) scale(1);
-        opacity: 0.2;
-      }
+      opacity: 0.2;
+      transition: transform 0.2s ease-out;
     }
 
     .container {
@@ -218,15 +203,15 @@
     // Set current year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Floating dots
     const colors = [
-      'rgba(89,43,148,0.3)',   // purple
-      'rgba(0,60,113,0.3)',    // blue
-      'rgba(205,166,24,0.5)'   // gold
+      'rgba(205,166,24,0.4)',   // gold
+      'rgba(255,255,255,0.3)',  // white
+      'rgba(0,0,0,0.5)'         // black
     ];
 
+    const dotCount = 75;
     const container = document.getElementById("dots-container");
-    const dotCount = 100;
+    const dots = [];
 
     for (let i = 0; i < dotCount; i++) {
       const dot = document.createElement("div");
@@ -238,11 +223,45 @@
       dot.style.top = `${Math.random() * 100}%`;
       dot.style.left = `${Math.random() * 100}%`;
       dot.style.background = colors[Math.floor(Math.random() * colors.length)];
-      dot.style.animationDelay = `${Math.random() * 30}s`;
-      dot.style.animationDuration = `${20 + Math.random() * 30}s`;
 
       container.appendChild(dot);
+      dots.push({
+        el: dot,
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        vx: -0.5 + Math.random(),
+        vy: -0.5 + Math.random()
+      });
     }
+
+    // Animate movement and cursor-follow
+    let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+
+    document.addEventListener('mousemove', e => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    function animateDots() {
+      for (let i = 0; i < dots.length; i++) {
+        const dot = dots[i];
+        // Move toward mouse a little
+        dot.x += (mouse.x - dot.x) * 0.002 + dot.vx;
+        dot.y += (mouse.y - dot.y) * 0.002 + dot.vy;
+
+        // Wrap around screen
+        if (dot.x < 0) dot.x = window.innerWidth;
+        if (dot.x > window.innerWidth) dot.x = 0;
+        if (dot.y < 0) dot.y = window.innerHeight;
+        if (dot.y > window.innerHeight) dot.y = 0;
+
+        dot.el.style.transform = `translate(${dot.x}px, ${dot.y}px)`;
+      }
+
+      requestAnimationFrame(animateDots);
+    }
+
+    animateDots();
   </script>
 </body>
 </html>
