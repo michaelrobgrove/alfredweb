@@ -3,208 +3,135 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>404 – Lost in the Mud</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
-
+  <title>Page Not Found | Alfred Web Design & Shirts</title>
   <style>
-    :root {
-      --gold: #cda618;
-      --white: #ffffff;
-      --black: #000000;
-    }
-
-    * {
+    body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Cinzel', serif;
-      color: white;
-      background-color: black;
-      text-align: center;
-      overflow-x: hidden;
-      position: relative;
-      min-height: 100vh;
-    }
-
-    .background {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      background: linear-gradient(120deg, #3e65ff, #7e30cc);
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       overflow: hidden;
-      z-index: -2;
+    }
+    .container {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 100px 20px;
+    }
+    h1 {
+      font-size: 6em;
+      margin-bottom: 0;
+    }
+    h2 {
+      margin-top: 0;
+      font-size: 1.5em;
+      color: #f1f1f1;
+    }
+    p {
+      font-size: 1.1em;
+      max-width: 600px;
+      margin: 20px auto;
+      color: #ddd;
+    }
+    a {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 12px 24px;
+      background: #cda618;
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+    a:hover {
+      background: #e5c84f;
     }
 
-    .animated-gradient {
-      position: absolute;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(-45deg,
-        #4c1a92,
-        #003c71,
-        #6d2cb4,
-        #005cbf
-      );
-      background-size: 400% 400%;
-      animation: gradientShift 20s ease infinite;
-      z-index: -2;
-    }
-
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    .dots {
+    canvas {
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .dot {
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.2;
-      transition: transform 0.2s ease-out;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 40px 20px;
-      position: relative;
       z-index: 1;
-    }
-
-    .logo {
-      width: 100%;
-      max-width: 500px;
-      height: auto;
-      margin-bottom: 30px;
-    }
-
-    h1 {
-      font-size: 64px;
-      margin-bottom: 10px;
-    }
-
-    p {
-      font-size: 20px;
-      margin-bottom: 20px;
-      line-height: 1.5;
-    }
-
-    .home-button {
-      background-color: var(--gold);
-      color: black;
-      font-weight: bold;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 16px;
-      transition: background 0.3s ease;
-      display: inline-block;
-    }
-
-    .home-button:hover {
-      background-color: #b89614;
-    }
-
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 48px;
-      }
-
-      p {
-        font-size: 18px;
-      }
     }
   </style>
 </head>
 <body>
-  <div class="background">
-    <div class="animated-gradient"></div>
-    <div class="dots" id="dots-container"></div>
+  <canvas id="bubbles"></canvas>
+  <div class="container">
+    <h1>404</h1>
+    <h2>Well shoot, partner...</h2>
+    <p>
+      You took a wrong turn—kinda like trying to take a shortcut through a cow pasture and realizing too late you’re wearing your good boots.
+    </p>
+    <p>
+      But don’t worry, we’ve got the GPS fired up and the tractor idling. Let’s get you back to safer ground.
+    </p>
+    <a href="/">Take Me Home</a>
   </div>
 
-  <main class="container">
-    <img src="awd.png" alt="Alfred Web Design Logo" class="logo">
-    <h1>404 – Well, Shoot!</h1>
-    <p>
-      You’ve taken a wrong turn somewhere between the pasture and the pig roast.<br>
-      This page is as empty as a barn dance on a Monday mornin’.<br><br>
-      But don't worry — even cows find their way home eventually.
-    </p>
-    <a href="/" class="home-button">Get Me Back Home</a>
-  </main>
-
   <script>
-    const colors = [
-      'rgba(205,166,24,0.4)',   // gold
-      'rgba(255,255,255,0.3)',  // white
-      'rgba(0,0,0,0.5)'         // black
-    ];
+    const canvas = document.getElementById('bubbles');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let particles = [];
 
-    const dotCount = 75;
-    const container = document.getElementById("dots-container");
-    const dots = [];
+    function resizeCanvas() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
 
-    for (let i = 0; i < dotCount; i++) {
-      const dot = document.createElement("div");
-      dot.classList.add("dot");
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
 
-      const size = 4 + Math.random() * 8;
-      dot.style.width = `${size}px`;
-      dot.style.height = `${size}px`;
-      dot.style.top = `${Math.random() * 100}%`;
-      dot.style.left = `${Math.random() * 100}%`;
-      dot.style.background = colors[Math.floor(Math.random() * colors.length)];
+    const colors = ['#cda618', '#ffffff', '#000000'];
 
-      container.appendChild(dot);
-      dots.push({
-        el: dot,
-        x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight,
-        vx: -0.5 + Math.random(),
-        vy: -0.5 + Math.random()
+    for (let i = 0; i < 80; i++) {
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        radius: Math.random() * 3 + 1,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        dx: Math.random() - 0.5,
+        dy: Math.random() - 0.5
       });
     }
 
-    let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    let mouse = { x: width / 2, y: height / 2 };
 
-    document.addEventListener('mousemove', e => {
+    document.addEventListener('mousemove', function(e) {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
     });
 
-    function animateDots() {
-      for (let i = 0; i < dots.length; i++) {
-        const dot = dots[i];
-        dot.x += (mouse.x - dot.x) * 0.002 + dot.vx;
-        dot.y += (mouse.y - dot.y) * 0.002 + dot.vy;
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach(p => {
+        const distX = p.x - mouse.x;
+        const distY = p.y - mouse.y;
+        const distance = Math.sqrt(distX * distX + distY * distY);
+        if (distance < 100) {
+          p.x += distX / distance;
+          p.y += distY / distance;
+        } else {
+          p.x += p.dx;
+          p.y += p.dy;
+        }
 
-        if (dot.x < 0) dot.x = window.innerWidth;
-        if (dot.x > window.innerWidth) dot.x = 0;
-        if (dot.y < 0) dot.y = window.innerHeight;
-        if (dot.y > window.innerHeight) dot.y = 0;
+        if (p.x < 0 || p.x > width) p.dx *= -1;
+        if (p.y < 0 || p.y > height) p.dy *= -1;
 
-        dot.el.style.transform = `translate(${dot.x}px, ${dot.y}px)`;
-      }
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+      });
 
-      requestAnimationFrame(animateDots);
+      requestAnimationFrame(animate);
     }
 
-    animateDots();
+    animate();
   </script>
 </body>
 </html>
