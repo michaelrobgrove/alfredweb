@@ -11,7 +11,7 @@
     <!-- Open Graph and Twitter Card meta tags for social sharing -->
     <meta property="og:title" content="Alfred Web Design & Shirts - Web Design & Custom Apparel">
     <meta property="og:description" content="Professional web design, graphic design, and custom apparel printing services in Alfred Station, New York.">
-    <meta property="og:image" content="og.jpg">
+    <meta property="og:image" content="https://alfredwebdesign.com/og-image.jpg">
     <meta property="og:url" content="https://alfredwebdesign.com">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
@@ -29,9 +29,9 @@
     
     <style>
         :root {
-            --primary-purple: rgb(128, 0, 128);
-            --primary-blue: rgb(0, 80, 255);
-            --dark-overlay: rgba(0, 0, 0, 0.8);
+            --primary-purple: #592b94;
+            --primary-blue: #003c71;
+            --dark-overlay: rgba(0, 0, 0, 0.4);
         }
         
         * {
@@ -53,41 +53,100 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            background-color: #000;
         }
         
-        /* Background styling */
-        body::before {
-            content: "";
+        /* Background animation */
+        .background {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(
-                circle at center,
-                var(--dark-overlay) 20%,
-                transparent 80%
-            ), linear-gradient(
-                135deg,
-                var(--primary-purple) 0%,
-                rgba(0, 0, 0, 0.7) 50%,
-                var(--primary-blue) 100%
-            );
             z-index: -1;
-            background-size: 200% 200%;
-            animation: gradientAnimation 15s ease infinite;
+            overflow: hidden;
         }
         
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .split-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            animation: colorShift 12s ease-in-out infinite alternate;
+        }
+        
+        @keyframes colorShift {
+            0% {
+                background: linear-gradient(135deg,
+                    var(--primary-purple) 0%,
+                    var(--primary-purple) 48%,
+                    var(--primary-blue) 52%,
+                    var(--primary-blue) 100%
+                );
+            }
+            50% {
+                background: linear-gradient(135deg,
+                    var(--primary-purple) 0%,
+                    var(--primary-purple) 40%,
+                    var(--primary-blue) 60%,
+                    var(--primary-blue) 100%
+                );
+            }
+            100% {
+                background: linear-gradient(135deg,
+                    var(--primary-purple) 0%,
+                    var(--primary-purple) 48%,
+                    var(--primary-blue) 52%,
+                    var(--primary-blue) 100%
+                );
+            }
+        }
+        
+        .wave {
+            position: absolute;
+            width: 100%;
+            height: 200px;
+            background: rgba(0, 0, 0, 0.3);
+            animation: wave 8s linear infinite;
+        }
+        
+        .wave:nth-child(1) {
+            top: 20%;
+            animation-delay: 0s;
+            opacity: 0.3;
+        }
+        
+        .wave:nth-child(2) {
+            top: 50%;
+            animation-delay: -2s;
+            animation-duration: 12s;
+            opacity: 0.2;
+        }
+        
+        .wave:nth-child(3) {
+            top: 80%;
+            animation-delay: -4s;
+            animation-duration: 16s;
+            opacity: 0.1;
+        }
+        
+        @keyframes wave {
+            0% {
+                transform: translateX(-100%) scaleY(0.5);
+            }
+            50% {
+                transform: translateX(0%) scaleY(1);
+            }
+            100% {
+                transform: translateX(100%) scaleY(0.5);
+            }
         }
         
         .container {
             padding: 20px;
             max-width: 800px;
             width: 100%;
+            position: relative;
+            z-index: 2;
         }
         
         .logo {
@@ -137,6 +196,39 @@
             opacity: 0.9;
         }
         
+        .opening-info {
+            margin-top: 15px;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .address {
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        
+        .social-links {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .social-icon {
+            width: 30px;
+            height: 30px;
+            transition: transform 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: scale(1.2);
+        }
+        
         /* Adding responsiveness */
         @media (max-width: 768px) {
             .logo {
@@ -149,6 +241,11 @@
             
             .coming-soon {
                 font-size: 20px;
+            }
+            
+            .opening-info {
+                font-size: 14px;
+                padding: 8px 10px;
             }
         }
         
@@ -207,23 +304,62 @@
         "latitude": "",
         "longitude": ""
       },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "10:00",
+        "closes": "18:00"
+      },
       "sameAs": [
-        "https://facebook.com/redneckmobiledesign",
-        "https://instagram.com/redneckmobiledesign"
+        "https://www.facebook.com/redneckmobiledesign.com",
+        "https://instagram.com/redneckmobiledesign.com"
       ]
     }
     </script>
 </head>
 <body>
+    <div class="background">
+        <div class="split-background"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+    </div>
+    
     <a href="#main" class="skip-link">Skip to content</a>
     <main id="main" class="container">
         <img src="awd.png" alt="Alfred Web Design & Shirts Logo" class="logo">
+        <h1>Alfred Web Design & Shirts</h1>
         <p class="coming-soon">Page Coming Soon</p>
-        <h1>Web Design • Graphic Design • Custom Apparel</h1>
+        <p class="services">Web Design • Graphic Design • Custom Apparel</p>
+        
+        <div class="opening-info">
+            <p><strong>Opening May 1st, 2025</strong></p>
+            <p>Currently available by appointment only</p>
+            <p>Future hours: Monday-Friday 10am-6pm</p>
+        </div>
+        
+        <p class="address">
+            6174 Depot St, Alfred Station, NY 14803<br>
+            <small>Mailing: PO Box 11, Alfred Station, NY 14803</small>
+        </p>
+        
         <p><a href="mailto:team@alfredwebdesign.com" class="contact-link" aria-label="Email us at team at alfred web design dot com">team@alfredwebdesign.com</a></p>
+        
+        <div class="social-links">
+            <a href="https://www.facebook.com/redneckmobiledesign.com" target="_blank" rel="noopener" aria-label="Visit our Facebook page">
+                <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
+                    <path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12c0-5.523-4.477-10-10-10z"/>
+                </svg>
+            </a>
+            <a href="https://instagram.com/redneckmobiledesign.com" target="_blank" rel="noopener" aria-label="Visit our Instagram page">
+                <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                </svg>
+            </a>
+        </div>
     </main>
     <footer role="contentinfo">
-        <p><small>&copy; <span id="year">2018-2025</span> Alfred Web Design & Shirts</small></p>
+        <p><small>&copy; <span id="year">2025</span> Alfred Web Design & Shirts | Formerly Redneck Mobile Design & Shirts</small></p>
     </footer>
     <script>
         // Update copyright year automatically
