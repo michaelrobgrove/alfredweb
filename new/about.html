@@ -171,7 +171,7 @@
 
     .hero {
       margin-bottom: 30px;
-      padding: 20px;
+      padding: 25px;
       background-color: rgba(0,0,0,0.6);
       border-radius: 15px;
     }
@@ -186,6 +186,40 @@
       font-size: 16px;
       line-height: 1.5;
       margin-bottom: 15px;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    @media (min-width: 768px) {
+      .hero-content {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+
+    .hero-text {
+      flex: 1;
+      text-align: left;
+    }
+
+    .hero-image {
+      flex: 0 0 250px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .team-image {
+      width: 100%;
+      max-width: 250px;
+      height: auto;
+      border-radius: 15px;
+      border: 3px solid var(--gold);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
     }
 
     .hero-cta {
@@ -431,6 +465,10 @@
       .services-list {
         grid-template-columns: 1fr 1fr;
       }
+      
+      .hero-image {
+        margin: 0 auto;
+      }
     }
     
     @media (max-width: 480px) {
@@ -464,10 +502,18 @@
 
     <main>
       <section class="hero">
-        <h1>Your Local Design & Print Experts</h1>
-        <p>Welcome to Alfred Web Design & Shirts, a family-owned graphic design and custom apparel business proudly serving Allegany County and the Southern Tier of New York since 2018. With deep roots in Alfred Station and a commitment to quality craftsmanship, we specialize in logo design, graphic design, print design, and custom apparel that helps local businesses and organizations shine.</p>
-        <div class="hero-cta">
-          <a href="contact.html" class="cta-button">Get Started Today</a>
+        <h1>About Alfred Web Design & Shirts</h1>
+        <div class="hero-content">
+          <div class="hero-text">
+            <p>We're a passionate family team of graphic designers and print specialists based in Alfred Station, NY. Since 2018, we've been creating custom designs, memorable logos, and quality apparel for businesses and organizations throughout Allegany County and the Southern Tier.</p>
+            <p>With our deep roots in the Alfred community and commitment to personalized service, we bring local values and professional expertise to every project we touch. Our mission is simple: to help our neighbors shine with exceptional design at affordable prices.</p>
+            <div class="hero-cta">
+              <a href="contact.html" class="cta-button">Connect With Us</a>
+            </div>
+          </div>
+          <div class="hero-image">
+            <img src="mg-kg.webp" alt="Meet the Alfred Web Design & Shirts Team" class="team-image">
+          </div>
         </div>
       </section>
 
