@@ -9,11 +9,13 @@
 
   <style>
     :root {
+      --purple: #592b94;
+      --blue: #003c71;
       --gold: #cda618;
       --white: #ffffff;
       --black: #000000;
-      --accent: #6d2cb4;
-      --accent-light: #8844d4;
+      --accent: #592b94;
+      --accent-light: #6d35b2;
     }
 
     * {
@@ -63,10 +65,10 @@
       width: 200%;
       height: 200%;
       background: linear-gradient(-45deg,
-        rgba(76, 26, 146, 0.6),
+        rgba(89, 43, 148, 0.6),
         rgba(0, 60, 113, 0.6),
-        rgba(109, 44, 180, 0.6),
-        rgba(0, 92, 191, 0.6)
+        rgba(89, 43, 148, 0.6),
+        rgba(0, 60, 113, 0.6)
       );
       background-size: 400% 400%;
       animation: gradientShift 20s ease infinite;
@@ -174,6 +176,7 @@
       padding: 20px;
       background-color: rgba(0,0,0,0.6);
       border-radius: 15px;
+      text-align: center;
     }
 
     .hero h1 {
@@ -205,6 +208,7 @@
       border-radius: 10px;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       height: 100%;
+      text-align: center;
     }
 
     .service-card:hover {
@@ -228,14 +232,13 @@
       padding: 30px;
       border-radius: 15px;
       margin-bottom: 40px;
-      text-align: left;
+      text-align: center;
     }
 
     .content-section h2 {
       color: var(--gold);
       font-size: 24px;
       margin-bottom: 20px;
-      text-align: center;
     }
 
     .content-section p {
@@ -244,22 +247,12 @@
       margin-bottom: 15px;
     }
 
-    .content-section ul {
-      margin-left: 20px;
-      margin-bottom: 20px;
-    }
-
-    .content-section li {
-      margin-bottom: 8px;
-      font-size: 15px;
-      line-height: 1.5;
-    }
-
     .cta-section {
       background-color: rgba(0,0,0,0.7);
       padding: 30px;
       border-radius: 15px;
       margin-bottom: 40px;
+      text-align: center;
     }
 
     .cta-section h2 {
@@ -287,30 +280,6 @@
       transform: scale(1.05);
     }
 
-    .testimonial-section {
-      margin-bottom: 40px;
-    }
-
-    .testimonial-card {
-      background-color: rgba(0,0,0,0.6);
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 800px;
-      margin: 0 auto 20px;
-    }
-
-    .testimonial-text {
-      font-style: italic;
-      font-size: 15px;
-      line-height: 1.6;
-      margin-bottom: 15px;
-    }
-
-    .testimonial-author {
-      color: var(--gold);
-      font-weight: 600;
-    }
-
     .info-section {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -322,6 +291,7 @@
       background-color: rgba(0,0,0,0.6);
       padding: 20px;
       border-radius: 10px;
+      text-align: center;
     }
 
     .info-card h3 {
@@ -381,26 +351,8 @@
       opacity: 0.7;
     }
 
-    .project-gallery {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-      margin: 25px 0;
-    }
-
-    .gallery-item {
-      background-color: rgba(109, 44, 180, 0.3);
-      border-radius: 8px;
-      height: 180px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--gold);
-      font-weight: bold;
-    }
-
     @media (max-width: 992px) {
-      .services-section, .project-gallery {
+      .services-section {
         grid-template-columns: repeat(2, 1fr);
       }
     }
@@ -438,14 +390,10 @@
       .info-section {
         grid-template-columns: 1fr;
       }
-      
-      .project-gallery {
-        grid-template-columns: 1fr 1fr;
-      }
     }
 
     @media (max-width: 576px) {
-      .services-section, .project-gallery {
+      .services-section {
         grid-template-columns: 1fr;
       }
     }
@@ -515,15 +463,6 @@
         <p>Our shirt printing services combine professional quality with personal attention that only a local Alfred business can provide. We understand the unique dynamics of our community – from the academic calendars that shape our town to the local events that bring us together. This insight allows us to create custom apparel that truly resonates with Alfred residents and visitors.</p>
         
         <p>From Hot Dog Day celebrations to Alfred University art shows, Alfred State technical programs to Eagles sports teams – we've helped countless local groups showcase their Alfred pride through custom apparel. Our designs celebrate what makes Alfred special, whether you're looking for sophisticated college-themed wear or playful designs that capture our town's unique character.</p>
-
-        <div class="project-gallery">
-          <div class="gallery-item">Alfred Main Street Business Logos</div>
-          <div class="gallery-item">Alfred University Club Shirts</div>
-          <div class="gallery-item">Alfred State Tech Program Apparel</div>
-          <div class="gallery-item">Alfred Station Community Event Designs</div>
-          <div class="gallery-item">Alfred-Almond Eagles Spirit Wear</div>
-          <div class="gallery-item">Local Alfred Artist Collaborations</div>
-        </div>
       </section>
 
       <section class="cta-section">
@@ -541,17 +480,6 @@
         <p>Supporting local business also means your investment stays in Alfred, helping to strengthen our community economy. When you work with Alfred Web Design & Shirts, you're not just getting excellent design services – you're partnering with fellow community members who care about Alfred's growth and success as much as you do.</p>
         
         <p>For students, faculty, and staff of Alfred University, Alfred State College, and Alfred-Almond Central School, we offer specialized services that understand campus culture and needs. From student organization websites to faculty professional sites, from club t-shirts to team apparel – we speak your language because we're part of the same community.</p>
-      </section>
-
-      <section class="testimonial-section">
-        <div class="testimonial-card">
-          <p class="testimonial-text">"As a small business owner in Alfred, I needed a website that would help locals find me when searching online. Alfred Web Design delivered exactly what I needed – a beautiful site that's bringing in customers from both the village and Alfred Station."</p>
-          <p class="testimonial-author">— Main Street Shop Owner, Alfred</p>
-        </div>
-        <div class="testimonial-card">
-          <p class="testimonial-text">"Our student club needed custom shirts for an event, and we were thrilled to find a printer right here in Alfred. The designs perfectly captured our club's spirit while showing our Alfred University pride."</p>
-          <p class="testimonial-author">— Student Organization Leader, Alfred University</p>
-        </div>
       </section>
 
       <section class="info-section">
