@@ -1,0 +1,25 @@
+# Allow Google
+User-agent: Googlebot
+Disallow:
+
+# Allow Applebot
+User-agent: Applebot
+Disallow:
+
+# Allow Meta (Facebook)
+User-agent: FacebookExternalHit
+Disallow:
+
+# Allow Bing (and Yahoo, which uses BingBot)
+User-agent: Bingbot
+Disallow:
+
+# Disallow all other bots
+User-agent: *
+Disallow: /
+
+# Optional: block access to 404.html even for allowed bots
+Disallow: /404.html
+
+# Sitemap location
+Sitemap: https://alfredwebdesign.com/sitemap.xml
