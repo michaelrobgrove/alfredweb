@@ -451,6 +451,55 @@
         grid-template-columns: 1fr;
       }
     }
+.faq-section {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 40px 20px;
+  border-radius: 15px;
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.faq-section h2 {
+  color: var(--gold);
+  font-size: 26px;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.accordion {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.accordion-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.accordion-header {
+  background: none;
+  border: none;
+  color: var(--white);
+  text-align: left;
+  font-size: 18px;
+  padding: 15px;
+  width: 100%;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.accordion-header:hover {
+  color: var(--gold);
+}
+
+.accordion-body {
+  padding: 0 15px 15px;
+  display: none;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #ddd;
+}
+
   </style>
 </head>
 <body>
@@ -578,6 +627,62 @@
       </section>
     </main>
   </div>
+<section class="faq-section">
+  <h2>Frequently Asked Questions</h2>
+  <div class="accordion">
+    <!-- FAQ Item -->
+    <div class="accordion-item">
+      <button class="accordion-header">Do you offer logo design services near Alfred, NY?</button>
+      <div class="accordion-body">Yes! We specialize in custom logo design for businesses and individuals in Alfred, Almond, and Hornell. Whether you’re launching a new business or refreshing your brand, our team is here to help with professional, locally-focused solutions.</div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-header">Can I get a custom website designed for my small business near Wellsville?</button>
+      <div class="accordion-body">Absolutely. We work with local businesses in Wellsville, Belmont, and surrounding towns to create affordable, mobile-friendly websites that help you get found in “near me” searches on Google.</div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-header">Do you design apparel for events or businesses in Hornell?</button>
+      <div class="accordion-body">Yes, our team designs custom shirts, hoodies, and hats for community events, small businesses, and student groups in Hornell, Alfred, and Almond. Our apparel design combines local pride with standout style.</div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-header">Is screen printing available for schools and teams near Alfred?</button>
+      <div class="accordion-body">We offer high-quality screen printing for schools, sports teams, and local clubs in Alfred Station, Almond, and the greater Steuben County area. Bulk orders welcome!</div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-header">What makes your graphic design service different in Belmont?</button>
+      <div class="accordion-body">Our graphic design work is rooted in local connection. We collaborate with Belmont clients to bring their brand to life with visuals that feel authentic and resonate with the Southern Tier community.</div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-header">Can I order business cards or flyers for my shop in Almond?</button>
+      <div class="accordion-body">Definitely! We provide professional print design services for Almond-area businesses looking to market themselves through eye-catching business cards, flyers, and brochures.</div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-header">Do you help with website updates or redesigns near Alfred?</button>
+      <div class="accordion-body">Yes! If you’re in Alfred, Wellsville, or Hornell and your website feels outdated, we offer affordable redesigns that improve usability and local SEO performance.</div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-header">Can you design logos for local farms or small businesses?</button>
+      <div class="accordion-body">We love working with farms and family-run businesses across Allegany County. From rustic logos to modern badges, we design locally-inspired branding that captures your roots.</div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-header">Where can I get custom apparel printed near me?</button>
+      <div class="accordion-body">If you're searching for “custom shirt printing near me” in Alfred or Almond, you’re in the right place. Our local shop creates personalized apparel with fast turnaround and small-town service.</div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-header">Do you offer bulk discounts for local organizations?</button>
+      <div class="accordion-body">Yes! We proudly support local schools, nonprofits, and businesses in Alfred, Hornell, and Wellsville with bulk order pricing on custom apparel and print materials.</div>
+    </div>
+  </div>
+</section>
+
 
   <footer>
     <div class="footer-content">
@@ -658,5 +763,16 @@
 
     animateDots();
   </script>
+<script>
+  document.querySelectorAll('.accordion-header').forEach(button => {
+    button.addEventListener('click', () => {
+      const body = button.nextElementSibling;
+      const open = body.style.display === 'block';
+      document.querySelectorAll('.accordion-body').forEach(b => b.style.display = 'none');
+      body.style.display = open ? 'none' : 'block';
+    });
+  });
+</script>
+
 </body>
 </html>
