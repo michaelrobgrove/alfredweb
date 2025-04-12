@@ -45,16 +45,28 @@
       overflow: hidden;
       z-index: -2;
     }
+    
+    .background-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('alfred-back.webp');
+      background-size: cover;
+      background-position: center;
+      z-index: -3;
+    }
 
     .animated-gradient {
       position: absolute;
       width: 200%;
       height: 200%;
       background: linear-gradient(-45deg,
-        #4c1a92,
-        #003c71,
-        #6d2cb4,
-        #005cbf
+        rgba(76, 26, 146, 0.6),
+        rgba(0, 60, 113, 0.6),
+        rgba(109, 44, 180, 0.6),
+        rgba(0, 92, 191, 0.6)
       );
       background-size: 400% 400%;
       animation: gradientShift 20s ease infinite;
@@ -443,6 +455,7 @@
 </head>
 <body>
   <div class="background">
+    <div class="background-image" aria-label="Alfred Station Sunrise - Alfred NY"></div>
     <div class="animated-gradient"></div>
     <div class="dots" id="dots-container"></div>
   </div>
