@@ -3,33 +3,543 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>About Us | Alfred Web Design & Shirts</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Lato&display=swap" rel="stylesheet">
+  <meta name="description" content="About Alfred Web Design & Shirts - Your local family-owned design and print shop in Alfred Station, NY. Quality graphic design, logo design, print design and custom apparel services with deep community roots in Allegany County.">
+  <title>About Us - Alfred Web Design & Shirts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
-    /* Include the same CSS from your original code */
+    :root {
+      --gold: #cda618;
+      --white: #ffffff;
+      --black: #000000;
+      --accent: #6d2cb4;
+      --accent-light: #8844d4;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      color: white;
+      background-color: black;
+      text-align: center;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    h1, h2, h3, h4, h5, h6, .nav-item {
+      font-family: 'Cinzel', serif;
+    }
+
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -2;
+    }
+    
+    .background-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('alfred-back.webp');
+      background-size: cover;
+      background-position: center;
+      z-index: -3;
+    }
+
+    .animated-gradient {
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(-45deg,
+        rgba(76, 26, 146, 0.6),
+        rgba(0, 60, 113, 0.6),
+        rgba(109, 44, 180, 0.6),
+        rgba(0, 92, 191, 0.6)
+      );
+      background-size: 400% 400%;
+      animation: gradientShift 20s ease infinite;
+      z-index: -2;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .dots {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .dot {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.9;
+      transition: transform 0.4s ease-out;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      padding: 15px 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .nav-container {
+      display: flex;
+      background-color: rgba(0,0,0,0.5);
+      border-radius: 30px;
+      padding: 10px 20px;
+    }
+
+    .nav-item {
+      color: var(--white);
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 16px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .nav-item:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background-color: var(--gold);
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: width 0.3s ease;
+    }
+
+    .nav-item:hover:after {
+      width: 100%;
+    }
+
+    .nav-item.active {
+      color: var(--gold);
+    }
+
+    .nav-item.active:after {
+      width: 100%;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo-container {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .logo {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      margin-bottom: 5px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.02);
+    }
+
+    .hero {
+      margin-bottom: 30px;
+      padding: 20px;
+      background-color: rgba(0,0,0,0.6);
+      border-radius: 15px;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      margin-bottom: 15px;
+      color: var(--gold);
+    }
+
+    .hero p {
+      font-size: 16px;
+      line-height: 1.5;
+      margin-bottom: 15px;
+    }
+
+    .hero-cta {
+      margin-top: 20px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background-color: var(--accent);
+      color: white;
+      padding: 10px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+      border: 2px solid transparent;
+    }
+
+    .cta-button:hover {
+      background-color: var(--accent-light);
+      transform: scale(1.05);
+    }
+
+    .our-story {
+      background-color: rgba(0,0,0,0.6);
+      padding: 40px 30px;
+      border-radius: 15px;
+      margin-bottom: 40px;
+    }
+
+    .story-container {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    @media (min-width: 768px) {
+      .story-container {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+
+    .story-text {
+      flex: 1;
+      text-align: left;
+    }
+
+    .story-image-container {
+      flex: 0 0 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .story-image {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      border-radius: 50%;
+      border: 4px solid var(--gold);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .story-image:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.7);
+    }
+
+    .our-story h2, .core-values h2 {
+      color: var(--gold);
+      margin-bottom: 25px;
+      font-size: 28px;
+      text-align: center;
+    }
+
+    .story-text p {
+      font-size: 17px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .story-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .owners-caption {
+      margin-top: 15px;
+      font-size: 16px;
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .core-values {
+      background-color: rgba(0,0,0,0.6);
+      padding: 40px 30px;
+      border-radius: 15px;
+      margin-bottom: 40px;
+    }
+
+    .values-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .value-card {
+      background-color: rgba(0,0,0,0.4);
+      border-radius: 12px;
+      padding: 25px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .value-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .value-card h3 {
+      color: var(--gold);
+      margin-bottom: 15px;
+      font-size: 22px;
+    }
+
+    .value-card p {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .services-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .service-item {
+      background-color: rgba(0,0,0,0.4);
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .service-item:hover {
+      transform: translateY(-5px);
+      background-color: rgba(0,0,0,0.6);
+    }
+
+    .service-item h3 {
+      color: var(--gold);
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .service-item p {
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    footer {
+      padding: 25px 20px;
+      background-color: rgba(0,0,0,0.7);
+      margin-top: 40px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 15px;
+    }
+
+    .footer-link {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-link:hover {
+      color: var(--gold);
+    }
+
+    .copyright {
+      font-size: 14px;
+      opacity: 0.7;
+    }
+
+    @media (max-width: 768px) {
+      .nav-container {
+        padding: 8px 15px;
+      }
+      
+      .nav-item {
+        margin: 0 8px;
+        font-size: 14px;
+      }
+      
+      .hero h1 {
+        font-size: 26px;
+      }
+      
+      .hero p {
+        font-size: 15px;
+      }
+      
+      .logo {
+        max-width: 80%;
+      }
+
+      .our-story, .core-values {
+        padding: 30px 20px;
+      }
+
+      .value-card h3 {
+        font-size: 20px;
+      }
+
+      .values-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .story-image-container {
+        margin: 0 auto 20px;
+      }
+      
+      .story-image {
+        max-width: 250px;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="background">
+    <div class="background-image" aria-label="Alfred Station Sunrise - Alfred NY"></div>
     <div class="animated-gradient"></div>
     <div class="dots" id="dots-container"></div>
   </div>
 
-  <main class="container">
-    <img src="awd.png" alt="Alfred Web Design & Shirts Logo" class="logo">
-    <h1>About Us</h1>
-    <p>Welcome to Alfred Web Design & Shirts! We're a local, small-town business that’s passionate about serving our community. Whether it’s web design, graphic design, or custom apparel, we are here to help bring your ideas to life with quality and care.</p>
-    <p>We take pride in creating professional designs that speak to our roots, blending a modern approach with the heart of our community. Our goal is to make your brand shine in a way that’s as unique and personal as our hometown of Alfred Station.</p>
-    <p class="services">Web Design • Graphic Design • Custom Apparel</p>
-  </main>
+  <div class="container">
+    <nav>
+      <div class="nav-container">
+        <a href="index2.html" class="nav-item">Home</a>
+        <a href="about.html" class="nav-item active">About Us</a>
+        <a href="contact.html" class="nav-item">Contact</a>
+      </div>
+    </nav>
+
+    <div class="logo-container">
+      <a href="index2.html">
+        <img src="awd.png" alt="Alfred Web Design & Shirts Logo" class="logo">
+      </a>
+    </div>
+
+    <main>
+      <section class="hero">
+        <h1>Your Local Design & Print Experts</h1>
+        <p>Welcome to Alfred Web Design & Shirts, a family-owned graphic design and custom apparel business proudly serving Allegany County and the Southern Tier of New York since 2018. With deep roots in Alfred Station and a commitment to quality craftsmanship, we specialize in logo design, graphic design, print design, and custom apparel that helps local businesses and organizations shine.</p>
+        <div class="hero-cta">
+          <a href="contact.html" class="cta-button">Get Started Today</a>
+        </div>
+      </section>
+
+      <section class="our-story">
+        <h2>Our Story</h2>
+        <div class="story-container">
+          <div class="story-text">
+            <p>Founded on a passion for creativity and community, Alfred Web Design & Shirts has grown from a local dream into a trusted partner for custom apparel, graphic design, and web solutions. Our family's roots run deep in Allegany & Steuben Counties, and we're proud to serve our neighbors and friends with the same values we'd offer our own family: honesty, hard work, and attention to detail.</p>
+            <p>What began as "Redneck Mobile Design & Shirts" has evolved into Alfred Web Design & Shirts, reflecting our growth and commitment to professional service while maintaining our small-town values. Our journey started with simple t-shirt designs for local events and has blossomed into comprehensive design services that help businesses throughout Western New York establish their visual identity.</p>
+            <p>As Alfred natives, we understand the unique character of our region and the challenges local businesses face. We've built our reputation on creating affordable, high-quality designs that speak to our community while helping our clients stand out in increasingly competitive markets.</p>
+          </div>
+          <div class="story-image-container">
+            <div>
+              <img src="mg-kg.webp" alt="Owners of Alfred Web Design & Shirts" class="story-image">
+              <p class="owners-caption">The faces behind Alfred Web Design & Shirts</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="core-values">
+        <h2>Our Core Values</h2>
+        <div class="values-container">
+          <div class="value-card">
+            <h3>Affordable Quality</h3>
+            <p>We believe great design shouldn't break the bank. By providing professional services at reasonable rates, we help local businesses compete without compromising on quality. Our pricing reflects our commitment to being accessible to businesses of all sizes in our community.</p>
+          </div>
+          <div class="value-card">
+            <h3>Stand Behind Our Work</h3>
+            <p>Quality isn't just a buzzword for us—it's our reputation. We take pride in every project we complete and stand firmly behind our work. If it doesn't meet your expectations or our standards, we'll make it right. That's our guarantee to every client we serve.</p>
+          </div>
+          <div class="value-card">
+            <h3>Community First</h3>
+            <p>As a family business with deep roots in Allegany County, we understand that our success is tied to the community's success. We support local organizations, participate in community events, and prioritize building lasting relationships with our neighbors and clients.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="core-values">
+        <h2>Our Services</h2>
+        <div class="services-list">
+          <div class="service-item">
+            <h3>Graphic Design</h3>
+            <p>From business cards to banners, our graphic design services help your brand communicate effectively across all platforms. We craft visuals that capture your unique identity and message.</p>
+          </div>
+          <div class="service-item">
+            <h3>Logo Design</h3>
+            <p>Your logo is the face of your business. We create distinctive, memorable logos that stand the test of time and work across all applications, from storefront signs to social media profiles.</p>
+          </div>
+          <div class="service-item">
+            <h3>Custom Apparel</h3>
+            <p>Turn your team, event, or brand into a walking advertisement with our custom apparel services. From t-shirts to hoodies, we print high-quality designs that last wash after wash.</p>
+          </div>
+          <div class="service-item">
+            <h3>Print Design</h3>
+            <p>Make an impression with professionally designed print materials. Our print design services cover everything from business cards and brochures to posters and promotional materials.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
 
   <footer>
-    <p><small>&copy; 2018–<span id="year"></span> Alfred Web Design & Shirts</small></p>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="index2.html" class="footer-link">Home</a>
+        <a href="about.html" class="footer-link">About Us</a>
+        <a href="contact.html" class="footer-link">Contact</a>
+      </div>
+      <p class="copyright">&copy; 2018–<span id="year"></span> Alfred Web Design & Shirts | Formerly Redneck Mobile Design & Shirts</p>
+    </div>
   </footer>
 
   <script>
+    // Set current year
     document.getElementById("year").textContent = new Date().getFullYear();
-    const colors = ['rgba(205,166,24,0.4)', 'rgba(255,255,255,0.4)', 'rgba(0,0,0,0.4)'];
+
+    const colors = [
+      'rgba(205,166,24,0.4)',   // gold
+      'rgba(255,255,255,0.4)',  // white
+      'rgba(0,0,0,0.4)'         // black
+    ];
+
     const dotCount = 350;
     const container = document.getElementById("dots-container");
     const dots = [];
@@ -46,18 +556,31 @@
       dot.style.background = colors[Math.floor(Math.random() * colors.length)];
 
       container.appendChild(dot);
-      dots.push({ el: dot, x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight, vx: -0.5 + Math.random(), vy: -0.5 + Math.random() });
+      dots.push({
+        el: dot,
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        vx: -0.5 + Math.random(),
+        vy: -0.5 + Math.random()
+      });
     }
 
+    // Animate movement and cursor-follow
     let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-    document.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+
+    document.addEventListener('mousemove', e => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
 
     function animateDots() {
       for (let i = 0; i < dots.length; i++) {
         const dot = dots[i];
+        // Move toward mouse a little
         dot.x += (mouse.x - dot.x) * 0.002 + dot.vx;
         dot.y += (mouse.y - dot.y) * 0.002 + dot.vy;
 
+        // Wrap around screen
         if (dot.x < 0) dot.x = window.innerWidth;
         if (dot.x > window.innerWidth) dot.x = 0;
         if (dot.y < 0) dot.y = window.innerHeight;
