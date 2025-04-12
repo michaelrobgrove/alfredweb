@@ -2,24 +2,44 @@
 User-agent: Googlebot
 Disallow:
 
-# Allow Applebot
+# Allow Apple
 User-agent: Applebot
 Disallow:
 
-# Allow Meta (Facebook)
-User-agent: FacebookExternalHit
-Disallow:
-
-# Allow Bing (and Yahoo, which uses BingBot)
+# Allow Bing (also covers Yahoo)
 User-agent: Bingbot
 Disallow:
 
-# Disallow all other bots
+# Allow Facebook for link previews
+User-agent: FacebookExternalHit
+Disallow:
+
+# Allow Twitter for card previews
+User-agent: Twitterbot
+Disallow:
+
+# Allow Slack previews
+User-agent: Slackbot
+Disallow:
+
+# Allow Discord embeds
+User-agent: Discordbot
+Disallow:
+
+# Allow DuckDuckGo
+User-agent: DuckDuckBot
+Disallow:
+
+# Allow LinkedIn link previews
+User-agent: LinkedInBot
+Disallow:
+
+# Block everything else
 User-agent: *
 Disallow: /
 
-# Optional: block access to 404.html even for allowed bots
+# Hide the 404 page from all bots
 Disallow: /404.html
 
-# Sitemap location
+# Sitemap for approved bots
 Sitemap: https://alfredwebdesign.com/sitemap.xml
