@@ -3,181 +3,659 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Alfred NY Design Services | Alfred Web Design & Shirts</title>
-  <meta name="description" content="Looking for design or printing near Alfred, NY? We specialize in custom web design, logo design, graphic tees, and more for Alfred University, Alfred State, and local businesses.">
-  <link rel="icon" href="/awd.webp" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Lato:wght@400;700&display=swap">
+  <meta name="description" content="Alfred Web Design & Shirts - Professional web design, logo creation, and custom apparel in Alfred, NY. Serving Alfred University, Alfred State College, and Alfred-Almond communities with local expertise.">
+  <title>Alfred NY Web Design & Custom Apparel | Local Print Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
-    body {
+    :root {
+      --gold: #cda618;
+      --white: #ffffff;
+      --black: #000000;
+      --accent: #6d2cb4;
+      --accent-light: #8844d4;
+    }
+
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       font-family: 'Lato', sans-serif;
-      background-color: #000;
-      color: #fff;
+      color: white;
+      background-color: black;
+      text-align: center;
       overflow-x: hidden;
       position: relative;
+      min-height: 100vh;
     }
 
-    header {
-      background-color: rgba(0, 0, 0, 0.85);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      position: sticky;
+    h1, h2, h3, h4, h5, h6, .nav-item {
+      font-family: 'Cinzel', serif;
+    }
+
+    .background {
+      position: fixed;
       top: 0;
-      z-index: 1000;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -2;
     }
-
-    header img {
-      height: 50px;
-    }
-
-    nav a {
-      color: white;
-      margin-left: 1.5rem;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      color: #FFD700;
-    }
-
-    .hero {
-      text-align: center;
-      padding: 5rem 1rem;
-      background: linear-gradient(to right, #6d2cb4, #FFD700);
-      -webkit-background-clip: text;
-      color: transparent;
-      font-family: 'Cinzel', serif;
-      font-size: 3rem;
-      font-weight: 700;
-      animation: fadeIn 2s ease;
-    }
-
-    .subheading {
-      text-align: center;
-      font-size: 1.25rem;
-      margin-top: -2rem;
-      margin-bottom: 3rem;
-      color: white;
-      animation: fadeIn 3s ease;
-    }
-
-    .section {
-      padding: 2rem;
-      max-width: 900px;
-      margin: auto;
-      background-color: rgba(0, 0, 0, 0.6);
-      border-radius: 10px;
-    }
-
-    .section h2 {
-      font-family: 'Cinzel', serif;
-      font-size: 2rem;
-      color: #FFD700;
-      margin-bottom: 1rem;
-    }
-
-    .section p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-    }
-
-    .cta {
-      background-color: #6d2cb4;
-      color: #fff;
-      padding: 1.5rem;
-      text-align: center;
-      font-weight: bold;
-      border-radius: 10px;
-      margin: 2rem auto;
-      width: fit-content;
-      animation: pulse 2s infinite;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem;
-      color: white;
-      font-size: 0.9rem;
-    }
-
-    .dot-background::before {
-      content: '';
+    
+    .background-image {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: radial-gradient(#ffffff10 1px, transparent 1px);
-      background-size: 20px 20px;
-      z-index: 0;
+      background-image: url('alfred-back.webp');
+      background-size: cover;
+      background-position: center;
+      z-index: -3;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    .animated-gradient {
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(-45deg,
+        rgba(76, 26, 146, 0.6),
+        rgba(0, 60, 113, 0.6),
+        rgba(109, 44, 180, 0.6),
+        rgba(0, 92, 191, 0.6)
+      );
+      background-size: 400% 400%;
+      animation: gradientShift 20s ease infinite;
+      z-index: -2;
     }
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .dots {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .dot {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.9;
+      transition: transform 0.4s ease-out;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      padding: 15px 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .nav-container {
+      display: flex;
+      background-color: rgba(0,0,0,0.5);
+      border-radius: 30px;
+      padding: 10px 20px;
+    }
+
+    .nav-item {
+      color: var(--white);
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 16px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .nav-item:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background-color: var(--gold);
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: width 0.3s ease;
+    }
+
+    .nav-item:hover:after {
+      width: 100%;
+    }
+
+    .nav-item.active {
+      color: var(--gold);
+    }
+
+    .nav-item.active:after {
+      width: 100%;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo-container {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .logo {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      margin-bottom: 5px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.02);
+    }
+
+    .hero {
+      margin-bottom: 30px;
+      padding: 20px;
+      background-color: rgba(0,0,0,0.6);
+      border-radius: 15px;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      margin-bottom: 15px;
+      color: var(--gold);
+    }
+
+    .hero p {
+      font-size: 16px;
+      line-height: 1.5;
+      margin-bottom: 15px;
+    }
+
+    .hero-cta {
+      margin-top: 20px;
+    }
+
+    .services-section {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-bottom: 40px;
+    }
+
+    .service-card {
+      background-color: rgba(0,0,0,0.6);
+      padding: 20px;
+      border-radius: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    .service-card h3 {
+      color: var(--gold);
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .service-card p {
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .content-section {
+      background-color: rgba(0,0,0,0.6);
+      padding: 30px;
+      border-radius: 15px;
+      margin-bottom: 40px;
+      text-align: left;
+    }
+
+    .content-section h2 {
+      color: var(--gold);
+      font-size: 24px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .content-section p {
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .content-section ul {
+      margin-left: 20px;
+      margin-bottom: 20px;
+    }
+
+    .content-section li {
+      margin-bottom: 8px;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .cta-section {
+      background-color: rgba(0,0,0,0.7);
+      padding: 30px;
+      border-radius: 15px;
+      margin-bottom: 40px;
+    }
+
+    .cta-section h2 {
+      color: var(--gold);
+      margin-bottom: 15px;
+      font-size: 24px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background-color: var(--accent);
+      color: white;
+      padding: 10px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+      border: 2px solid transparent;
+    }
+
+    .cta-button:hover {
+      background-color: var(--accent-light);
+      transform: scale(1.05);
+    }
+
+    .testimonial-section {
+      margin-bottom: 40px;
+    }
+
+    .testimonial-card {
+      background-color: rgba(0,0,0,0.6);
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 800px;
+      margin: 0 auto 20px;
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .testimonial-author {
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .info-section {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .info-card {
+      background-color: rgba(0,0,0,0.6);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .info-card h3 {
+      color: var(--gold);
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .info-card p {
+      font-size: 15px;
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .info-card a {
+      color: white;
+      text-decoration: underline;
+      transition: color 0.3s ease;
+    }
+
+    .info-card a:hover {
+      color: var(--gold);
+    }
+
+    footer {
+      padding: 25px 20px;
+      background-color: rgba(0,0,0,0.7);
+      margin-top: 40px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 15px;
+    }
+
+    .footer-link {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-link:hover {
+      color: var(--gold);
+    }
+
+    .copyright {
+      font-size: 14px;
+      opacity: 0.7;
+    }
+
+    .project-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin: 25px 0;
+    }
+
+    .gallery-item {
+      background-color: rgba(109, 44, 180, 0.3);
+      border-radius: 8px;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-weight: bold;
+    }
+
+    @media (max-width: 992px) {
+      .services-section, .project-gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-container {
+        padding: 8px 15px;
+      }
+      
+      .nav-item {
+        margin: 0 8px;
+        font-size: 14px;
+      }
+      
+      .hero h1 {
+        font-size: 26px;
+      }
+      
+      .hero p {
+        font-size: 15px;
+      }
+      
+      .logo {
+        max-width: 80%;
+      }
+
+      .service-card {
+        padding: 15px;
+      }
+
+      .content-section, .cta-section {
+        padding: 20px;
+      }
+
+      .info-section {
+        grid-template-columns: 1fr;
+      }
+      
+      .project-gallery {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .services-section, .project-gallery {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
-<body class="dot-background">
+<body>
+  <div class="background">
+    <div class="background-image" aria-label="Alfred NY Sunrise - Alfred Station New York"></div>
+    <div class="animated-gradient"></div>
+    <div class="dots" id="dots-container"></div>
+  </div>
 
-  <header>
-    <a href="/"><img src="/awd.webp" alt="Alfred Web Design Logo"></a>
+  <div class="container">
     <nav>
-      <a href="/">Home</a>
-      <a href="/#services">Services</a>
-      <a href="/#quote">Get a Quote</a>
-      <a href="/#faq">FAQ</a>
+      <div class="nav-container">
+        <a href="index.html" class="nav-item">Home</a>
+        <a href="about.html" class="nav-item">About Us</a>
+        <a href="contact.html" class="nav-item">Contact</a>
+      </div>
     </nav>
-  </header>
 
-  <div class="hero">Alfred, NY Design & Printing</div>
-  <div class="subheading">Web design, shirts, logos, and more — all made local for Alfred!</div>
+    <div class="logo-container">
+      <img src="awd.png" alt="Alfred Web Design & Shirts Logo" class="logo">
+    </div>
 
-  <section class="section">
-    <h2>Why Choose Us in Alfred?</h2>
-    <p>
-      Alfred Web Design & Shirts is proud to serve Alfred, NY with custom design and apparel services tailored for students, clubs, businesses, and locals. Whether you're connected with <strong>Alfred University</strong>, <strong>Alfred State</strong>, or the <strong>Alfred-Almond Central School</strong> community, we’ve got your back with creative, bold, and professional designs that show off your small-town pride.
-    </p>
-    <p>
-      From websites that pop to shirts that get laughs, we help locals stand out. Need something fast and affordable? Let’s make it happen.
-    </p>
-  </section>
+    <main>
+      <section class="hero">
+        <h1>Alfred's Own Web Design & Custom Apparel Shop</h1>
+        <p>Searching for "web design near me" or "custom shirts near me" in Alfred? Look no further than Alfred Web Design & Shirts – your hometown design partners located right here in Alfred Station. We proudly serve the Village of Alfred, Alfred Station, and the entire Alfred community with personalized design services and custom apparel that celebrates our unique local character.</p>
+        <div class="hero-cta">
+          <a href="#quote-form" class="cta-button">Get Your Free Alfred-Focused Quote</a>
+        </div>
+      </section>
 
-  <section class="section">
-    <h2>Design & Print Services Near Alfred, NY</h2>
-    <ul>
-      <li><strong>Web Design:</strong> Affordable, responsive sites built for Alfred area businesses, clubs, and creators.</li>
-      <li><strong>Logo Design:</strong> Eye-catching logos with local character — perfect for student orgs, small biz, or merch.</li>
-      <li><strong>Apparel Printing:</strong> Custom t-shirts, hoodies, and gear printed right here in Allegany County.</li>
-      <li><strong>Graphic Design:</strong> Flyers, business cards, social media designs — we’ve got the digital goods.</li>
-    </ul>
-  </section>
+      <section class="content-section">
+        <h2>Web & Logo Design Services in Alfred, NY</h2>
+        <p>As Alfred's local design experts, we understand the unique character of our community – from the artistic influence of Alfred University to the technical innovation at Alfred State College. Our web design services are tailored specifically for Alfred businesses, organizations, and individuals who want to establish a meaningful online presence that resonates with our community.</p>
+        
+        <p>When you're looking for "logo design near me" in Alfred, our team delivers creative solutions that capture the essence of your brand with designs that speak to both locals and visitors alike. Whether you're a new business on Main Street, a local artist, or an established shop in Alfred Station, we create distinctive logos that help you stand out in our small but vibrant community.</p>
+        
+        <p>Our web design approach combines visual appeal with practical functionality, ensuring your site works beautifully on all devices while helping you get found in local searches. We've helped numerous Alfred businesses improve their digital presence, creating websites that convert visitors into customers while highlighting what makes our town special.</p>
+      </section>
 
-  <div class="cta">Get a Free Quote Today – We’re Based Right Here in Alfred!</div>
+      <section class="services-section">
+        <div class="service-card">
+          <h3>Alfred-Focused Web Design</h3>
+          <p>Custom website design with local SEO optimization to help your Alfred business get found when people search for services "near me." Our websites are mobile-friendly, fast-loading, and designed to convert visitors into customers.</p>
+        </div>
+        <div class="service-card">
+          <h3>Local Logo Creation</h3>
+          <p>Stand out in the Alfred community with a professional logo that captures the essence of your brand. From rustic designs that honor Alfred's heritage to modern logos for tech-forward businesses.</p>
+        </div>
+        <div class="service-card">
+          <h3>Alfred University & Alfred State Spirit Wear</h3>
+          <p>Custom apparel for students, faculty, clubs, and parents that shows your school pride. We understand the unique culture of AU and ASC and create designs that resonate with the campus communities.</p>
+        </div>
+        <div class="service-card">
+          <h3>Alfred-Almond School Support</h3>
+          <p>Custom shirts, hoodies, and spirit wear for AA Eagles sports teams, school events, and student organizations. Support your local school with professionally designed apparel.</p>
+        </div>
+      </section>
 
-  <section class="section">
-    <h2>Locally Focused, Creatively Driven</h2>
-    <p>
-      Supporting Alfred is more than business — it’s personal. We believe in small-town grit, college town energy, and helping your ideas come to life. Whether you’re a student club needing shirts, a startup launching a brand, or a proud Alfred resident wanting to show off your roots, we’re here to help.
-    </p>
-    <p>
-      Check out our portfolio or shoot us a message. We’d love to chat!
-    </p>
-  </section>
+      <section class="content-section">
+        <h2>Custom Apparel & Shirt Printing in Alfred</h2>
+        <p>When you need "custom apparel near me" in Alfred, we offer premium quality shirt printing with a distinctly local touch. As Alfred's hometown print shop, we've created custom apparel for Alfred-Almond Central School athletics, Alfred University student organizations, Alfred State College clubs, local businesses, and community events throughout the village and town.</p>
+        
+        <p>Our shirt printing services combine professional quality with personal attention that only a local Alfred business can provide. We understand the unique dynamics of our community – from the academic calendars that shape our town to the local events that bring us together. This insight allows us to create custom apparel that truly resonates with Alfred residents and visitors.</p>
+        
+        <p>From Hot Dog Day celebrations to Alfred University art shows, Alfred State technical programs to Eagles sports teams – we've helped countless local groups showcase their Alfred pride through custom apparel. Our designs celebrate what makes Alfred special, whether you're looking for sophisticated college-themed wear or playful designs that capture our town's unique character.</p>
+
+        <div class="project-gallery">
+          <div class="gallery-item">Alfred Main Street Business Logos</div>
+          <div class="gallery-item">Alfred University Club Shirts</div>
+          <div class="gallery-item">Alfred State Tech Program Apparel</div>
+          <div class="gallery-item">Alfred Station Community Event Designs</div>
+          <div class="gallery-item">Alfred-Almond Eagles Spirit Wear</div>
+          <div class="gallery-item">Local Alfred Artist Collaborations</div>
+        </div>
+      </section>
+
+      <section class="cta-section">
+        <h2>Ready to Start Your Alfred-Focused Project?</h2>
+        <p>Let us help bring your vision to life with design and printing services created specifically for Alfred's unique community.</p>
+        <a href="#quote-form" class="cta-button">Get an Alfred-Focused Quote</a>
+      </section>
+
+      <section class="content-section">
+        <h2>Why Choose a Local Alfred Design & Print Shop?</h2>
+        <p>When searching for "web design near me" or "shirt printing near me" in Alfred, choosing a local partner offers distinct advantages. As your neighbors in Alfred Station, we bring a deep understanding of what makes our community special – from the academic influence of our colleges to the rural character that defines our region.</p>
+        
+        <p>Our team lives and works in Alfred, giving us insights that outside companies simply can't match. We understand the local market, the seasonal rhythms of our college town, and the unique blend of academic and rural communities that make Alfred extraordinary. This local knowledge translates into designs that authentically represent your place in our community.</p>
+        
+        <p>Supporting local business also means your investment stays in Alfred, helping to strengthen our community economy. When you work with Alfred Web Design & Shirts, you're not just getting excellent design services – you're partnering with fellow community members who care about Alfred's growth and success as much as you do.</p>
+        
+        <p>For students, faculty, and staff of Alfred University, Alfred State College, and Alfred-Almond Central School, we offer specialized services that understand campus culture and needs. From student organization websites to faculty professional sites, from club t-shirts to team apparel – we speak your language because we're part of the same community.</p>
+      </section>
+
+      <section class="testimonial-section">
+        <div class="testimonial-card">
+          <p class="testimonial-text">"As a small business owner in Alfred, I needed a website that would help locals find me when searching online. Alfred Web Design delivered exactly what I needed – a beautiful site that's bringing in customers from both the village and Alfred Station."</p>
+          <p class="testimonial-author">— Main Street Shop Owner, Alfred</p>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">"Our student club needed custom shirts for an event, and we were thrilled to find a printer right here in Alfred. The designs perfectly captured our club's spirit while showing our Alfred University pride."</p>
+          <p class="testimonial-author">— Student Organization Leader, Alfred University</p>
+        </div>
+      </section>
+
+      <section class="info-section">
+        <div class="info-card">
+          <h3>Contact Information</h3>
+          <p>Phone: <a href="tel:6076387887">607-638-7887</a></p>
+          <p>Email: <a href="mailto:team@alfredwebdesign.com">team@alfredwebdesign.com</a></p>
+        </div>
+        <div class="info-card">
+          <h3>Our Alfred Location</h3>
+          <p>6174 Depot St, Alfred Station, NY 14803</p>
+          <p><small>Mailing: PO Box 11, Alfred Station, NY 14803</small></p>
+        </div>
+        <div class="info-card">
+          <h3>Alfred Business Hours</h3>
+          <p>Monday–Friday: 10am–6pm</p>
+          <p><small>Hours may vary. Appointments recommended.</small></p>
+        </div>
+      </section>
+    </main>
+  </div>
 
   <footer>
-    © 2025 Alfred Web Design & Shirts – Serving Alfred, Almond, and All of Allegany County.<br>
-    <a href="mailto:hello@redneckmobiledesign.com" style="color:#FFD700;">Contact Us</a>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="index.html" class="footer-link">Home</a>
+        <a href="about.html" class="footer-link">About Us</a>
+        <a href="contact.html" class="footer-link">Contact</a>
+      </div>
+      <p class="copyright">
+        © 2018–2025 Alfred Web Design & Shirts • Proudly serving Alfred, Alfred Station & the Alfred community • Your local design & print experts
+      </p>
+      <span style="display: none;">
+        Alfred NY web design near me, Alfred Station custom shirts, logo design Alfred NY, Alfred University apparel printing, Alfred State College shirt design, Alfred-Almond custom apparel, local web designer Alfred NY, shirt printing near me Alfred, Alfred NY small business websites
+      </span>
+    </div>
   </footer>
 
+  <script>
+    // Set current year
+    const yearElement = document.querySelector('.copyright');
+    if (yearElement) {
+      yearElement.textContent = yearElement.textContent.replace('2025', new Date().getFullYear());
+    }
+
+    const colors = [
+      'rgba(205,166,24,0.4)',   // gold
+      'rgba(255,255,255,0.4)',  // white
+      'rgba(0,0,0,0.4)'         // black
+    ];
+
+    const dotCount = 350;
+    const container = document.getElementById("dots-container");
+    const dots = [];
+
+    for (let i = 0; i < dotCount; i++) {
+      const dot = document.createElement("div");
+      dot.classList.add("dot");
+
+      const size = 5 + Math.random() * 8;
+      dot.style.width = `${size}px`;
+      dot.style.height = `${size}px`;
+      dot.style.top = `${Math.random() * 100}%`;
+      dot.style.left = `${Math.random() * 100}%`;
+      dot.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+      container.appendChild(dot);
+      dots.push({
+        el: dot,
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        vx: -0.5 + Math.random(),
+        vy: -0.5 + Math.random()
+      });
+    }
+
+    // Animate movement and cursor-follow
+    let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+
+    document.addEventListener('mousemove', e => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    function animateDots() {
+      for (let i = 0; i < dots.length; i++) {
+        const dot = dots[i];
+        // Move toward mouse a little
+        dot.x += (mouse.x - dot.x) * 0.002 + dot.vx;
+        dot.y += (mouse.y - dot.y) * 0.002 + dot.vy;
+
+        // Wrap around screen
+        if (dot.x < 0) dot.x = window.innerWidth;
+        if (dot.x > window.innerWidth) dot.x = 0;
+        if (dot.y < 0) dot.y = window.innerHeight;
+        if (dot.y > window.innerHeight) dot.y = 0;
+
+        dot.el.style.transform = `translate(${dot.x}px, ${dot.y}px)`;
+      }
+
+      requestAnimationFrame(animateDots);
+    }
+
+    animateDots();
+  </script>
 </body>
 </html>
