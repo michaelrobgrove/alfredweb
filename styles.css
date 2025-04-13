@@ -1,0 +1,145 @@
+:root {
+  --gold: #cda618;
+  --white: #ffffff;
+  --black: #000000;
+  --accent: #6d2cb4;
+  --accent-light: #8844d4;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  color: var(--white);
+  background-color: var(--black);
+  text-align: center;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6, .nav-item {
+  font-family: 'Cinzel', serif;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -2;
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('alfred-back.webp');
+  background-size: cover;
+  background-position: center;
+  z-index: -3;
+}
+
+.animated-gradient {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(-45deg,
+    rgba(76, 26, 146, 0.6),
+    rgba(0, 60, 113, 0.6),
+    rgba(109, 44, 180, 0.6),
+    rgba(0, 92, 191, 0.6)
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 20s ease infinite;
+  z-index: -2;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  padding: 15px 0;
+  position: relative;
+  z-index: 2;
+}
+
+.nav-container {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 30px;
+  padding: 10px 20px;
+}
+
+.nav-item {
+  color: var(--white);
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 16px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.nav-item:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: var(--gold);
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+.nav-item:hover:after {
+  width: 100%;
+}
+
+.nav-item.active {
+  color: var(--gold);
+}
+
+.nav-item.active:after {
+  width: 100%;
+}
+
+.logo-container {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.logo {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  margin-bottom: 5px;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.02);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Additional styles for sections, buttons, and responsive design can be added here */
