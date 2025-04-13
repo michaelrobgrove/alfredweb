@@ -777,15 +777,95 @@
     </main>
   </div>
 
-  <footer>
-    <div class="footer-content">
-      <div class="footer-links">
-        <a href="index.html" class="footer-link">Home</a>
-        <a href="about.html" class="footer-link">About Us</a>
-        <a href="services.html" class="footer-link">Services</a>
-        <a href="portfolio.html" class="footer-link">Portfolio</a>
-        <a href="contact.html" class="footer-link">Contact</a>
-        <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
-      </div>
-      <div class="social-links">
-        <a href="https://fb
+ <footer>
+     <div class="footer-content">
+       <div class="footer-links">
+         <a href="index.html" class="footer-link">Home</a>
+         <a href="about.html" class="footer-link">About Us</a>
+         <a href="contact.html" class="footer-link">Contact</a>
+       </div>
+   <p>
+     © 2018–2025 Alfred Web Design & Shirts • Rolling out bold designs & shirts from Alfred Station, NY • Your next stop for local creative power<br>Owned & Operated By <a href="https://www.redneckmobiledesign.com">Redneck Mobile Design & Shirts</a>
+   </p>
+   <span style="display: none;">
+     Alfred Station NY web design, custom apparel Alfred NY, local shirt printing, Alfred NY branding, Alfred State designs, small town website builder, screen printing Alfred Station, rural business design services
+   </span>
+ </footer>
+ 
+   <script>
+     // Set current year
+     document.getElementById("year").textContent = new Date().getFullYear();
+ 
+     const colors = [
+       'rgba(205,166,24,0.4)',   // gold
+       'rgba(255,255,255,0.4)',  // white
+       'rgba(0,0,0,0.4)'         // black
+     ];
+ 
+     const dotCount = 350;
+     const container = document.getElementById("dots-container");
+     const dots = [];
+ 
+     for (let i = 0; i < dotCount; i++) {
+       const dot = document.createElement("div");
+       dot.classList.add("dot");
+ 
+       const size = 5 + Math.random() * 8;
+       dot.style.width = `${size}px`;
+       dot.style.height = `${size}px`;
+       dot.style.top = `${Math.random() * 100}%`;
+       dot.style.left = `${Math.random() * 100}%`;
+       dot.style.background = colors[Math.floor(Math.random() * colors.length)];
+ 
+       container.appendChild(dot);
+       dots.push({
+         el: dot,
+         x: Math.random() * window.innerWidth,
+         y: Math.random() * window.innerHeight,
+         vx: -0.5 + Math.random(),
+         vy: -0.5 + Math.random()
+       });
+     }
+ 
+     // Animate movement and cursor-follow
+     let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+ 
+     document.addEventListener('mousemove', e => {
+       mouse.x = e.clientX;
+       mouse.y = e.clientY;
+     });
+ 
+     function animateDots() {
+       for (let i = 0; i < dots.length; i++) {
+         const dot = dots[i];
+         // Move toward mouse a little
+         dot.x += (mouse.x - dot.x) * 0.002 + dot.vx;
+         dot.y += (mouse.y - dot.y) * 0.002 + dot.vy;
+ 
+         // Wrap around screen
+         if (dot.x < 0) dot.x = window.innerWidth;
+         if (dot.x > window.innerWidth) dot.x = 0;
+         if (dot.y < 0) dot.y = window.innerHeight;
+         if (dot.y > window.innerHeight) dot.y = 0;
+ 
+         dot.el.style.transform = `translate(${dot.x}px, ${dot.y}px)`;
+       }
+ 
+       requestAnimationFrame(animateDots);
+     }
+ 
+     animateDots();
+   </script>
+ <script>
+   document.querySelectorAll('.accordion-header').forEach(button => {
+     button.addEventListener('click', () => {
+       const body = button.nextElementSibling;
+       const open = body.style.display === 'block';
+       document.querySelectorAll('.accordion-body').forEach(b => b.style.display = 'none');
+       body.style.display = open ? 'none' : 'block';
+     });
+   });
+ </script>
+ 
+ </body>
+ </html>
