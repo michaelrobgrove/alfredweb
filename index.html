@@ -1,145 +1,130 @@
-:root {
-  --gold: #cda618;
-  --white: #ffffff;
-  --black: #000000;
-  --accent: #6d2cb4;
-  --accent-light: #8844d4;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Family-owned design & print shop in Alfred Station, NY. Professional graphic design, logo creation, print services, and custom apparel for businesses across the region.">
+  <link rel="canonical" href="https://alfredwebdesign.com/">
+  <title>Alfred Web Design & Shirts - Design & Print Services</title>
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Alfred Web Design & Shirts">
+  <meta property="og:description" content="Family-owned design & print shop in Alfred Station, NY. Professional graphic design, logo creation, print services, and custom apparel.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://alfredwebdesign.com/">
+  <meta property="og:image" content="https://alfredwebdesign.com/awd.webp">
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Alfred Web Design & Shirts">
+  <meta name="twitter:description" content="Family-owned design & print shop in Alfred Station, NY offering graphic design, logo creation, print services, and custom apparel.">
+  <meta name="twitter:image" content="https://alfredwebdesign.com/awd.webp">
 
-body {
-  font-family: 'Lato', sans-serif;
-  color: var(--white);
-  background-color: var(--black);
-  text-align: center;
-  overflow-x: hidden;
-  position: relative;
-  min-height: 100vh;
-}
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Lato:wght@400;700&display=swap" rel="stylesheet">
 
-h1, h2, h3, h4, h5, h6, .nav-item {
-  font-family: 'Cinzel', serif;
-}
+  <!-- Link to External Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Background Elements -->
+  <div class="background">
+    <div class="background-image" aria-label="Alfred Station Sunrise - Alfred NY"></div>
+    <div class="animated-gradient"></div>
+    <div class="dots" id="dots-container"></div>
+  </div>
 
-.background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: -2;
-}
+  <!-- Main Container -->
+  <div class="container">
+    <!-- Navigation -->
+    <nav>
+      <div class="nav-container">
+        <a href="index.html" class="nav-item active">Home</a>
+        <a href="about.html" class="nav-item">About Us</a>
+        <a href="/roots-reach-community-grant.html" class="nav-item">Community Grant</a>
+        <a href="contact.html" class="nav-item">Contact</a>
+      </div>
+    </nav>
 
-.background-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('alfred-back.webp');
-  background-size: cover;
-  background-position: center;
-  z-index: -3;
-}
+    <!-- Logo -->
+    <div class="logo-container">
+      <img src="awd.webp" alt="Alfred Web Design & Shirts Logo" class="logo" width="400" height="120">
+    </div>
 
-.animated-gradient {
-  position: absolute;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(-45deg,
-    rgba(76, 26, 146, 0.6),
-    rgba(0, 60, 113, 0.6),
-    rgba(109, 44, 180, 0.6),
-    rgba(0, 92, 191, 0.6)
-  );
-  background-size: 400% 400%;
-  animation: gradientShift 20s ease infinite;
-  z-index: -2;
-}
+    <!-- Hero Section -->
+    <main>
+      <section class="hero">
+        <h1>Your Local Design & Print Experts in Alfred Station, NY</h1>
+        <p>Welcome to Alfred Web Design & Shirts – your family-owned design and print shop located in Alfred Station, NY. We provide high-quality graphic design, logo creation, print design, and custom apparel services.</p>
+        <div class="hero-cta">
+          <a href="#quote-form" class="cta-button">Get Your Free Quote</a>
+        </div>
+      </section>
 
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+      <!-- Services Section -->
+      <section class="services-section">
+        <div class="service-card">
+          <h3>Graphic & Logo Design</h3>
+          <p>Professional design services to help your business stand out with compelling visuals that capture your brand's essence.</p>
+        </div>
+        <div class="service-card">
+          <h3>Print Design</h3>
+          <p>From business cards to banners, we design print materials that make an impact and effectively communicate your message.</p>
+        </div>
+        <div class="service-card">
+          <h3>Custom Apparel</h3>
+          <p>Turn your ideas into wearable art with custom screen printing for shirts, hoodies, hats, and more.</p>
+        </div>
+        <div class="service-card">
+          <h3>Web Design</h3>
+          <p>Get your business online with a professional, mobile-friendly website that helps customers find you.</p>
+        </div>
+      </section>
 
-nav {
-  display: flex;
-  justify-content: center;
-  padding: 15px 0;
-  position: relative;
-  z-index: 2;
-}
+      <!-- Call-to-Action Section -->
+      <section class="cta-section">
+        <h2>Ready to Start Your Project?</h2>
+        <p>Let us help bring your vision to life with our professional design and printing services. Serving local businesses in Alfred, Almond, Hornell, Wellsville, and Belmont with personalized solutions.</p>
+        <a href="#quote-form" class="cta-button">Get a Quote</a>
+      </section>
 
-.nav-container {
-  display: flex;
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 30px;
-  padding: 10px 20px;
-}
+      <!-- Request a Quote Form -->
+      <section class="form-section" id="quote-form">
+        <h2>Request a Quote</h2>
+        <form action="mailto:team@alfredwebdesign.com" method="post" enctype="text/plain">
+          <div class="form-group">
+            <label for="name">Name *</label>
+            <input type="text" id="name" name="name" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" class="form-control" required>
+          </div>
+          <button type="submit" class="submit-button">Submit Quote Request</button>
+        </form>
+      </section>
+    </main>
 
-.nav-item {
-  color: var(--white);
-  text-decoration: none;
-  margin: 0 15px;
-  font-size: 16px;
-  position: relative;
-  transition: all 0.3s ease;
-}
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="index.html" class="footer-link">Home</a>
+          <a href="about.html" class="footer-link">About Us</a>
+          <a href="/roots-reach-community-grant.html" class="footer-link">Community Grant</a>
+          <a href="contact.html" class="footer-link">Contact</a>
+        </div>
+        <p>© 2018–2025 Alfred Web Design & Shirts • Rolling out bold designs & shirts from Alfred Station, NY.</p>
+      </div>
+    </footer>
+  </div>
 
-.nav-item:after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  background-color: var(--gold);
-  bottom: -5px;
-  left: 50%;
-  transform: translateX(-50%);
-  transition: width 0.3s ease;
-}
-
-.nav-item:hover:after {
-  width: 100%;
-}
-
-.nav-item.active {
-  color: var(--gold);
-}
-
-.nav-item.active:after {
-  width: 100%;
-}
-
-.logo-container {
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.logo {
-  width: 100%;
-  max-width: 400px;
-  height: auto;
-  margin-bottom: 5px;
-  transition: transform 0.3s ease;
-}
-
-.logo:hover {
-  transform: scale(1.02);
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-  position: relative;
-  z-index: 1;
-}
-
-/* Additional styles for sections, buttons, and responsive design can be added here */
+  <!-- JavaScript -->
+  <script src="scripts.js"></script>
+</body>
+</html>
