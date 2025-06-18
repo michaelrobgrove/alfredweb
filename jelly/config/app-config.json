@@ -2,6 +2,8 @@
   "server_url": "https://jelly.managedservers.click/",
   "app_title": "AlfredFLIX",
   "brand_color": "#BD0000",
+  "loading_logo_url": "https://alfredwebdesign.com/jelly/config/loading_logo.png",
+  "app_icon_url": "https://alfredwebdesign.com/jelly/config/app_icon.png",
   "maintenance_mode": false,
   "show_ads": false,
   "ad_banner_url": "",
