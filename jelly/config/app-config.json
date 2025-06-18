@@ -1,12 +1,7 @@
 {
-  "server_url": "https://jelly.managedservers.click/",
-  "app_title": "AlfredFLIX",
-  "brand_color": "#BD0000",
-  "loading_logo_url": "https://alfredwebdesign.com/jelly/config/loading_logo.png",
-  "app_icon_url": "https://alfredwebdesign.com/jelly/config/app_icon.png",
-  "maintenance_mode": false,
-  "show_ads": false,
-  "ad_banner_url": "",
-  "version_required": "1.0",
-  "maintenance_message": "We're updating our servers. Please try again in a few minutes."
+  "name": "AlfredFLIX",
+  "url": "https://jelly.managedservers.click",
+  "splash_image": "https://alfredwebdesign.com/jelly/images/splash.png",
+  "offline_message": "Oops! Looks like you're offline. Check your internet and try again.",
+  "maintenance_message": "We're updating AlfredFLIX. Check back in a few minutes!"
 }
