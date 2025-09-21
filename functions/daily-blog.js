@@ -34,11 +34,11 @@ ${(() => {
   if (month === 11 && (day >= 22 && day <= 28)) return "THANKSGIVING WEEK - Write about gratitude themes, autumn colors, family gathering apparel";
   if (month === 12 && day === 25) return "CHRISTMAS - Write about holiday designs, red/green themes, gift-related products";
   
-  // Seasons
-  if ((month === 3 && day >= 20) || (month === 6 && day <= 20)) return "SPRING SEASON - Write about fresh designs, pastel colors, spring marketing themes";
-  if ((month === 6 && day >= 21) || (month === 9 && day <= 22)) return "SUMMER SEASON - Write about bright colors, outdoor event apparel, summer marketing";
-  if ((month === 9 && day >= 23) || (month === 12 && day <= 20)) return "FALL SEASON - Write about autumn colors, back-to-school themes, harvest designs";
-  if ((month === 12 && day >= 21) || (month === 3 && day <= 19)) return "WINTER SEASON - Write about winter themes, holiday marketing, cold-weather apparel";
+  // Seasons (corrected)
+  if ((month === 3 && day >= 20) || (month === 4) || (month === 5) || (month === 6 && day < 21)) return "SPRING SEASON - Write about fresh designs, pastel colors, spring marketing themes";
+  if ((month === 6 && day >= 21) || (month === 7) || (month === 8) || (month === 9 && day < 23)) return "SUMMER SEASON - Write about bright colors, outdoor event apparel, summer marketing";
+  if ((month === 9 && day >= 23) || (month === 10) || (month === 11) || (month === 12 && day < 21)) return "FALL SEASON - Write about autumn colors, back-to-school themes, harvest designs";
+  if ((month === 12 && day >= 21) || (month === 1) || (month === 2) || (month === 3 && day < 20)) return "WINTER SEASON - Write about winter themes, holiday marketing, cold-weather apparel";
   
   return "REGULAR DAY - Follow normal topic rotation";
 })()}
@@ -102,7 +102,9 @@ BATCH E (Fun/Creative):
 9. Advanced techniques
 10. Industry insights
 
-Requirements: 750 words, HTML format, local NY town references, unique title, end with Alfred Web Design & Shirts CTA.
+Requirements: 750 words, HTML format, reference WESTERN NY towns (Hornell, Almond, Wellsville, Alfred, Canisteo, Greenwood, Bath, Penn Yan, Belmont, Friendship) NOT Hudson Valley, unique title, end with Alfred Web Design & Shirts CTA.
+
+LOCATION NOTE: We are in WESTERN New York, NOT Hudson Valley. Reference our local area towns listed above.
 
 CRITICAL: Pick a topic that's completely different from the existing ones listed above!`
           }]
