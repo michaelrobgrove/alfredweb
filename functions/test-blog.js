@@ -16,10 +16,37 @@ export async function onRequest(context) {
           parts: [{
             text: `You are a content writer for Alfred Web Design & Shirts. Random seed: ${Date.now()}-${Math.floor(Math.random() * 10000)}
 
+TODAY'S DATE: ${new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+
+**SPECIAL DATE CHECKING:**
+${(() => {
+  const today = new Date();
+  const month = today.getMonth() + 1;
+  const day = today.getDate();
+  
+  // Holidays
+  if (month === 1 && day === 1) return "NEW YEAR'S DAY - Write about fresh starts, rebranding, new business goals";
+  if (month === 2 && day === 14) return "VALENTINE'S DAY - Write about romantic design themes, couple's apparel, love-themed marketing";
+  if (month === 3 && day === 17) return "ST. PATRICK'S DAY - Write about green design themes, Irish-inspired graphics, festive apparel";
+  if (month === 7 && day === 4) return "INDEPENDENCE DAY - Write about patriotic designs, red/white/blue themes, American flag apparel";
+  if (month === 9 && day === 11) return "9/11 REMEMBRANCE - Write respectfully about memorial designs, patriotic tributes, honoring service members (somber, respectful tone)";
+  if (month === 10 && day === 31) return "HALLOWEEN - Write about spooky designs, orange/black themes, costume-related apparel";
+  if (month === 11 && (day >= 22 && day <= 28)) return "THANKSGIVING WEEK - Write about gratitude themes, autumn colors, family gathering apparel";
+  if (month === 12 && day === 25) return "CHRISTMAS - Write about holiday designs, red/green themes, gift-related products";
+  
+  // Seasons
+  if ((month === 3 && day >= 20) || (month === 6 && day <= 20)) return "SPRING SEASON - Write about fresh designs, pastel colors, spring marketing themes";
+  if ((month === 6 && day >= 21) || (month === 9 && day <= 22)) return "SUMMER SEASON - Write about bright colors, outdoor event apparel, summer marketing";
+  if ((month === 9 && day >= 23) || (month === 12 && day <= 20)) return "FALL SEASON - Write about autumn colors, back-to-school themes, harvest designs";
+  if ((month === 12 && day >= 21) || (month === 3 && day <= 19)) return "WINTER SEASON - Write about winter themes, holiday marketing, cold-weather apparel";
+  
+  return "REGULAR DAY - Follow normal topic rotation";
+})()}
+
 EXISTING BLOG TOPICS TO AVOID (don't write about these again):
 ${existingTitles.length > 0 ? existingTitles.map(t => `- ${t}`).join('\n') : '- None yet'}
 
-MANDATORY: You MUST write about a completely different topic that hasn't been covered above.
+**IMPORTANT:** If today is a special date above, prioritize that theme. If it's a regular day, pick from batches below.
 
 **FORCE TOPIC ROTATION - Pick ONE that hasn't been used:**
 
@@ -74,13 +101,6 @@ BATCH E (Fun/Creative):
 8. Beginner's guide
 9. Advanced techniques
 10. Industry insights
-
-**AUDIENCE ROTATION:**
-- Small businesses needing professional image
-- Non-profits maximizing limited budgets  
-- Consumers planning personal events
-- Sports teams building identity
-- Startups establishing brands
 
 Requirements: 750 words, HTML format, local NY town references, unique title, end with Alfred Web Design & Shirts CTA.
 
