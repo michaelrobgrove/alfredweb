@@ -129,6 +129,12 @@ Requirements: 750 words, HTML format. End the article with a creative and friend
     });
 
     const geminiData = await geminiResponse.json();
+    
+    // Check if response is valid
+    if (!geminiData.candidates || !geminiData.candidates[0] || !geminiData.candidates[0].content || !geminiData.candidates[0].content.parts || !geminiData.candidates[0].content.parts[0]) {
+      throw new Error(`Invalid Gemini response: ${JSON.stringify(geminiData)}`);
+    }
+    
     const content = geminiData.candidates[0].content.parts[0].text;
 
     // Better content parsing
