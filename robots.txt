@@ -34,6 +34,10 @@ Disallow:
 User-agent: LinkedInBot
 Disallow:
 
+# Allow Claude/Anthropic
+User-agent: Claude-Web
+Disallow:
+
 # Block everything else
 User-agent: *
 Disallow: /
