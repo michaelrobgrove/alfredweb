@@ -1,0 +1,11 @@
+[[kv_namespaces]]
+binding = "BLOG_KV"
+id = "your-kv-namespace-id"
+
+[triggers]
+crons = ["0 9 * * *"]  # Daily at 9am UTC
+
+[vars]
+GEMINI_API_KEY = "your-gemini-key"
+FB_ACCESS_TOKEN = "your-facebook-token"
+FB_PAGE_ID = "your-page-id"
