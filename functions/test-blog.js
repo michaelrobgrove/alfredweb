@@ -62,15 +62,32 @@ Your primary goal is to write a 500-word blog post that offers genuine value to 
     
     // Better content parsing
     const cleanContent = content.replace(/^<!DOCTYPE.*?<\/html>$/s, '').trim();
+    
+    // Find first meaningful line as title
     const lines = cleanContent.split('\n').filter(line => line.trim());
-    const title = lines[0].replace(/^#+\s*|<[^>]*>/g, '').trim();
-    const body = lines.slice(1).join('\n');
+    let title = '';
+    let bodyStart = 0;
+    
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i].replace(/^#+\s*|<[^>]*>/g, '').trim();
+      if (line.length > 10 && !line.match(/^\d{4}-\d{2}-\d{2}/) && !line.includes('DOCTYPE')) {
+        title = line;
+        bodyStart = i + 1;
+        break;
+      }
+    }
+    
+    const body = lines.slice(bodyStart).join('\n');
     
     const post = {
       title,
       content: body,
-      excerpt: body.substring(0, 150) + '...',
-      date: new Date().toISOString().split('T')[0],
+      excerpt: body.replace(/<[^>]*>/g, '').substring(0, 150) + '...',
+      date: new Date().toLocaleDateString('en-US', { 
+        month: '2-digit', 
+        day: '2-digit', 
+        year: 'numeric' 
+      }),
       slug: title.toLowerCase().replace(/[^a-z0-9]+/g, '-').substring(0, 50)
     };
     
