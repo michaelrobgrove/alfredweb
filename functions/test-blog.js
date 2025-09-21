@@ -9,56 +9,74 @@ export async function onRequest(context) {
       body: JSON.stringify({
         contents: [{
           parts: [{
-            text: `You are a content writer for Alfred Web Design & Shirts, a full-service creative agency that provides web design, graphic design, and custom printing services.
+            text: `You are a content writer for Alfred Web Design & Shirts. Random seed: ${Date.now()}-${Math.floor(Math.random() * 10000)}
 
-CRITICAL: Each article must be completely different in topic, style, and approach. Use the random number ${Math.random()} to help ensure uniqueness.
+MANDATORY: You MUST write about a completely different topic each time. Never repeat topics, titles, or themes.
 
-**ARTICLE VARIETY REQUIREMENTS:**
-Choose ONE completely different approach each time:
-- Trend lists (Top 10 T-Shirt Design Trends for 2025)
-- How-to guides (Step-by-Step: Design Your Team Logo)
-- Funny/entertaining posts (Why Comic Sans Still Haunts Designers)
-- Technical tutorials (Understanding Color Theory in Print)
-- Industry insights (What Makes a Website Convert Visitors)
-- Seasonal content (Holiday Marketing Design Ideas)
-- Problem-solving posts (5 Logo Mistakes That Kill Your Brand)
-- Inspirational stories (Small Business Branding Success Secrets)
-- Comparison posts (Digital vs Print Marketing: Which Wins?)
-- Behind-the-scenes (The Real Process of Creating Custom Shirts)
+**FORCE TOPIC ROTATION - Pick ONE that hasn't been used recently:**
 
-**TOPIC CATEGORIES (rotate between these):**
-1. **Custom Apparel:** T-shirt printing, team uniforms, promotional wear, fabric choices, design placement, color matching
-2. **Graphic Design:** Logo creation, branding, color theory, typography, print vs digital design, packaging design
-3. **Web Design:** User experience, mobile optimization, e-commerce, SEO basics, website speed, accessibility
-4. **Marketing:** Social media graphics, email design, promotional materials, seasonal campaigns, local advertising
-5. **Business Tips:** Branding strategies, customer engagement, online presence, professional image, cost-effective marketing
-6. **Fun/Creative:** Design humor, industry memes, creative inspiration, trend predictions, design failures
+BATCH A (Custom Apparel):
+- T-shirt fabric guide (cotton vs polyester vs blends)
+- Screen printing vs heat transfer comparison  
+- Team uniform design psychology
+- Custom embroidery placement strategies
+- Promotional product ROI analysis
+- Seasonal apparel marketing timing
 
-**AUDIENCE MIX:**
-- Small Business Owners (professional, ROI-focused)
-- Non-Profits (mission-driven, community-focused) 
-- Consumers (fun, personal projects, family events)
-- Sports Teams (performance, team spirit, durability)
-- Event Planners (memorable, cohesive, timeline-focused)
+BATCH B (Graphic Design):
+- Typography mistakes that scream "amateur"
+- Color psychology in branding
+- Logo scalability testing methods
+- Print resolution vs web resolution explained
+- Packaging design trends for 2025
+- Icon design best practices
 
-**WRITING STYLE VARIETY:**
-- Professional and informative
-- Casual and conversational  
-- Humorous but helpful
-- Step-by-step instructional
-- Trend-focused and trendy
-- Problem/solution oriented
+BATCH C (Web Design):
+- Website loading speed optimization
+- Mobile-first design principles
+- E-commerce conversion optimization
+- Website accessibility compliance
+- User experience testing methods
+- WordPress vs custom development
 
-**REQUIREMENTS:**
-- 750 words
-- HTML formatting (<h3>, <strong>, <p>)
-- 5-7 actionable tips when applicable
-- Reference local NY towns occasionally: Hornell, Almond, Wellsville, Alfred, Canisteo, Greenwood, Bath
-- End with relevant CTA for Alfred Web Design & Shirts
-- NO repetitive topics or similar titles
-- Make it genuinely different from previous articles
+BATCH D (Marketing):
+- Social media graphic dimensions guide
+- Email newsletter design templates
+- Local advertising design tips
+- Trade show banner effectiveness
+- Business card psychology
+- Direct mail design strategies
 
-Write something completely fresh and engaging!`
+BATCH E (Fun/Creative):
+- Worst design trends that need to die
+- Client feedback horror stories (anonymous)
+- Design inspiration sources
+- Creative block solutions
+- Industry tool reviews
+- Design process behind-the-scenes
+
+**WRITING STYLE OPTIONS:**
+1. List-based (Top 10, Best 5, etc.)
+2. Tutorial/How-to guide
+3. Comparison post (vs/versus)
+4. Problem-solution format
+5. Trend prediction/analysis
+6. Humorous but informative
+7. Technical deep-dive
+8. Beginner's guide
+9. Advanced techniques
+10. Industry insights
+
+**AUDIENCE ROTATION:**
+- Small businesses needing professional image
+- Non-profits maximizing limited budgets  
+- Consumers planning personal events
+- Sports teams building identity
+- Startups establishing brands
+
+Requirements: 750 words, HTML format, local NY town references, unique title, end with Alfred Web Design & Shirts CTA.
+
+CRITICAL: If this topic has been covered recently, pick a completely different one from another batch!`
           }]
         }]
       })
@@ -99,7 +117,6 @@ Write something completely fresh and engaging!`
     };
     
     // Get existing posts from KV
-    const existingPosts = await env.BLOG_KV.get('posts');
     const postsData = existingPosts ? JSON.parse(existingPosts) : { posts: [] };
     
     // Add new post to beginning

@@ -9,46 +9,74 @@ export async function onRequest(context) {
       body: JSON.stringify({
         contents: [{
           parts: [{
-            text: `You are a content writer for Alfred Web Design & Shirts, a full-service creative agency that provides web design, graphic design, and custom printing services.
+            text: `You are a content writer for Alfred Web Design & Shirts. Random seed: ${Date.now()}-${Math.floor(Math.random() * 10000)}
 
-Your primary goal is to write a 750-word blog post that offers genuine value to one of our three core audiences: **Small Businesses, Non-Profits, or Consumers.**
+MANDATORY: You MUST write about a completely different topic each time. Never repeat topics, titles, or themes.
 
-IMPORTANT: Make each article unique by varying your topic choice, writing style, and examples. Avoid repeating the same topics or using similar titles.
+**FORCE TOPIC ROTATION - Pick ONE that hasn't been used recently:**
 
-**Instructions:**
-1. **Select ONE Audience** to be the focus of today's article:
-   * A) Small Business Owner / Entrepreneur  
-   * B) Non-Profit Organizer / Board Member
-   * C) Consumer / Individual / Group (e.g., family reunion, local sports team)
+BATCH A (Custom Apparel):
+- T-shirt fabric guide (cotton vs polyester vs blends)
+- Screen printing vs heat transfer comparison  
+- Team uniform design psychology
+- Custom embroidery placement strategies
+- Promotional product ROI analysis
+- Seasonal apparel marketing timing
 
-2. **Based on your audience selection, choose ONE specific topic** (pick something different each time):
-   * **Small Business:** Local SEO, business card design, website ROI, brand identity, social media marketing, email campaigns, online reviews management, competitive analysis
-   * **Non-Profit:** Annual report design, volunteer t-shirts, fundraising graphics, donation page optimization, event marketing, newsletter design, social impact storytelling
-   * **Consumer/Group:** Family reunion shirts, sports team uniforms, graduation party designs, wedding favors, birthday celebration gear, holiday cards, custom gifts
+BATCH B (Graphic Design):
+- Typography mistakes that scream "amateur"
+- Color psychology in branding
+- Logo scalability testing methods
+- Print resolution vs web resolution explained
+- Packaging design trends for 2025
+- Icon design best practices
 
-3. **Use today's date naturally in content and ensure information is current for ${new Date().getFullYear()}.**
+BATCH C (Web Design):
+- Website loading speed optimization
+- Mobile-first design principles
+- E-commerce conversion optimization
+- Website accessibility compliance
+- User experience testing methods
+- WordPress vs custom development
 
-4. **Include 5-7 actionable, specific tips** that readers can implement immediately.
+BATCH D (Marketing):
+- Social media graphic dimensions guide
+- Email newsletter design templates
+- Local advertising design tips
+- Trade show banner effectiveness
+- Business card psychology
+- Direct mail design strategies
 
-5. **Create a unique, compelling title** that speaks directly to your chosen audience.
+BATCH E (Fun/Creative):
+- Worst design trends that need to die
+- Client feedback horror stories (anonymous)
+- Design inspiration sources
+- Creative block solutions
+- Industry tool reviews
+- Design process behind-the-scenes
 
-6. **Match your tone to the audience** but vary your approach each time.
+**WRITING STYLE OPTIONS:**
+1. List-based (Top 10, Best 5, etc.)
+2. Tutorial/How-to guide
+3. Comparison post (vs/versus)
+4. Problem-solution format
+5. Trend prediction/analysis
+6. Humorous but informative
+7. Technical deep-dive
+8. Beginner's guide
+9. Advanced techniques
+10. Industry insights
 
-7. **NO case studies or real business names.** Use only general examples.
+**AUDIENCE ROTATION:**
+- Small businesses needing professional image
+- Non-profits maximizing limited budgets  
+- Consumers planning personal events
+- Sports teams building identity
+- Startups establishing brands
 
-8. **Use HTML subheadings** (<h3>) to organize content clearly.
+Requirements: 750 words, HTML format, local NY town references, unique title, end with Alfred Web Design & Shirts CTA.
 
-9. **End with audience-appropriate CTA** mentioning Alfred Web Design & Shirts.
-
-10. **Write from the agency team perspective** (never mention AI).
-
-**Format Requirements:**
-- HTML formatting (<strong>, <h3>, <p>)
-- Paragraphs under 4 sentences  
-- Second person ("you") engagement
-- Reference local NY towns when relevant: Hornell, Almond, Wellsville, Alfred, Canisteo, Greenwood, Bath, Penn Yan, Belmont, Friendship
-
-**Vary your approach each time to ensure unique, fresh content!**`
+CRITICAL: If this topic has been covered recently, pick a completely different one from another batch!`
           }]
         }]
       })
@@ -89,7 +117,6 @@ IMPORTANT: Make each article unique by varying your topic choice, writing style,
     };
     
     // Get existing posts from KV
-    const existingPosts = await env.BLOG_KV.get('posts');
     const postsData = existingPosts ? JSON.parse(existingPosts) : { posts: [] };
     
     // Add new post to beginning
