@@ -2,7 +2,7 @@ export async function onRequest(context) {
   const { env } = context;
   
   try {
-    // Generate blog content
+    // Generate blog content with Gemini
     const geminiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${env.GEMINI_API_KEY}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -31,7 +31,19 @@ export async function onRequest(context) {
       slug: title.toLowerCase().replace(/[^a-z0-9]+/g, '-').substring(0, 50)
     };
     
-    return new Response(JSON.stringify(post, null, 2));
+    // Get existing posts from KV
+    const existingPosts = await env.BLOG_KV.get('posts');
+    const postsData = existingPosts ? JSON.parse(existingPosts) : { posts: [] };
+    
+    // Add new post to beginning
+    postsData.posts.unshift(post);
+    
+    // Save back to KV
+    await env.BLOG_KV.put('posts', JSON.stringify(postsData));
+    
+    return new Response(`Post created and saved!\n\nTitle: ${post.title}\nSlug: ${post.slug}\n\nView at: /blog/${post.slug}`, {
+      headers: { 'Content-Type': 'text/plain' }
+    });
     
   } catch (error) {
     return new Response(`Error: ${error.message}`, { status: 500 });
