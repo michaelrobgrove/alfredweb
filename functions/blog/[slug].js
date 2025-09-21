@@ -1,9 +1,20 @@
-<!DOCTYPE html>
+export async function onRequest(context) {
+  const slug = context.params.slug;
+  
+  const posts = await context.env.BLOG_KV.get('posts');
+  const postsData = JSON.parse(posts || '{"posts":[]}');
+  const post = postsData.posts.find(p => p.slug === slug);
+  
+  if (!post) {
+    return new Response('Post not found', { status: 404 });
+  }
+  
+  const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog - Alfred Web Design</title>
+  <title>${post.title} - Alfred Web Design</title>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
 </head>
@@ -26,11 +37,15 @@
 
   <div class="container">
     <div class="hero">
-      <h1>Alfred Web Design Blog</h1>
-      <p>Stay updated with the latest web design trends, SEO tips, and digital marketing insights.</p>
+      <h1>${post.title}</h1>
+      <p><small style="color: var(--gold);">${post.date}</small></p>
+      <div style="text-align: left; margin-top: 20px; line-height: 1.6;">
+        ${post.content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>')}
+      </div>
+      <div style="margin-top: 30px;">
+        <a href="/blog" class="cta-button">← Back to Blog</a>
+      </div>
     </div>
-    
-    <div id="blog-posts"></div>
   </div>
 
   <footer>
@@ -63,20 +78,11 @@
       }
     }
     createDots();
-
-    // Load blog posts
-    fetch('/api/posts')
-      .then(r => r.json())
-      .then(data => {
-        document.getElementById('blog-posts').innerHTML = data.posts
-          .map(p => `
-            <div class="service-card" style="margin-bottom: 20px; text-align: left;">
-              <h3><a href="/blog/${p.slug}" style="color: var(--gold); text-decoration: none;">${p.title}</a></h3>
-              <p style="color: #ddd; margin-bottom: 10px;">${p.excerpt}</p>
-              <small style="color: var(--gold);">${p.date}</small>
-            </div>
-          `).join('');
-      });
   </script>
 </body>
-</html>
+</html>`;
+  
+  return new Response(html, { 
+    headers: { 'Content-Type': 'text/html' } 
+  });
+}
