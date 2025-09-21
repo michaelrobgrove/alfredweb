@@ -1,3 +1,16 @@
+You've got it. A dynamic Call to Action (CTA) is much more effective. Giving the AI a bit of creative freedom while providing the essential information is the perfect approach.
+
+This change is simple. We'll adjust the `Requirements` in the prompt to provide the contact details as raw information and instruct the AI to build a slightly different CTA each time.
+
+Here is the complete code with your real contact information and the new instructions for a variable CTA.
+
+-----
+
+## Updated Javascript Code
+
+I've replaced the final `Requirements` instruction with a new one that tells the AI to be creative with the CTA while always including your specific, updated contact details.
+
+```javascript
 export async function onRequest(context) {
   const { env } = context;
 
@@ -41,6 +54,15 @@ ${(() => {
   if (month === 10 && day === 31) return "HALLOWEEN - Write about spooky designs, orange/black themes, costume-related apparel";
   if (month === 11 && (day >= 22 && day <= 28)) return "THANKSGIVING WEEK - Write about gratitude themes, autumn colors, family gathering apparel";
   if (month === 12 && day === 25) return "CHRISTMAS - Write about holiday designs, red/green themes, gift-related products";
+
+  // Fun National Days
+  const firstFridayInJune = 6; // Example for 2025
+  if (month === 6 && day === firstFridayInJune) return "NATIONAL DONUT DAY - Write about how local businesses like bakeries in Hornell or Wellsville can use branded packaging (graphic design) or custom staff uniforms (shirts) to stand out.";
+  
+  const thirdWednesdayInJuly = 16; // Example for 2025
+  if (month === 7 && day === thirdWednesdayInJuly) return "NATIONAL HOT DOG DAY - Tie this into how a food vendor or restaurant in Alfred could use a mobile-friendly website (web design) to share their menu or custom stickers (promotional products) for branding.";
+  
+  if (month === 9 && day === 29) return "NATIONAL COFFEE DAY - Write about how coffee shops in Bath or Penn Yan can boost sales with loyalty cards (graphic design) and a strong online presence (web design).";
 
   // Seasons (corrected)
   if ((month === 3 && day >= 20) || (month === 4) || (month === 5) || (month === 6 && day < 21)) return "SPRING SEASON - Write about fresh designs, pastel colors, spring marketing themes";
@@ -110,7 +132,7 @@ BATCH E (Fun/Creative):
 9. Advanced techniques
 10. Industry insights
 
-Requirements: 750 words, HTML format, end with Alfred Web Design & Shirts CTA.
+Requirements: 750 words, HTML format. End the article with a creative and friendly Call to Action (CTA) for Alfred Web Design & Shirts. The CTA must be tailored to local businesses in Western New York. It is critical that you creatively vary the wording of the CTA for each post, but you MUST always include this exact contact information: Phone: 607-638-7887 | Email: team@alfredwebdesign.com | Website: www.alfredwebdesign.com
 
 **FINAL LOCATION REMINDER:** Remember, every word you write is for our audience in the Western New York communities around Alfred, Hornell, and Wellsville. Your context is hyper-local.`
           }]
@@ -166,3 +188,4 @@ Requirements: 750 words, HTML format, end with Alfred Web Design & Shirts CTA.
     return new Response(`Error: ${error.message}`, { status: 500 });
   }
 }
+```
