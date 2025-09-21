@@ -159,7 +159,7 @@ Requirements: 750 words, HTML format. End the article with a creative and friend
     const post = {
       title,
       content: body,
-      excerpt: body.replace(/<[^>]*>/g, '').substring(0, 150) + '...',
+      excerpt: body.replace(/<[^>]*>/g, '').substring(0, 300) + '...',
       date: new Date().toLocaleDateString('en-US', {
         month: '2-digit',
         day: '2-digit',
