@@ -14,7 +14,7 @@ export async function onRequest(context) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${post.title} - Alfred Web Design</title>
+  <title>${post.title} - Alfred Web Design & Shirts</title>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
 </head>
@@ -31,7 +31,7 @@ export async function onRequest(context) {
       <a href="/services" class="nav-item">Services</a>
       <a href="/portfolio" class="nav-item">Portfolio</a>
       <a href="/contact" class="nav-item">Contact</a>
-      <a href="/blog" class="nav-item active">Blog</a>
+      <a href="/blog/" class="nav-item active">Blog</a>
     </div>
   </nav>
 
@@ -40,10 +40,10 @@ export async function onRequest(context) {
       <h1>${post.title}</h1>
       <p><small style="color: var(--gold);">${post.date}</small></p>
       <div style="text-align: left; margin-top: 20px; line-height: 1.6;">
-        ${post.content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>')}
+        ${post.content}
       </div>
       <div style="margin-top: 30px;">
-        <a href="/blog" class="cta-button">← Back to Blog</a>
+        <a href="/blog/" class="cta-button">← Back to Blog</a>
       </div>
     </div>
   </div>
@@ -57,7 +57,7 @@ export async function onRequest(context) {
         <a href="/contact" class="footer-link">Contact</a>
       </div>
       <div class="copyright">
-        © 2024 Alfred Web Design. All rights reserved.
+        © 2024 Alfred Web Design & Shirts. All rights reserved.
       </div>
     </div>
   </footer>

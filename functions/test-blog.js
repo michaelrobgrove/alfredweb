@@ -47,10 +47,11 @@ Your primary goal is to write a 500-word blog post that offers genuine value to 
 10. **Do not mention that you are an AI.** Write from the perspective of the creative agency's team.
 
 **Format Requirements:**
-- Use markdown formatting (**bold** for emphasis)
+- Use HTML formatting (<strong>bold</strong>, <h3>subheadings</h3>, <p>paragraphs</p>)
 - Keep paragraphs under 4 sentences
 - Write in second person ("you") to engage readers directly
-- Include the current date reference naturally in the content`
+- Include the current date reference naturally in the content
+- When using location examples, reference local towns: Hornell, Almond, Wellsville, Alfred, Canisteo, Greenwood, Bath, Penn Yan, Belmont, or Friendship`
           }]
         }]
       })
