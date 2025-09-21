@@ -60,9 +60,10 @@ Your primary goal is to write a 500-word blog post that offers genuine value to 
     const geminiData = await geminiResponse.json();
     const content = geminiData.candidates[0].content.parts[0].text;
     
-    // Parse content
-    const lines = content.split('\n').filter(line => line.trim());
-    const title = lines[0].replace(/^#+\s*/, '');
+    // Better content parsing
+    const cleanContent = content.replace(/^<!DOCTYPE.*?<\/html>$/s, '').trim();
+    const lines = cleanContent.split('\n').filter(line => line.trim());
+    const title = lines[0].replace(/^#+\s*|<[^>]*>/g, '').trim();
     const body = lines.slice(1).join('\n');
     
     const post = {
