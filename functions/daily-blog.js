@@ -2,7 +2,12 @@ export async function onRequest(context) {
   const { env } = context;
   
   try {
-    // Generate blog content with Gemini
+    // Get existing posts to check for duplicates
+    const existingPosts = await env.BLOG_KV.get('posts');
+    const postsData = existingPosts ? JSON.parse(existingPosts) : { posts: [] };
+    const existingTitles = postsData.posts.map(p => p.title.toLowerCase());
+    
+    // Generate content with Gemini
     const geminiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${env.GEMINI_API_KEY}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -11,9 +16,12 @@ export async function onRequest(context) {
           parts: [{
             text: `You are a content writer for Alfred Web Design & Shirts. Random seed: ${Date.now()}-${Math.floor(Math.random() * 10000)}
 
-MANDATORY: You MUST write about a completely different topic each time. Never repeat topics, titles, or themes.
+EXISTING BLOG TOPICS TO AVOID (don't write about these again):
+${existingTitles.length > 0 ? existingTitles.map(t => `- ${t}`).join('\n') : '- None yet'}
 
-**FORCE TOPIC ROTATION - Pick ONE that hasn't been used recently:**
+MANDATORY: You MUST write about a completely different topic that hasn't been covered above.
+
+**FORCE TOPIC ROTATION - Pick ONE that hasn't been used:**
 
 BATCH A (Custom Apparel):
 - T-shirt fabric guide (cotton vs polyester vs blends)
@@ -76,7 +84,7 @@ BATCH E (Fun/Creative):
 
 Requirements: 750 words, HTML format, local NY town references, unique title, end with Alfred Web Design & Shirts CTA.
 
-CRITICAL: If this topic has been covered recently, pick a completely different one from another batch!`
+CRITICAL: Pick a topic that's completely different from the existing ones listed above!`
           }]
         }]
       })
@@ -115,9 +123,6 @@ CRITICAL: If this topic has been covered recently, pick a completely different o
       }),
       slug: title.toLowerCase().replace(/[^a-z0-9]+/g, '-').substring(0, 50)
     };
-    
-    // Get existing posts from KV
-    const postsData = existingPosts ? JSON.parse(existingPosts) : { posts: [] };
     
     // Add new post to beginning
     postsData.posts.unshift(post);
