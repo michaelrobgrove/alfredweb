@@ -1,0 +1,67 @@
+# ==============================================================================
+# DEFAULT .HTACCESS & USER REDIRECT
+# ==============================================================================
+
+# Enable the Apache Rewrite Engine
+RewriteEngine On
+
+# ------------------------------------------------------------------------------
+# Redirects
+# ------------------------------------------------------------------------------
+
+# Force HTTPS (SSL) - Essential for modern sites
+RewriteCond %{HTTPS} !=on
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Force www on all traffic
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule ^(.*)$ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# YOUR REQUEST: Permanently redirect /blog to /blog/
+RewriteRule ^blog$ /blog/ [R=301,L]
+
+# ------------------------------------------------------------------------------
+# Security Settings
+# ------------------------------------------------------------------------------
+
+# Prevent public listing of directory contents
+Options -Indexes
+
+# Block access to sensitive files like this .htaccess file
+<FilesMatch "(^\.htaccess|error_log|README\.md)">
+    Require all denied
+</FilesMatch>
+
+# Add security headers to help prevent cross-site scripting (XSS) attacks
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set Referrer-Policy "no-referrer-when-downgrade"
+</IfModule>
+
+# ------------------------------------------------------------------------------
+# Performance - Leverage Browser Caching
+# ------------------------------------------------------------------------------
+
+<IfModule mod_expires.c>
+    ExpiresActive On
+    # Cache images and icons for 1 year
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+
+    # Cache CSS and JavaScript for 1 month
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
+
+# ------------------------------------------------------------------------------
+# Custom Error Pages
+# ------------------------------------------------------------------------------
+
+# Set your custom 404 page
+ErrorDocument 404 /404.html

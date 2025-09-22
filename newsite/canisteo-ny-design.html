@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Alfred Web Design & Shirts - Serving Canisteo NY with professional web design, logo creation, and custom apparel. Supporting Canisteo-Greenwood Chargers, local businesses, and serving the Canisteo community with designs that highlight local pride.">
+  <title>Canisteo NY Web Design & Custom Apparel | Chargers Pride</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --purple: #592b94;
+      --blue: #003c71;
+      --gold: #cda618;
+      --white: #ffffff;
+      --black: #000000;
+      --accent: #592b94;
+      --accent-light: #6d35b2;
+      --chargers-red: #cc0000;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      color: white;
+      background-color: black;
+      text-align: center;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    h1, h2, h3, h4, h5, h6, .nav-item {
+      font-family: 'Cinzel', serif;
+    }
+
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -2;
+    }
+    
+    .background-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('canisteo-back.webp');
+      background-size: cover;
+      background-position: center;
+      z-index: -3;
+    }
+
+    .animated-gradient {
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(-45deg,
+        rgba(89, 43, 148, 0.6),
+        rgba(0, 60, 113, 0.6),
+        rgba(89, 43, 148, 0.6),
+        rgba(0, 60, 113, 0.6)
+      );
+      background-size: 400% 400%;
+      animation: gradientShift 20s ease infinite;
+      z-index: -2;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .dots {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .dot {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.9;
+      transition: transform 0.4s ease-out;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      padding: 15px 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .nav-container {
+      display: flex;
+      background-color: rgba(0,0,0,0.5);
+      border-radius: 30px;
+      padding: 10px 20px;
+    }
+
+    .nav-item {
+      color: var(--white);
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 16px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .nav-item:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background-color: var(--gold);
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: width 0.3s ease;
+    }
+
+    .nav-item:hover:after {
+      width: 100%;
+    }
+
+    .nav-item.active {
+      color: var(--gold);
+    }
+
+    .nav-item.active:after {
+      width: 100%;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo-container {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .logo {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      margin-bottom: 5px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.02);
+    }
+
+    .hero {
+      margin-bottom: 30px;
+      padding: 20px;
+      background-color: rgba(0,0,0,0.6);
+      border-radius: 15px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      margin-bottom: 15px;
+      color: var(--gold);
+    }
+
+    .hero p {
+      font-size: 16px;
+      line-height: 1.5;
+      margin-bottom: 15px;
+    }
+
+    .hero-cta {
+      margin-top: 20px;
+    }
+
+    .services-section {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-bottom: 40px;
+    }
+
+    .service-card {
+      background-color: rgba(0,0,0,0.6);
+      padding: 20px;
+      border-radius: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+      text-align: center;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    .service-card h3 {
+      color: var(--gold);
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .service-card p {
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .content-section {
+      background-color: rgba(0,0,0,0.6);
+      padding: 30px;
+      border-radius: 15px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .content-section h2 {
+      color: var(--gold);
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .content-section p {
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .cta-section {
+      background-color: rgba(0,0,0,0.7);
+      padding: 30px;
+      border-radius: 15px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      color: var(--gold);
+      margin-bottom: 15px;
+      font-size: 24px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background-color: var(--accent);
+      color: white;
+      padding: 10px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+      border: 2px solid transparent;
+    }
+
+    .cta-button:hover {
+      background-color: var(--accent-light);
+      transform: scale(1.05);
+    }
+
+    .info-section {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .info-card {
+      background-color: rgba(0,0,0,0.6);
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .info-card h3 {
+      color: var(--gold);
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .info-card p {
+      font-size: 15px;
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .info-card a {
+      color: white;
+      text-decoration: underline;
+      transition: color 0.3s ease;
+    }
+
+    .info-card a:hover {
+      color: var(--gold);
+    }
+
+    footer {
+      padding: 25px 20px;
+      background-color: rgba(0,0,0,0.7);
+      margin-top: 40px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 15px;
+    }
+
+    .footer-link {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-link:hover {
+      color: var(--gold);
+    }
+
+    .copyright {
+      font-size: 14px;
+      opacity: 0.7;
+    }
+
+    @media (max-width: 992px) {
+      .services-section {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-container {
+        padding: 8px 15px;
+      }
+      
+      .nav-item {
+        margin: 0 8px;
+        font-size: 14px;
+      }
+      
+      .hero h1 {
+        font-size: 26px;
+      }
+      
+      .hero p {
+        font-size: 15px;
+      }
+      
+      .logo {
+        max-width: 80%;
+      }
+
+      .service-card {
+        padding: 15px;
+      }
+
+      .content-section, .cta-section {
+        padding: 20px;
+      }
+
+      .info-section {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .services-section {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="background">
+    <div class="background-image" aria-label="Canisteo NY"></div>
+    <div class="animated-gradient"></div>
+    <div class="dots" id="dots-container"></div>
+  </div>
+
+  <div class="container">
+    <nav>
+      <div class="nav-container">
+        <a href="index.html" class="nav-item">Home</a>
+        <a href="about.html" class="nav-item">About Us</a>
+        <a href="contact.html" class="nav-item">Contact</a>
+      </div>
+    </nav>
+
+    <div class="logo-container">
+      <img src="awd.png" alt="Alfred Web Design & Shirts Logo" class="logo">
+    </div>
+
+    <main>
+      <section class="hero">
+        <h1>Canisteo's Premier Web Design & Custom Apparel Resource</h1>
+        <p>Looking for "web design near me" or "custom shirts near me" in Canisteo? Alfred Web Design & Shirts proudly serves the Canisteo area with expert digital design and quality apparel printing that celebrates your community's rich heritage, vibrant spirit, and proud Canisteo-Greenwood Chargers. Just a short drive from Canisteo, we deliver personalized service with local pride.</p>
+        <div class="hero-cta">
+          <a href="#quote-form" class="cta-button">Request Your Canisteo-Focused Quote</a>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>Web & Logo Design for Canisteo Businesses</h2>
+        <p>As neighbors to Canisteo, we understand what makes your community special. Our web design services help Canisteo businesses establish a meaningful online presence that connects with locals while reaching new customers throughout the region.</p>
+        
+        <p>When Canisteo businesses need "logo design near me," we create distinctive visual identities that celebrate your connection to the community. Whether you're a downtown retailer, agricultural business, or service provider, we design logos that communicate your unique brand story while resonating with local customers.</p>
+        
+        <p>Our specialized knowledge of Canisteo's community dynamics means we can help position your business to thrive in this unique market. From highlighting your Canisteo roots to showcasing your connection to the region's agricultural heritage – we create designs that speak directly to local customers while elevating your brand in the digital space.</p>
+      </section>
+
+      <section class="services-section">
+        <div class="service-card">
+          <h3>Canisteo-Focused Websites</h3>
+          <p>Custom website design with local SEO that helps your Canisteo business appear in "near me" searches. Our websites highlight your community connection while delivering excellent user experience that converts visitors into customers.</p>
+        </div>
+        <div class="service-card">
+          <h3>Canisteo Business Branding</h3>
+          <p>We create logos and brand identities that connect with Canisteo's unique culture – from modern designs for downtown businesses to agricultural enterprises and service providers throughout the area.</p>
+        </div>
+        <div class="service-card">
+          <h3>Canisteo-Greenwood Chargers Spirit Wear</h3>
+          <p>Show your Chargers pride with custom apparel featuring Canisteo-Greenwood's red, black, and white colors. Perfect for teams, clubs, fans, and families supporting CGCS athletics and activities.</p>
+        </div>
+        <div class="service-card">
+          <h3>Community Event Apparel</h3>
+          <p>Professional custom apparel for Canisteo's community events, fundraisers, and celebrations. Quality shirts and promotional items that build unity and showcase local pride.</p>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>Custom Apparel & Shirt Printing for Canisteo</h2>
+        <p>When you need "custom apparel near me" in Canisteo, we deliver exceptional shirt printing services with designs that celebrate everything that makes your community special. From Chargers red, black, and white spirit wear to custom apparel for local businesses, we create premium quality printed items that showcase your Canisteo pride.</p>
+        
+        <p>Our custom apparel supports Canisteo's community events, sports teams, schools, and businesses with designs that resonate with locals. Whether you're organizing a fundraiser for the Canisteo Youth Center, need team shirts for a local sports league, or want custom workwear for your Canisteo business – we understand the community connections that make your organization unique.</p>
+        
+        <p>Canisteo-Greenwood Chargers fans love our spirit wear that celebrates the proud athletic tradition of the Red, Black, and White. We create custom apparel for booster clubs, teams, student organizations, and Chargers supporters that shows your school pride with professional quality printing and attention to detail that lasts through countless washings.</p>
+      </section>
+
+      <section class="content-section">
+        <h2>Serving Canisteo with Local Knowledge & Professional Service</h2>
+        <p>When searching for "web design near me" or "shirt printing near me" in Canisteo, choosing a regional partner offers distinct advantages. Based just a short drive away in Alfred Station, we bring specialized knowledge of Canisteo's unique character – from its rich history to its tight-knit community spirit centered around the school district and local landmarks like The Living Sign.</p>
+        
+        <p>Our team regularly serves Canisteo businesses, schools, and organizations, giving us deep insights into what makes your community special. We understand Canisteo's proud heritage, its passionate school spirit, and the community-focused business environment that defines the town. This regional expertise translates into designs that authentically represent your place in the Canisteo community.</p>
+        
+        <p>For Canisteo businesses competing in today's digital marketplace, our strategic approach combines attractive design with practical functionality that delivers results. We help local companies establish professional online presences that highlight their community connections while reaching customers throughout the Southern Tier and beyond.</p>
+        
+        <p>Canisteo-Greenwood students, sports teams, and clubs benefit from our understanding of Chargers pride and traditions. From student council initiatives to booster club fundraisers, we create designs that celebrate the Red, Black, and White while delivering the professional quality your school deserves.</p>
+      </section>
+
+      <section class="cta-section">
+        <h2>Ready to Start Your Canisteo-Focused Project?</h2>
+        <p>Let us help bring your vision to life with design and printing services that capture Canisteo's unique character and community pride.</p>
+        <a href="#quote-form" class="cta-button">Get Your Canisteo-Specific Quote</a>
+      </section>
+
+      <section class="content-section">
+        <h2>Why Choose a Local Partner for Your Canisteo Business</h2>
+        <p>Working with Alfred Web Design & Shirts gives your Canisteo business the advantage of truly local service with the professional capabilities typically found only in larger markets. Our connection to the Southern Tier community means we understand the unique aspects of doing business in Canisteo.</p>
+        
+        <p>We're familiar with the local market conditions, regional events, and community dynamics that influence consumer behavior in the Canisteo area. This translates into more effective websites and branding that resonates with your target audience and showcases what makes your business special.</p>
+        
+        <p>As a small business ourselves, we understand the challenges and opportunities facing Canisteo entrepreneurs. Our affordable, customized approach delivers professional results while respecting your budget constraints – helping you compete effectively in both local and digital marketplaces.</p>
+        
+        <p>From the initial consultation through project completion, you'll work directly with our experienced team. We take the time to understand your specific needs, provide clear communication throughout the process, and deliver personalized attention that ensures your satisfaction with the final product.</p>
+      </section>
+
+      <section class="info-section">
+        <div class="info-card">
+          <h3>Contact Information</h3>
+          <p>Phone: <a href="tel:6076387887">607-638-7887</a></p>
+          <p>Email: <a href="mailto:team@alfredwebdesign.com">team@alfredwebdesign.com</a></p>
+        </div>
+        <div class="info-card">
+          <h3>Our Location</h3>
+          <p>6174 Depot St, Alfred Station, NY 14803</p>
+          <p><small>Mailing: PO Box 11, Alfred Station, NY 14803</small></p>
+        </div>
+        <div class="info-card">
+          <h3>Business Hours</h3>
+          <p>Monday–Friday: 10am–6pm</p>
+          <p><small>Appointments Recommended As Hours May Vary.</small></p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="index.html" class="footer-link">Home</a>
+        <a href="about.html" class="footer-link">About</a>
+        <a href="contact.html" class="footer-link">Contact</a>
+      </div>
+      <p class="copyright">
+        © 2018–2025 Alfred Web Design & Shirts • Proudly serving Canisteo and surrounding communities from our Alfred Station location
+      </p>
+      <span style="display: none;">
+        Canisteo NY web design near me, Canisteo custom shirts, logo design Canisteo NY, Canisteo-Greenwood Chargers spirit wear, Canisteo business websites, shirt printing near me Canisteo, Canisteo branding services, Canisteo custom apparel
+      </span>
+    </div>
+  </footer>
+
+  <script>
+    // Set current year
+    const yearElement = document.querySelector('.copyright');
+    if (yearElement) {
+      yearElement.textContent = yearElement.textContent.replace('2025', new Date().getFullYear());
+    }
+
+    const colors = [
+      'rgba(204,0,0,0.4)',     // Chargers red
+      'rgba(255,255,255,0.4)', // white
+      'rgba(0,0,0,0.4)'        // black
+    ];
+
+    const dotCount = 350;
+    const container = document.getElementById("dots-container");
+    const dots = [];
+
+    for (let i = 0; i < dotCount; i++) {
+      const dot = document.createElement("div");
+      dot.classList.add("dot");
+
+      const size = 5 + Math.random() * 8;
+      dot.style.width = `${size}px`;
+      dot.style.height = `${size}px`;
+      dot.style.top = `${Math.random() * 100}%`;
+      dot.style.left = `${Math.random() * 100}%`;
+      dot.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+      container.appendChild(dot);
+      dots.push({
+        el: dot,
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        vx: -0.5 + Math.random(),
+        vy: -0.5 + Math.random()
+      });
+    }
+
+    // Animate movement and cursor-follow
+    let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+
+    document.addEventListener('mousemove', e => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    function animateDots() {
+      for (let i = 0; i < dots.length; i++) {
+        const dot = dots[i];
+        // Move toward mouse a little
+        dot.x += (mouse.x - dot.x) * 0.002 + dot.vx;
+        dot.y += (mouse.y - dot.y) * 0.002 + dot.vy;
+
+        // Wrap around screen
+        if (dot.x < 0) dot.x = window.innerWidth;
+        if (dot.x > window.innerWidth) dot.x = 0;
+        if (dot.y < 0) dot.y = window.innerHeight;
+        if (dot.y > window.innerHeight) dot.y = 0;
+
+        dot.el.style.transform = `translate(${dot.x}px, ${dot.y}px)`;
+      }
+
+      requestAnimationFrame(animateDots);
+    }
+
+    animateDots();
+  </script>
+</body>
+</html>

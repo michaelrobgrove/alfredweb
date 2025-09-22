@@ -1,0 +1,49 @@
+# Allow Google
+User-agent: Googlebot
+Disallow:
+
+# Allow Apple
+User-agent: Applebot
+Disallow:
+
+# Allow Bing (also covers Yahoo)
+User-agent: Bingbot
+Disallow:
+
+# Allow Facebook for link previews
+User-agent: FacebookExternalHit
+Disallow:
+
+# Allow Twitter for card previews
+User-agent: Twitterbot
+Disallow:
+
+# Allow Slack previews
+User-agent: Slackbot
+Disallow:
+
+# Allow Discord embeds
+User-agent: Discordbot
+Disallow:
+
+# Allow DuckDuckGo
+User-agent: DuckDuckBot
+Disallow:
+
+# Allow LinkedIn link previews
+User-agent: LinkedInBot
+Disallow:
+
+# Allow Claude/Anthropic
+User-agent: Claude-Web
+Disallow:
+
+# Block everything else
+User-agent: *
+Disallow: /
+
+# Hide the 404 page from all bots
+Disallow: /404.html
+
+# Sitemap for approved bots
+Sitemap: https://alfredwebdesign.com/sitemap.xml

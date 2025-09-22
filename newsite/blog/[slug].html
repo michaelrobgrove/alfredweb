@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<!-- Copy your site's <head> section here -->
+<body>
+<!-- Copy your site's header/nav here -->
+
+<main class="container">
+  <article id="blog-post">
+    <h1 id="post-title"></h1>
+    <div id="post-meta"></div>
+    <div id="post-content"></div>
+  </article>
+</main>
+
+<!-- Copy your site's footer here -->
+
+<script>
+const slug = window.location.pathname.split('/').pop();
+fetch('/api/posts')
+  .then(r => r.json())
+  .then(data => {
+    const post = data.posts.find(p => p.slug === slug);
+    if (post) {
+      document.getElementById('post-title').textContent = post.title;
+      document.getElementById('post-meta').innerHTML = `<small>${post.date}</small>`;
+      document.getElementById('post-content').innerHTML = post.content;
+    }
+  });
+</script>
+</body>
+</html>
