@@ -238,3 +238,20 @@ footer {
 .bg-section h2, .bg-section p {
   color: #f9f9f9;
 }
+/* === Animated Accent Bar === */
+.accent-bar {
+  height: 4px; /* thin line */
+  width: 100%;
+  background: linear-gradient(90deg, #6d2cb4, #2563eb, #6d2cb4);
+  background-size: 200% 100%; /* twice width for movement */
+  animation: slide-color 6s ease-in-out infinite alternate;
+}
+
+@keyframes slide-color {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 0%;
+  }
+}
