@@ -4,7 +4,7 @@
   --black: #000000;
   --accent: #6d2cb4;
   --accent-light: #8844d4;
-  --blue: #003c73; /* Added for consistency with other pages */
+  --blue: #003c73;
 }
 
 * {
@@ -215,7 +215,7 @@ nav {
   border-color: var(--accent);
 }
 
-/* --- NEW: Admin Page Specific Styles --- */
+/* --- Admin Page Specific Styles --- */
 .tabs {
   display: flex;
   border-bottom: 2px solid var(--gold);
@@ -254,6 +254,33 @@ nav {
 }
 .admin-actions .cta-button {
   margin-top: 0;
+}
+.sub-tabs {
+  display: flex;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #555;
+}
+.sub-tab-link {
+  padding: 8px 15px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: white;
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+.sub-tab-link.active, .sub-tab-link:hover {
+  opacity: 1;
+  border-bottom: 2px solid var(--gold);
+  color: var(--gold);
+}
+.sub-tab-content {
+  display: none;
+}
+.sub-tab-content.active {
+  display: block;
 }
 
 /* --- Responsive styles --- */
