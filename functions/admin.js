@@ -104,7 +104,7 @@ function adminDashboard(posts, grantApplications, message = '', username, passwo
       ${grantApplications.length === 0 ? '<div class="service-card" style="text-align:center;"><p>No grant applications yet.</p></div>' : ''}
       ${grantApplications.map((app, i) => `
         <div class="service-card" style="margin-bottom: 20px; text-align: left; line-height: 1.6;">
-          <h3 style="color: var(--gold);">${app.organization}</h3>
+          <h3 style="color: var(--gold);">${app.organization || 'No Organization Name Provided'}</h3>
           <p><strong>Contact:</strong> ${app.name} | <strong>Email:</strong> ${app.email}</p>
           <p><strong>Phone:</strong> ${app.phone}</p>
           <p><strong>Address:</strong> ${app.address}</p>
@@ -120,7 +120,7 @@ function adminDashboard(posts, grantApplications, message = '', username, passwo
               <input type="hidden" name="entryId" value="${i}">
               <input type="hidden" name="username" value="${username}">
               <input type="hidden" name="password" value="${password}">
-              <button type="submit" class="cta-button" style="background: #c82333; padding: 8px 15px;">Delete</button>
+              <button type="submit" class="cta-button" style="background-color: #c82333; padding: 8px 15px;">Delete</button>
             </form>
           </div>
         </div>
@@ -131,30 +131,55 @@ function adminDashboard(posts, grantApplications, message = '', username, passwo
   <script>
     function openTab(evt, tabName) {
       const tabcontent = document.getElementsByClassName("tab-content");
-      for (let i = 0; i < tabcontent.length; i++) { tabcontent[i].style.display = "none"; }
+      for (let i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
       const tablinks = document.getElementsByClassName("tab-link");
-      for (let i = 0; i < tablinks.length; i++) { tablinks[i].className = tablinks[i].className.replace(" active", ""); }
+      for (let i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
       document.getElementById(tabName).style.display = "block";
       evt.currentTarget.className += " active";
     }
 
     function downloadApplication(appData, orgName) {
       const htmlContent = \`
-        <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Grant Application: \${orgName}</title>
-        <style>body{font-family:sans-serif;line-height:1.6;margin:40px}h1{color:#333}h3{margin-top:30px;border-bottom:1px solid #ccc;padding-bottom:5px}p{border-bottom:1px solid #eee;padding:10px 0;margin:0}strong{display:inline-block;width:150px;color:#555}pre{white-space:pre-wrap;background:#f4f4f4;padding:15px;border-radius:5px;font-family:inherit;font-size:1em}</style>
-        </head><body><h1>Grant Application: \${appData.organization}</h1>
-        <p><strong>Submitted At:</strong> \${new Date(appData.submittedAt).toLocaleString()}</p><p><strong>Contact Name:</strong> \${appData.name}</p>
-        <p><strong>Organization:</strong> \${appData.organization}</p><p><strong>Address:</strong> \${appData.address}</p>
-        <p><strong>Phone:</strong> \${appData.phone}</p><p><strong>Email:</strong> \${appData.email}</p>
-        <p><strong>Preferred Plan:</strong> \${appData['preferred-plan']}</p><p><strong>Nonprofit Status:</strong> \${appData['nonprofit-status']}</p>
-        <h3>Mission Statement</h3><pre>\${appData.mission}</pre><h3>Additional Details</h3><pre>\${appData.details || 'N/A'}</pre>
-        </body></html>\`;
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8">
+          <title>Grant Application: \${orgName}</title>
+          <style>
+            body { font-family: sans-serif; line-height: 1.6; margin: 40px; }
+            h1 { color: #333; } h3 { margin-top: 30px; border-bottom: 1px solid #ccc; padding-bottom: 5px;}
+            p { border-bottom: 1px solid #eee; padding: 10px 0; margin: 0;}
+            strong { display: inline-block; width: 150px; color: #555;}
+            pre { white-space: pre-wrap; background: #f4f4f4; padding: 15px; border-radius: 5px; font-family: inherit; font-size: 1em;}
+          </style>
+        </head>
+        <body>
+          <h1>Grant Application: \${appData.organization}</h1>
+          <p><strong>Submitted At:</strong> \${new Date(appData.submittedAt).toLocaleString()}</p>
+          <p><strong>Contact Name:</strong> \${appData.name}</p>
+          <p><strong>Organization:</strong> \${appData.organization}</p>
+          <p><strong>Address:</strong> \${appData.address}</p>
+          <p><strong>Phone:</strong> \${appData.phone}</p>
+          <p><strong>Email:</strong> \${appData.email}</p>
+          <p><strong>Preferred Plan:</strong> \${appData['preferred-plan']}</p>
+          <p><strong>Nonprofit Status:</strong> \${appData['nonprofit-status']}</p>
+          <h3>Mission Statement</h3>
+          <pre>\${appData.mission}</pre>
+          <h3>Additional Details</h3>
+          <pre>\${appData.details || 'N/A'}</pre>
+        </body>
+        </html>
+      \`;
       const blob = new Blob([htmlContent], { type: 'text/html' });
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
       a.download = \`grant_application_\${orgName}.html\`;
       document.body.appendChild(a);
-a.click();
+      a.click();
       document.body.removeChild(a);
     }
     
