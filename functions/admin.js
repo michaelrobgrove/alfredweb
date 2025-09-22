@@ -17,7 +17,7 @@ function loginForm(error = '') {
   <div class="container">
     <div class="form-section">
       <h2>Admin Login</h2>
-      ${error ? `<p style="color: #ff6b6b; ...">${error}</p>` : ''}
+      ${error ? `<p style="color: #ff6b6b; background: rgba(255,107,107,0.1); padding: 10px; border-radius: 5px; margin-bottom: 15px;">${error}</p>` : ''}
       <form method="POST">
         <div class="form-group">
           <label for="username">Username:</label>
@@ -37,65 +37,56 @@ function loginForm(error = '') {
 
 // This function handles rendering the main dashboard
 function adminDashboard(posts, grantApplications, message = '', username, password) {
-  // This is the large HTML block from the previous version.
-  // No changes are needed inside this function.
-  return `<!DOCTYPE html>...`; // Collapsed for brevity
-}
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="background">
+    <div class="background-image"></div>
+    <div class="animated-gradient"></div>
+    <div class="dots" id="dots-container"></div>
+  </div>
+  <nav>
+    <div class="nav-container">
+      <a href="/" class="nav-item">Home</a>
+      <a href="/blog/" class="nav-item">Blog</a>
+      <a href="/admin" class="nav-item active">Admin</a>
+    </div>
+  </nav>
 
-// Main handler for all requests to /admin
-export async function onRequest(context) {
-  const { env, request } = context;
+  <div class="container">
+    <div class="hero">
+      <h1>Admin Dashboard</h1>
+      ${message ? `<p style="color: #4CAF50; background: rgba(76,175,80,0.1); padding: 15px; border-radius: 10px; margin: 20px 0;">${message}</p>` : ''}
+    </div>
 
-  try {
-    // If the request is a POST, it's a login attempt or an action
-    if (request.method === 'POST') {
-      const formData = await request.formData();
-      const username = formData.get('username');
-      const password = formData.get('password');
+    <div class="tabs">
+      <button class="tab-link active" onclick="openTab(event, 'posts')">Blog Posts (${posts.length})</button>
+      <button class="tab-link" onclick="openTab(event, 'applications')">Grant Applications (${grantApplications.length})</button>
+    </div>
 
-      // 1. Check Credentials
-      if (username !== env.ADMIN_USERNAME || password !== env.ADMIN_PASSWORD) {
-        return new Response(loginForm('Invalid credentials'), { headers: { 'Content-Type': 'text/html' } });
-      }
-
-      // 2. Credentials are valid, so fetch all data
-      const postsJson = await env.BLOG_KV.get('posts');
-      const grantAppsJson = await env.BLOG_KV.get('grant_applications');
-      const postsData = JSON.parse(postsJson || '{"posts":[]}');
-      let grantApplicationsData = JSON.parse(grantAppsJson || '[]');
-      if (!Array.isArray(grantApplicationsData)) {
-          grantApplicationsData = [];
-      }
-
-      const action = formData.get('action');
-      const entryId = formData.get('entryId');
-      let message = '';
-
-      // 3. Handle any actions (delete, clear, etc.)
-      if (action === 'delete_post' && entryId !== null) {
-        postsData.posts.splice(parseInt(entryId), 1);
-        await env.BLOG_KV.put('posts', JSON.stringify(postsData));
-        message = 'Post deleted successfully.';
-      } else if (action === 'clear_posts') {
-        await env.BLOG_KV.put('posts', '{"posts":[]}');
-        postsData.posts = [];
-        message = 'All posts cleared.';
-      } else if (action === 'delete_grant' && entryId !== null) {
-        grantApplicationsData.splice(parseInt(entryId), 1);
-        await env.BLOG_KV.put('grant_applications', JSON.stringify(grantApplicationsData));
-        message = 'Grant application deleted successfully.';
-      }
-      
-      // 4. Render the dashboard
-      return new Response(adminDashboard(postsData.posts, grantApplicationsData, message, username, password), {
-        headers: { 'Content-Type': 'text/html' }
-      });
-    }
-
-    // If the request is a GET, just show the login form
-    return new Response(loginForm(), { headers: { 'Content-Type': 'text/html' } });
-
-  } catch (error) {
-    return new Response(`Error: ${error.message}`, { status: 500 });
-  }
-}
+    <div id="posts" class="tab-content active">
+      <div class="admin-actions">
+        <form method="POST" style="display: inline;" onsubmit="return confirm('Clear ALL posts? This cannot be undone!');">
+          <input type="hidden" name="action" value="clear_posts">
+          <input type="hidden" name="username" value="${username}">
+          <input type="hidden" name="password" value="${password}">
+          <button type="submit" class="cta-button" style="background-color: #dc3545;">Clear All Posts</button>
+        </form>
+        <a href="/test-blog" class="cta-button" target="_blank">Create New Post</a>
+      </div>
+      ${posts.length === 0 ? '<div class="service-card" style="text-align:center;"><p>No blog posts yet.</p></div>' : ''}
+      ${posts.map((post, i) => `
+        <div class="service-card" style="margin-bottom: 20px; text-align: left;">
+          <h3 style="color: var(--gold);">${post.title}</h3>
+          <p><strong>Date:</strong> ${post.date} | <strong>Slug:</strong> ${post.slug}</p>
+          <p style="margin: 10px 0; opacity: 0.8;">${post.excerpt}</p>
+          <div style="margin-top: 15px;">
+            <form method="POST" style="display: inline; margin-right: 10px;" onsubmit="return confirm('Delete this post?');">
+              <input type="hidden" name="action" value="delete_post">
+              <input type="hidden
