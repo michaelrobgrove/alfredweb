@@ -1,25 +1,25 @@
 export async function onRequest(context) {
   const { env, request } = context;
 
-  // This function will now handle both GET and POST requests
-  // For a simple admin panel, we can fetch data on every request
-  
   try {
+    // Fetch all data at the beginning
     const postsJson = await env.BLOG_KV.get('posts');
     const grantAppsJson = await env.BLOG_KV.get('grant_applications');
     const postsData = JSON.parse(postsJson || '{"posts":[]}');
     let grantApplicationsData = JSON.parse(grantAppsJson || '[]');
 
-    // Ensure grantApplicationsData is always an array
+    // Ensure grantApplicationsData is always an array for safety
     if (!Array.isArray(grantApplicationsData)) {
       grantApplicationsData = [];
     }
 
+    // Handle POST requests for actions
     if (request.method === 'POST') {
       const formData = await request.formData();
       const username = formData.get('username');
       const password = formData.get('password');
-      
+
+      // Check credentials before any action
       if (username !== env.ADMIN_USERNAME || password !== env.ADMIN_PASSWORD) {
         return new Response(loginForm('Invalid credentials'), { headers: { 'Content-Type': 'text/html' } });
       }
@@ -42,7 +42,7 @@ export async function onRequest(context) {
         message = 'Grant application deleted successfully.';
       }
       
-      // After a POST action, render the full dashboard
+      // After a POST action, render the full dashboard with a success message
       return new Response(adminDashboard(postsData.posts, grantApplicationsData, message, username, password), {
         headers: { 'Content-Type': 'text/html' }
       });
@@ -58,11 +58,57 @@ export async function onRequest(context) {
 
 
 function loginForm(error = '') {
-  // This function can remain mostly the same, but it's good practice
-  // to link to the external stylesheet instead of having styles here.
-  return `<!DOCTYPE html>...`; // Keeping this collapsed for brevity
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="background">
+    <div class="background-image"></div>
+    <div class="animated-gradient"></div>
+    <div class="dots" id="dots-container"></div>
+  </div>
+  <div class="container">
+    <div class="form-section">
+      <h2>Blog Admin Login</h2>
+      ${error ? `<p style="color: #ff6b6b; background: rgba(255,107,107,0.1); padding: 10px; border-radius: 5px; margin-bottom: 15px;">${error}</p>` : ''}
+      <form method="POST">
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" required class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required class="form-control">
+        </div>
+        <button type="submit" class="submit-button">Login</button>
+      </form>
+    </div>
+  </div>
+  <script>
+    // This script is optional for the login page but good for consistency
+    const dotsContainer = document.getElementById('dots-container');
+    if (dotsContainer) {
+      for (let i = 0; i < 50; i++) {
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        dot.style.left = \`\${Math.random() * 100}%\`;
+        dot.style.top = \`\${Math.random() * 100}%\`;
+        const size = Math.random() * 3 + 1;
+        dot.style.width = \`\${size}px\`;
+        dot.style.height = \`\${size}px\`;
+        dot.style.backgroundColor = 'rgba(205, 166, 24, 0.7)';
+        dotsContainer.appendChild(dot);
+      }
+    }
+  </script>
+</body>
+</html>`;
 }
-
 
 function adminDashboard(posts, grantApplications, message = '', username, password) {
   return `<!DOCTYPE html>
@@ -72,46 +118,25 @@ function adminDashboard(posts, grantApplications, message = '', username, passwo
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard</title>
   <link rel="stylesheet" href="/styles.css">
-  <style>
-    /* Tab specific styles */
-    .tabs {
-      display: flex;
-      border-bottom: 2px solid var(--gold);
-      margin-bottom: 20px;
-    }
-    .tab-link {
-      padding: 10px 20px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      color: white;
-      font-family: 'Cinzel', serif;
-      font-size: 18px;
-      opacity: 0.7;
-      transition: all 0.3s ease;
-    }
-    .tab-link.active, .tab-link:hover {
-      opacity: 1;
-      background-color: rgba(205, 166, 24, 0.1);
-      border-bottom: 2px solid var(--gold);
-      margin-bottom: -2px;
-    }
-    .tab-content {
-      display: none;
-    }
-    .tab-content.active {
-      display: block;
-    }
-  </style>
 </head>
 <body>
-  <div class="background"> ... </div>
-  <nav> ... </nav>
+  <div class="background">
+    <div class="background-image"></div>
+    <div class="animated-gradient"></div>
+    <div class="dots" id="dots-container"></div>
+  </div>
+  <nav>
+    <div class="nav-container">
+      <a href="/" class="nav-item">Home</a>
+      <a href="/blog/" class="nav-item">Blog</a>
+      <a href="/admin" class="nav-item active">Admin</a>
+    </div>
+  </nav>
 
   <div class="container">
     <div class="hero">
       <h1>Admin Dashboard</h1>
-      ${message ? `<p style="color: #4CAF50; ...">${message}</p>` : ''}
+      ${message ? `<p style="color: #4CAF50; background: rgba(76,175,80,0.1); padding: 15px; border-radius: 10px; margin: 20px 0;">${message}</p>` : ''}
     </div>
 
     <div class="tabs">
@@ -120,41 +145,56 @@ function adminDashboard(posts, grantApplications, message = '', username, passwo
     </div>
 
     <div id="posts" class="tab-content active">
-      <div style="margin-bottom: 30px; text-align: center;">
-        <form method="POST" ...>
-          ...
+      <div class="admin-actions">
+        <form method="POST" style="display: inline;" onsubmit="return confirm('Clear ALL posts? This cannot be undone!');">
+          <input type="hidden" name="action" value="clear_posts">
+          <input type="hidden" name="username" value="${username}">
+          <input type="hidden" name="password" value="${password}">
           <button type="submit" class="cta-button" style="background-color: #dc3545;">Clear All Posts</button>
         </form>
         <a href="/test-blog" class="cta-button" target="_blank">Create New Post</a>
       </div>
-      ${posts.length === 0 ? '<div class="service-card"><p>No blog posts yet.</p></div>' : ''}
+      ${posts.length === 0 ? '<div class="service-card" style="text-align:center;"><p>No blog posts yet.</p></div>' : ''}
       ${posts.map((post, i) => `
         <div class="service-card" style="margin-bottom: 20px; text-align: left;">
-          ... </div>
+          <h3 style="color: var(--gold);">${post.title}</h3>
+          <p><strong>Date:</strong> ${post.date} | <strong>Slug:</strong> ${post.slug}</p>
+          <p style="margin: 10px 0; opacity: 0.8;">${post.excerpt}</p>
+          <div style="margin-top: 15px;">
+            <form method="POST" style="display: inline; margin-right: 10px;" onsubmit="return confirm('Delete this post?');">
+              <input type="hidden" name="action" value="delete_post">
+              <input type="hidden" name="entryId" value="${i}">
+              <input type="hidden" name="username" value="${username}">
+              <input type="hidden" name="password" value="${password}">
+              <button type="submit" class="cta-button" style="background-color: #c82333; padding: 8px 15px;">Delete</button>
+            </form>
+            <a href="/blog/${post.slug}" target="_blank" class="cta-button" style="padding: 8px 15px;">View Post</a>
+          </div>
+        </div>
       `).join('')}
     </div>
 
     <div id="applications" class="tab-content">
-      ${grantApplications.length === 0 ? '<div class="service-card"><p>No grant applications yet.</p></div>' : ''}
+      ${grantApplications.length === 0 ? '<div class="service-card" style="text-align:center;"><p>No grant applications yet.</p></div>' : ''}
       ${grantApplications.map((app, i) => `
-        <div class="service-card" style="margin-bottom: 20px; text-align: left;">
+        <div class="service-card" style="margin-bottom: 20px; text-align: left; line-height: 1.6;">
           <h3 style="color: var(--gold);">${app.organization}</h3>
           <p><strong>Contact:</strong> ${app.name} | <strong>Email:</strong> ${app.email}</p>
           <p><strong>Phone:</strong> ${app.phone}</p>
           <p><strong>Address:</strong> ${app.address}</p>
-          <p><strong>Plan Choice:</strong> ${app.['preferred-plan']}</p>
-          <p><strong>Nonprofit Status:</strong> ${app.['nonprofit-status']}</p>
+          <p><strong>Plan Choice:</strong> ${app['preferred-plan']}</p>
+          <p><strong>Nonprofit Status:</strong> ${app['nonprofit-status']}</p>
           <p style="white-space: pre-wrap;"><strong>Mission:</strong> ${app.mission}</p>
           ${app.details ? `<p style="white-space: pre-wrap;"><strong>Details:</strong> ${app.details}</p>` : ''}
           <p><strong>Submitted:</strong> ${new Date(app.submittedAt).toLocaleString()}</p>
           <div style="margin-top: 15px;">
-            <button onclick='downloadApplication(${JSON.stringify(app)}, "${app.organization.replace(/[^a-zA-Z0-9]/g, '_')}")' class="cta-button">Download</button>
+            <button onclick='downloadApplication(${JSON.stringify(app)}, "${app.organization.replace(/[^a-zA-Z0-9]/g, '_')}")' class="cta-button" style="margin-right: 10px; padding: 8px 15px;">Download</button>
             <form method="POST" style="display: inline;" onsubmit="return confirm('Delete this application?');">
               <input type="hidden" name="action" value="delete_grant">
               <input type="hidden" name="entryId" value="${i}">
               <input type="hidden" name="username" value="${username}">
               <input type="hidden" name="password" value="${password}">
-              <button type="submit" style="background: #dc3545; color: white; ...">Delete</button>
+              <button type="submit" class="cta-button" style="background: #c82333; padding: 8px 15px;">Delete</button>
             </form>
           </div>
         </div>
@@ -163,34 +203,34 @@ function adminDashboard(posts, grantApplications, message = '', username, passwo
   </div>
 
   <script>
+    // Tab Script
     function openTab(evt, tabName) {
-      let i, tabcontent, tablinks;
-      tabcontent = document.getElementsByClassName("tab-content");
-      for (i = 0; i < tabcontent.length; i++) {
+      const tabcontent = document.getElementsByClassName("tab-content");
+      for (let i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
       }
-      tablinks = document.getElementsByClassName("tab-link");
-      for (i = 0; i < tablinks.length; i++) {
+      const tablinks = document.getElementsByClassName("tab-link");
+      for (let i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
       }
       document.getElementById(tabName).style.display = "block";
       evt.currentTarget.className += " active";
     }
-    document.getElementById('posts').style.display = 'block'; // Show first tab by default
 
+    // Download Application Script
     function downloadApplication(appData, orgName) {
-      const htmlContent = \`
+      const htmlContent = \\\`
         <!DOCTYPE html>
         <html lang="en">
         <head>
           <meta charset="UTF-8">
           <title>Grant Application: \${orgName}</title>
           <style>
-            body { font-family: sans-serif; line-height: 1.6; margin: 20px; }
-            h1 { color: #333; }
-            strong { display: inline-block; width: 150px; }
-            p { border-bottom: 1px solid #eee; padding-bottom: 10px; }
-            pre { white-space: pre-wrap; background: #f4f4f4; padding: 10px; border-radius: 5px; }
+            body { font-family: sans-serif; line-height: 1.6; margin: 40px; }
+            h1 { color: #333; } h3 { margin-top: 30px; border-bottom: 1px solid #ccc; padding-bottom: 5px;}
+            p { border-bottom: 1px solid #eee; padding: 10px 0; margin: 0;}
+            strong { display: inline-block; width: 150px; color: #555;}
+            pre { white-space: pre-wrap; background: #f4f4f4; padding: 15px; border-radius: 5px; font-family: inherit; font-size: 1em;}
           </style>
         </head>
         <body>
@@ -209,7 +249,7 @@ function adminDashboard(posts, grantApplications, message = '', username, passwo
           <pre>\${appData.details || 'N/A'}</pre>
         </body>
         </html>
-      \`;
+      \\\`;
       const blob = new Blob([htmlContent], { type: 'text/html' });
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
@@ -218,6 +258,25 @@ function adminDashboard(posts, grantApplications, message = '', username, passwo
       a.click();
       document.body.removeChild(a);
     }
+    
+    // Dots background script
+    const dotsContainer = document.getElementById('dots-container');
+    if (dotsContainer) {
+      for (let i = 0; i < 50; i++) {
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        dot.style.left = \`\${Math.random() * 100}%\`;
+        dot.style.top = \`\${Math.random() * 100}%\`;
+        const size = Math.random() * 3 + 1;
+        dot.style.width = \`\${size}px\`;
+        dot.style.height = \`\${size}px\`;
+        dot.style.backgroundColor = 'rgba(205, 166, 24, 0.7)';
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    // Default to showing the first tab
+    document.getElementById('posts').style.display = 'block';
   </script>
 </body>
 </html>`;
