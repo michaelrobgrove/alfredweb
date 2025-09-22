@@ -102,13 +102,15 @@ function adminDashboard(posts, grantApplications, message = '', username, passwo
     <div class="animated-gradient"></div>
     <div class="dots" id="dots-container"></div>
   </div>
-  <nav>
-    <div class="nav-container">
-      <a href="/" class="nav-item">Home</a>
-      <a href="/blog/" class="nav-item">Blog</a>
-      <a href="/admin" class="nav-item active">Admin</a>
-    </div>
-  </nav>
+    <nav>
+      <div class="nav-container">
+        <a href="index.html" class="nav-item active">Home</a>
+        <a href="about.html" class="nav-item">About Us</a>
+        <a href="/roots-reach-community-grant.html" class="nav-item">Community Grant</a>
+        <a href="contact.html" class="nav-item">Contact</a>
+        <a href="/blog/" class="nav-item">Blog</a>
+      </div>
+    </nav>
 
   <div class="container">
     <div class="hero">
