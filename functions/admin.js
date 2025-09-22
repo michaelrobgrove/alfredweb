@@ -113,7 +113,7 @@ function loginForm(error = '') {
 </html>`;
 }
 
-function adminDashboard(posts, message = '', username, password) {
+function adminDashboard(posts, grantApplications = [], message = '', username, password) {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -140,16 +140,17 @@ function adminDashboard(posts, message = '', username, password) {
 
   <div class="container">
     <div class="hero">
-      <h1>Blog Admin Dashboard</h1>
+      <h1>Admin Dashboard</h1>
       ${message ? `<p style="color: #4CAF50; background: rgba(76,175,80,0.1); padding: 15px; border-radius: 10px; margin: 20px 0;">${message}</p>` : ''}
       
       <div style="margin-bottom: 30px;">
-        <form method="POST" style="display: inline;" onsubmit="return confirm('Clear ALL posts? This cannot be undone!');">
+        <form method="POST" style="display: inline; margin-right: 15px;" onsubmit="return confirm('Clear ALL posts? This cannot be undone!');">
           <input type="hidden" name="action" value="clear">
           <input type="hidden" name="username" value="${username}">
           <input type="hidden" name="password" value="${password}">
           <button type="submit" class="cta-button" style="background-color: #dc3545;">Clear All Posts</button>
         </form>
+        <a href="/test-blog" class="cta-button" target="_blank">Create New Post</a>
       </div>
       
       <h2 style="color: var(--gold); margin-bottom: 20px;">Blog Posts (${posts.length})</h2>
@@ -172,6 +173,34 @@ function adminDashboard(posts, message = '', username, password) {
         </div>
       </div>
     `).join('')}
+
+    <div class="hero" style="margin-top: 40px;">
+      <h2 style="color: var(--gold); margin-bottom: 20px;">Grant Applications (${grantApplications.length})</h2>
+    </div>
+
+    ${grantApplications.map((app, i) => `
+      <div class="service-card" style="margin-bottom: 20px; text-align: left;">
+        <h3 style="color: var(--gold);">${app.data.organization}</h3>
+        <p><strong>Contact:</strong> ${app.data.name} | <strong>Email:</strong> ${app.data.email}</p>
+        <p><strong>Phone:</strong> ${app.data.phone}</p>
+        <p><strong>Plan:</strong> ${app.data.preferredPlan} | <strong>Status:</strong> ${app.data.nonprofitStatus}</p>
+        <p><strong>Mission:</strong> ${app.data.mission}</p>
+        <p><strong>Address:</strong> ${app.data.address}</p>
+        ${app.data.details ? `<p><strong>Details:</strong> ${app.data.details}</p>` : ''}
+        <p><strong>Submitted:</strong> ${new Date(app.data.submittedAt).toLocaleDateString()}</p>
+        <div style="margin-top: 15px;">
+          <form method="POST" style="display: inline;" onsubmit="return confirm('Delete this application? This cannot be undone!');">
+            <input type="hidden" name="action" value="delete_grant">
+            <input type="hidden" name="postId" value="${i}">
+            <input type="hidden" name="username" value="${username}">
+            <input type="hidden" name="password" value="${password}">
+            <button type="submit" style="background: #dc3545; color: white; padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer;">Delete</button>
+          </form>
+        </div>
+      </div>
+    `).join('')}
+
+    ${grantApplications.length === 0 ? '<div class="service-card"><p>No grant applications yet.</p></div>' : ''}
   </div>
 
   <script>
