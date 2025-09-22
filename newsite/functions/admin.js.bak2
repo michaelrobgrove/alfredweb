@@ -15,7 +15,7 @@ function loginForm(error = '') {
     <div class="dots"></div>
   </div>
   <div class="container">
-    <div class="contact-form-container">
+    <div class="form-section">
       <h2>Admin Login</h2>
       ${error ? `<p style="color: #ff6b6b; background: rgba(255,107,107,0.1); padding: 10px; border-radius: 5px; margin-bottom: 15px;">${error}</p>` : ''}
       <form method="POST">
@@ -36,7 +36,7 @@ function loginForm(error = '') {
 }
 
 // This function handles rendering the main dashboard
-function adminDashboard(posts, grantApplications, contactForms, message = '', username, password) {
+function adminDashboard(posts, grantApplications, message = '', username, password) {
   // Filter applications into three lists based on their status
   const pendingApps = grantApplications.filter(app => app.status === 'pending' || !app.status);
   const approvedApps = grantApplications.filter(app => app.status === 'approved');
@@ -88,29 +88,6 @@ function adminDashboard(posts, grantApplications, contactForms, message = '', us
       </div>`;
   };
 
-  // Helper function to render contact form submissions
-  const renderContactCard = (contact, index) => {
-    const contactNameSafe = (contact.name || 'contact').replace(/[^a-zA-Z0-9]/g, '_');
-    return `
-    <div class="service-card" style="margin-bottom: 20px; text-align: left; line-height: 1.6;">
-      <h3 style="color: #facc15;">${contact.name}</h3>
-      <p><strong>Email:</strong> ${contact.email} | <strong>Phone:</strong> ${contact.phone}</p>
-      <p><strong>Services:</strong> ${contact.services || 'Not specified'}</p>
-      ${contact.details ? `<p style="white-space: pre-wrap;"><strong>Details:</strong> ${contact.details}</p>` : ''}
-      <p><strong>Submitted:</strong> ${new Date(contact.submittedAt).toLocaleString()}</p>
-      <div style="margin-top: 15px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-        <button onclick='downloadContact(${JSON.stringify(contact)}, "${contactNameSafe}")' class="cta-button">Download</button>
-        <form method="POST" style="display: inline;" onsubmit="return confirm('Permanently delete this contact form?');">
-          <input type="hidden" name="action" value="delete_contact">
-          <input type="hidden" name="entryId" value="${index}">
-          <input type="hidden" name="username" value="${username}">
-          <input type="hidden" name="password" value="${password}">
-          <button type="submit" class="cta-button" style="background-color: #6c757d; padding: 6px 12px; font-size: 12px;">Delete</button>
-        </form>
-      </div>
-    </div>`;
-  };
-
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -118,111 +95,24 @@ function adminDashboard(posts, grantApplications, contactForms, message = '', us
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard</title>
   <link rel="stylesheet" href="/styles.css">
-  <style>
-    .tabs {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 30px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .tab-link {
-      background: #1a1a1a;
-      color: #facc15;
-      border: 1px solid #333;
-      padding: 12px 20px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      display: inline-block;
-    }
-    .tab-link:hover,
-    .tab-link.active {
-      background: #facc15;
-      color: #0a0a0a;
-    }
-    .tab-content {
-      display: none;
-    }
-    .tab-content.active {
-      display: block;
-    }
-    .sub-tabs {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .sub-tab-link {
-      background: #333;
-      color: #cbd5e1;
-      border: 1px solid #555;
-      padding: 8px 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 14px;
-    }
-    .sub-tab-link:hover,
-    .sub-tab-link.active {
-      background: #facc15;
-      color: #0a0a0a;
-    }
-    .sub-tab-content {
-      display: none;
-    }
-    .sub-tab-content.active {
-      display: block;
-    }
-    .admin-actions {
-      display: flex;
-      gap: 15px;
-      margin-bottom: 30px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .cta-button {
-      background: #facc15;
-      color: #0a0a0a;
-      padding: 10px 20px;
-      border-radius: 8px;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-weight: 600;
-      display: inline-block;
-    }
-    .cta-button:hover {
-      background: #d4a70f;
-      transform: translateY(-1px);
-    }
-  </style>
 </head>
 <body>
   <div class="background">
     <div class="background-image"></div>
     <div class="animated-gradient"></div>
+    <div class="dots" id="dots-container"></div>
   </div>
-  <nav>
-    <div class="nav-container">
-      <div class="logo">
-        <a href="/"><img src="/awd.webp" alt="Alfred Web Design & Shirts" height="50"></a>
+    <nav>
+      <div class="nav-container">
+        <a href="index.html" class="nav-item active">Home</a>
+        <a href="about.html" class="nav-item">About Us</a>
+        <a href="/roots-reach-community-grant.html" class="nav-item">Community Grant</a>
+        <a href="contact.html" class="nav-item">Contact</a>
+        <a href="/blog/" class="nav-item">Blog</a>
       </div>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/about.html">About</a></li>
-        <li><a href="/contact.html">Contact</a></li>
-        <li><a href="/blog/">Blog</a></li>
-      </ul>
-    </div>
-  </nav>
+    </nav>
 
-  <div class="container" style="margin-top: 120px;">
+  <div class="container">
     <div class="hero">
       <h1>Admin Dashboard</h1>
       ${message ? `<p style="color: #4CAF50; background: rgba(76,175,80,0.1); padding: 15px; border-radius: 10px; margin: 20px 0;">${message}</p>` : ''}
@@ -230,7 +120,6 @@ function adminDashboard(posts, grantApplications, contactForms, message = '', us
 
     <div class="tabs">
       <button class="tab-link active" onclick="openTab(event, 'posts')">Blog Posts (${posts.length})</button>
-      <button class="tab-link" onclick="openTab(event, 'contacts')">Contact Forms (${contactForms.length})</button>
       <button class="tab-link" onclick="openTab(event, 'applications')">Grant Applications (${grantApplications.length})</button>
     </div>
 
@@ -247,7 +136,7 @@ function adminDashboard(posts, grantApplications, contactForms, message = '', us
       ${posts.length === 0 ? '<div class="service-card" style="text-align:center;"><p>No blog posts yet.</p></div>' : ''}
       ${posts.map((post, i) => `
         <div class="service-card" style="margin-bottom: 20px; text-align: left;">
-          <h3 style="color: #facc15;">${post.title}</h3>
+          <h3 style="color: var(--gold);">${post.title}</h3>
           <p><strong>Date:</strong> ${post.date} | <strong>Slug:</strong> ${post.slug}</p>
           <p style="margin: 10px 0; opacity: 0.8;">${post.excerpt}</p>
           <div style="margin-top: 15px;">
@@ -262,19 +151,6 @@ function adminDashboard(posts, grantApplications, contactForms, message = '', us
           </div>
         </div>
       `).join('')}
-    </div>
-
-    <div id="contacts" class="tab-content">
-      <div class="admin-actions">
-        <form method="POST" style="display: inline;" onsubmit="return confirm('Clear ALL contact forms? This cannot be undone!');">
-          <input type="hidden" name="action" value="clear_contacts">
-          <input type="hidden" name="username" value="${username}">
-          <input type="hidden" name="password" value="${password}">
-          <button type="submit" class="cta-button" style="background-color: #dc3545;">Clear All Contact Forms</button>
-        </form>
-      </div>
-      ${contactForms.length === 0 ? '<div class="service-card" style="text-align:center;"><p>No contact form submissions yet.</p></div>' : ''}
-      ${contactForms.map((contact, i) => renderContactCard(contact, i)).join('')}
     </div>
 
     <div id="applications" class="tab-content">
@@ -339,30 +215,26 @@ function adminDashboard(posts, grantApplications, contactForms, message = '', us
       a.click();
       document.body.removeChild(a);
     }
-
-    function downloadContact(contactData, contactName) {
-      const htmlContent = \`
-        <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Contact Form: \${contactName}</title>
-        <style>body{font-family:sans-serif;line-height:1.6;margin:40px}h1{color:#333}h3{margin-top:30px;border-bottom:1px solid #ccc;padding-bottom:5px}p{border-bottom:1px solid #eee;padding:10px 0;margin:0}strong{display:inline-block;width:150px;color:#555}pre{white-space:pre-wrap;background:#f4f4f4;padding:15px;border-radius:5px;font-family:inherit;font-size:1em}</style>
-        </head><body><h1>Contact Form: \${contactData.name}</h1>
-        <p><strong>Submitted At:</strong> \${new Date(contactData.submittedAt).toLocaleString()}</p><p><strong>Name:</strong> \${contactData.name}</p>
-        <p><strong>Email:</strong> \${contactData.email}</p><p><strong>Phone:</strong> \${contactData.phone}</p>
-        <p><strong>Services:</strong> \${contactData.services || 'Not specified'}</p>
-        <h3>Project Details</h3><pre>\${contactData.details || 'N/A'}</pre>
-        </body></html>\`;
-      const blob = new Blob([htmlContent], { type: 'text/html' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = \`contact_form_\${contactName}.html\`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-    }
     
     document.addEventListener('DOMContentLoaded', () => {
       // Default to showing the first main tab and sub-tab
       document.getElementById('posts').style.display = 'block';
       document.getElementById('pending').style.display = 'block';
+      
+      const dotsContainer = document.getElementById('dots-container');
+      if (dotsContainer) {
+        for (let i = 0; i < 50; i++) {
+          const dot = document.createElement('div');
+          dot.classList.add('dot');
+          dot.style.left = \`\${Math.random() * 100}%\`;
+          dot.style.top = \`\${Math.random() * 100}%\`;
+          const size = Math.random() * 3 + 1;
+          dot.style.width = \`\${size}px\`;
+          dot.style.height = \`\${size}px\`;
+          dot.style.backgroundColor = 'rgba(205, 166, 24, 0.7)';
+          dotsContainer.appendChild(dot);
+        }
+      }
     });
   </script>
 </body>
@@ -387,14 +259,9 @@ export async function onRequest(context) {
       // Fetch fresh data on every action
       const postsJson = await env.BLOG_KV.get('posts');
       const grantAppsJson = await env.BLOG_KV.get('grant_applications');
-      const contactFormsJson = await env.BLOG_KV.get('contact_forms');
-      
       const postsData = JSON.parse(postsJson || '{"posts":[]}');
       let grantApplicationsData = JSON.parse(grantAppsJson || '[]');
-      let contactFormsData = JSON.parse(contactFormsJson || '[]');
-      
       if (!Array.isArray(grantApplicationsData)) { grantApplicationsData = []; }
-      if (!Array.isArray(contactFormsData)) { contactFormsData = []; }
 
       const action = formData.get('action');
       const entryId = formData.get('entryId');
@@ -406,10 +273,6 @@ export async function onRequest(context) {
             postsData.posts.splice(entryIndex, 1);
             await env.BLOG_KV.put('posts', JSON.stringify(postsData));
             message = 'Post deleted successfully.';
-        } else if (action === 'delete_contact') {
-            contactFormsData.splice(entryIndex, 1);
-            await env.BLOG_KV.put('contact_forms', JSON.stringify(contactFormsData));
-            message = 'Contact form deleted successfully.';
         } else if (action === 'delete_grant') {
             grantApplicationsData.splice(entryIndex, 1);
             await env.BLOG_KV.put('grant_applications', JSON.stringify(grantApplicationsData));
@@ -427,13 +290,9 @@ export async function onRequest(context) {
         await env.BLOG_KV.put('posts', '{"posts":[]}');
         postsData.posts = [];
         message = 'All posts cleared.';
-      } else if (action === 'clear_contacts') {
-        await env.BLOG_KV.put('contact_forms', '[]');
-        contactFormsData = [];
-        message = 'All contact forms cleared.';
       }
       
-      return new Response(adminDashboard(postsData.posts, grantApplicationsData, contactFormsData, message, username, password), {
+      return new Response(adminDashboard(postsData.posts, grantApplicationsData, message, username, password), {
         headers: { 'Content-Type': 'text/html' }
       });
     }
