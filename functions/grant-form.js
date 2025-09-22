@@ -1,38 +1,32 @@
-export async function onRequest(context) {
-  const { request, env } = context;
-  
-  if (request.method !== 'POST') {
-    return new Response('Method not allowed', { status: 405 });
-  }
-  
+export async function onRequestPost(context) {
   try {
+    const { env, request } = context;
     const formData = await request.formData();
+
+    // Convert formData to a plain object
+    const newApplication = {};
+    for (const [key, value] of formData.entries()) {
+      newApplication[key] = value;
+    }
     
-    // Extract form data
-    const data = {
-      name: formData.get('name'),
-      organization: formData.get('organization'),
-      address: formData.get('address'),
-      phone: formData.get('phone'),
-      email: formData.get('email'),
-      mission: formData.get('mission'),
-      nonprofitStatus: formData.get('nonprofit-status'),
-      preferredPlan: formData.get('preferred-plan'),
-      details: formData.get('details'),
-      agreedTerms: formData.get('agree-terms'),
-      submittedAt: new Date().toISOString()
-    };
-    
-    // Store in KV with timestamp
-    const timestamp = Date.now();
-    await env.BLOG_KV.put(`grant_application_${timestamp}`, JSON.stringify(data));
-    
-    return new Response('Application submitted successfully', { 
-      status: 200,
-      headers: { 'Content-Type': 'text/plain' }
-    });
-    
+    // Add a submission timestamp
+    newApplication.submittedAt = new Date().toISOString();
+
+    // Get the existing applications from KV
+    const grantAppsJson = await env.BLOG_KV.get('grant_applications');
+    const grantApplications = JSON.parse(grantAppsJson || '[]');
+
+    // Add the new application to the list
+    grantApplications.unshift(newApplication); // Add to the beginning
+
+    // Save the updated list back to KV
+    await env.BLOG_KV.put('grant_applications', JSON.stringify(grantApplications));
+
+    // Return a success response
+    return new Response('Form submitted successfully!', { status: 200 });
+
   } catch (error) {
-    return new Response(`Error: ${error.message}`, { status: 500 });
+    // Return an error response
+    return new Response(`Error submitting form: ${error.message}`, { status: 500 });
   }
 }
