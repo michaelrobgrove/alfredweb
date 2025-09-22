@@ -1,57 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Latest articles on web design, graphics, and more from Alfred Web Design & Shirts">
-    <title>Blog - Alfred Web Design & Shirts</title>
-    <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; max-width: 1200px; margin: 0 auto; }
-        header { text-align: center; padding: 20px 0; border-bottom: 2px solid #333; }
-        nav { margin: 20px 0; }
-        nav a { margin: 0 10px; text-decoration: none; color: #0066cc; }
-        .section { margin: 30px 0; padding: 20px; border: 1px solid #ddd; }
-        h1, h2, h3 { color: #333; }
-        ul { list-style-type: none; padding: 0; }
-        li { margin: 10px 0; }
-        a { color: #0066cc; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        footer { margin-top: 40px; padding: 20px; background-color: #f4f4f4; text-align: center; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Latest articles on web design, graphic design, custom apparel, and business tips from Alfred Web Design & Shirts">
+  <title>Blog - Alfred Web Design & Shirts</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Link to External Stylesheet -->
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-    <header>
-        <h1>Your Local Design & Print Experts in Alfred Station, NY</h1>
-        <p>Welcome to Alfred Web Design & Shirts – your family-owned design and print shop located in Alfred Station, NY. We provide high-quality graphic design, logo creation, print design, and custom apparel to Alfred, Almond, Hornell, Wellsville, Belmont, and surrounding areas.</p>
-    </header>
-    <!-- No nav changes or blog links here, as per your instructions -->
-    <main>
-        <section id="article-list" class="section">
-            <h2>Latest Articles</h2>
-            <ul>
-                <!-- Automation will insert <li> here, e.g., <li><a href="/articles/2025-09-22-web-tips.html">Web Tips</a> - September 22, 2025</li> -->
-            </ul>
-        </section>
-        <section id="tags" class="section">
-            <h2>Tags</h2>
-            <ul>
-                <!-- Automation will insert unique tags here, e.g., <li>Web Design</li> -->
-            </ul>
-        </section>
-    </main>
+  <!-- Background Elements -->
+  <div class="background">
+    <div class="background-image" aria-label="Alfred Station Sunrise - Alfred NY"></div>
+    <div class="animated-gradient"></div>
+    <div class="dots" id="dots-container"></div>
+  </div>
+
+  <div class="container">
+    <!-- Navigation -->
+    <nav>
+      <div class="nav-container">
+        <a href="/" class="nav-item">Home</a>
+        <a href="/about.html" class="nav-item">About Us</a>
+        <a href="/roots-reach-community-grant.html" class="nav-item">Community Grant</a>
+        <a href="/contact.html" class="nav-item">Contact</a>
+        <a href="/blog/" class="nav-item active">Blog</a>
+      </div>
+    </nav>
+
+    <!-- Logo -->
+    <div class="logo-container">
+      <img src="/awd.webp" alt="Alfred Web Design & Shirts Logo" class="logo" width="400" height="120">
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+      <h1>Alfred Web Design & Shirts Blog</h1>
+      <p>Design inspiration, business tips, and creative insights for Western New York entrepreneurs and organizations.</p>
+    </div>
+    
+    <div id="blog-posts"></div>
+
+    <!-- Contact Information Section -->
+    <section class="info-section">
+      <div class="info-card">
+        <h3>Contact Information</h3>
+        <p>Phone: <a href="tel:6076387887">607-638-7887</a></p>
+        <p>Email: <a href="mailto:team@alfredwebdesign.com">team@alfredwebdesign.com</a></p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/redneckmobiledesign" target="_blank" rel="noopener">Facebook</a> | 
+          <a href="https://www.instagram.com/redneckmobiledesign/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+      <div class="info-card">
+        <h3>Location</h3>
+        <p>6174 Depot St, Alfred Station, NY 14803</p>
+        <p><small>Mailing: PO Box 11, Alfred Station, NY 14803</small></p>
+        <p><a href="https://maps.google.com/?q=6174+Depot+St,+Alfred+Station,+NY+14803" target="_blank" rel="noopener">Get Directions</a></p>
+      </div>
+      <div class="info-card">
+        <h3>Business Hours</h3>
+        <p>Monday–Friday: 10am–6pm</p>
+        <p><small>Hours may vary. Appointments recommended.</small></p>
+        <p>Serving Alfred, Almond, Hornell, Wellsville, and Belmont areas</p>
+      </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <div class="contact-info">
-            <p>Phone: <a href="tel:6076387887">607-638-7887</a></p>
-            <p>Email: <a href="mailto:team@alfredwebdesign.com">team@alfredwebdesign.com</a></p>
-            <p>Location: 6174 Depot St, Alfred Station, NY 14803</p>
-            <p>Mailing: PO Box 11, Alfred Station, NY 14803</p>
-            <p><a href="https://maps.google.com/?q=6174+Depot+St,+Alfred+Station,+NY+14803">Get Directions</a></p>
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="/" class="footer-link">Home</a>
+          <a href="/about.html" class="footer-link">About Us</a>
+          <a href="/roots-reach-community-grant.html" class="footer-link">Community Grant</a>
+          <a href="/contact.html" class="footer-link">Contact</a>
+          <a href="/rss" class="footer-link">RSS Feed</a>
         </div>
-        <div class="business-hours">
-            <p>Monday–Friday: 10am–6pm</p>
-            <p>Hours may vary. Appointments recommended.</p>
-            <p>Serving Alfred, Almond, Hornell, Wellsville, and Belmont areas</p>
-        </div>
+        <p>© 2018–<span id="year">2025</span> Alfred Web Design & Shirts • Rolling out bold designs & shirts from Alfred Station, NY • Your next stop for local creative power<br>Owned & Operated By <a href="https://www.redneckmobiledesign.com">Redneck Mobile Design & Shirts</a></p>
+      </div>
     </footer>
+  </div>
+
+  <script>
+    // Set current year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Add dots animation
+    const colors = [
+      'rgba(205,166,24,0.4)',   // gold
+      'rgba(255,255,255,0.4)',  // white
+      'rgba(0,0,0,0.4)'         // black
+    ];
+
+    const dotCount = 350;
+    const container = document.getElementById("dots-container");
+    const dots = [];
+
+    for (let i = 0; i < dotCount; i++) {
+      const dot = document.createElement("div");
+      dot.classList.add("dot");
+
+      const size = 5 + Math.random() * 8;
+      dot.style.width = `${size}px`;
+      dot.style.height = `${size}px`;
+      dot.style.top = `${Math.random() * 100}%`;
+      dot.style.left = `${Math.random() * 100}%`;
+      dot.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+      container.appendChild(dot);
+      dots.push({
+        el: dot,
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        vx: -0.5 + Math.random(),
+        vy: -0.5 + Math.random()
+      });
+    }
+
+    // Animate movement and cursor-follow
+    let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+
+    document.addEventListener('mousemove', e => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    function animateDots() {
+      for (let i = 0; i < dots.length; i++) {
+        const dot = dots[i];
+        // Move toward mouse a little
+        dot.x += (mouse.x - dot.x) * 0.002 + dot.vx;
+        dot.y += (mouse.y - dot.y) * 0.002 + dot.vy;
+
+        // Wrap around screen
+        if (dot.x < 0) dot.x = window.innerWidth;
+        if (dot.x > window.innerWidth) dot.x = 0;
+        if (dot.y < 0) dot.y = window.innerHeight;
+        if (dot.y > window.innerHeight) dot.y = 0;
+
+        dot.el.style.transform = `translate(${dot.x}px, ${dot.y}px)`;
+      }
+
+      requestAnimationFrame(animateDots);
+    }
+
+    animateDots();
+
+    // Load blog posts
+    fetch('/api/posts')
+      .then(r => r.json())
+      .then(data => {
+        document.getElementById('blog-posts').innerHTML = data.posts
+          .map(p => `
+            <div class="service-card" style="margin-bottom: 20px; text-align: left;">
+              <h3><a href="/blog/${p.slug}" style="color: var(--gold); text-decoration: none;">${p.title}</a></h3>
+              <p style="color: #ddd; margin-bottom: 10px;">${p.excerpt}</p>
+              <small style="color: var(--gold);">${p.date}</small>
+            </div>
+          `).join('');
+      });
+  </script>
 </body>
 </html>
