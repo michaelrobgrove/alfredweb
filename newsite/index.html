@@ -9,49 +9,38 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
 
   <!-- NAV -->
-  <nav>
-    <div class="nav-container">
-      <div class="logo">
-        <a href="./index.html"><img src="./awd.webp" alt="Alfred Web Design & Shirts" height="50"></a>
-      </div>
-      <ul>
-        <li><a href="./index.html" class="active">Home</a></li>
-        <li><a href="./about.html">About</a></li>
-        <li><a href="./contact.html">Contact</a></li>
-        <li><a href="./blog/">Blog</a></li>
-        <li><a href="./roots-reach-community-grant.html">Grant</a></li>
-      </ul>
-    </div>
-  </nav>
+  <div id="nav-placeholder"></div>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-content">
-      <h1>Alfred Web Design & Shirts</h1>
-      <p class="hero-subtitle">Custom Apparel • Web Design • Graphic Design • Print Design</p>
-      <p class="hero-description">Family-owned design studio in Alfred Station, NY specializing in custom screen printing, embroidery, and professional design services. Serving our community with pride since 2018.</p>
-      <div class="hero-buttons">
-        <a href="#contact-form" class="btn btn-primary">Get Your Quote</a>
-        <a href="./about.html" class="btn btn-secondary">Our Story</a>
+    <div class="container">
+      <div class="hero-content">
+        <h1>Alfred Web Design & Shirts</h1>
+        <p class="hero-subtitle">Custom Apparel • Web Design • Graphic Design • Print Design</p>
+        <p class="hero-description">Family-owned design studio in Alfred Station, NY specializing in custom screen printing, embroidery, and professional design services. Serving our community with pride since 2018.</p>
+        <div class="hero-buttons">
+          <a href="#contact-form" class="btn btn-primary">Get Your Quote</a>
+          <a href="./about.html" class="btn btn-secondary">Our Story</a>
+        </div>
       </div>
-    </div>
-    <div class="hero-stats">
-      <div class="stat">
-        <span class="stat-number">500+</span>
-        <span class="stat-label">Custom Projects</span>
-      </div>
-      <div class="stat">
-        <span class="stat-number">7</span>
-        <span class="stat-label">Years Serving Alfred</span>
-      </div>
-      <div class="stat">
-        <span class="stat-number">24hr</span>
-        <span class="stat-label">Response Time</span>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-number">500+</span>
+          <span class="stat-label">Custom Projects</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">7</span>
+          <span class="stat-label">Years Serving Alfred</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">24hr</span>
+          <span class="stat-label">Response Time</span>
+        </div>
       </div>
     </div>
   </section>
@@ -208,51 +197,38 @@
   </section>
 
   <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-info">
-          <div class="footer-logo">
-            <img src="./awd.webp" alt="Alfred Web Design & Shirts" height="40">
-          </div>
-          <p>Family-owned design studio serving Alfred Station, NY and beyond since 2018.</p>
-          <div class="footer-contact">
-            <p>📍 6174 Depot St, Alfred Station, NY 14803</p>
-            <p>📧 team@alfredwebdesign.com</p>
-            <p>📞 (607) 638-7887</p>
-          </div>
-        </div>
-        <div class="footer-links">
-          <div class="footer-column">
-            <h4>Services</h4>
-            <ul>
-              <li><a href="#contact-form">Custom Apparel</a></li>
-              <li><a href="#contact-form">Web Design</a></li>
-              <li><a href="#contact-form">Graphic Design</a></li>
-              <li><a href="#contact-form">Print Design</a></li>
-            </ul>
-          </div>
-          <div class="footer-column">
-            <h4>About</h4>
-            <ul>
-              <li><a href="./about.html">Our Story</a></li>
-              <li><a href="./contact.html">Contact Us</a></li>
-              <li><a href="./blog/">Blog</a></li>
-              <li><a href="./roots-reach-community-grant.html">Community Grant</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2018-<span id="current-year">2025</span> Alfred Web Design & Shirts. All rights reserved.</p>
-        <p>Proudly serving Alfred Station, NY and the Southern Tier for 7 years.</p>
-      </div>
-    </div>
-  </footer>
+  <div id="footer-placeholder"></div>
 
   <script>
+    // Load includes
+    fetch('./includes/nav.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('nav-placeholder').innerHTML = data;
+        // Set active nav item
+        const currentPath = window.location.pathname;
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+          if (link.getAttribute('href') === './index.html' || 
+              (currentPath === '/' && link.getAttribute('href') === './index.html')) {
+            link.classList.add('active');
+          }
+        });
+      });
+
+    fetch('./includes/footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer-placeholder').innerHTML = data;
+      });
+
     // Set current year
-    document.getElementById('current-year').textContent = new Date().getFullYear();
+    setTimeout(() => {
+      const yearElement = document.getElementById('current-year');
+      if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+      }
+    }, 100);
     
     // Contact form submission
     document.getElementById('contact-form-element').addEventListener('submit', function(e) {
