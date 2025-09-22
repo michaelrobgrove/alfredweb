@@ -8,11 +8,9 @@
   <link rel="stylesheet" href="./css/styles.css">
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // Load nav and footer
       fetch("./includes/nav.html").then(r => r.text()).then(t => document.getElementById("nav").innerHTML = t);
       fetch("./includes/footer.html").then(r => r.text()).then(t => document.getElementById("footer").innerHTML = t);
 
-      // FAQ toggle
       document.addEventListener("click", e => {
         if(e.target.classList.contains("faq-question")){
           e.target.parentElement.classList.toggle("active");

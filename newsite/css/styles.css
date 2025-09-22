@@ -109,8 +109,7 @@ footer {
 /* === Hero Section === */
 .hero {
   position: relative;
-  background: url('../images/hero.webp') center/cover no-repeat;
-  min-height: 500px;
+  min-height: 750px; /* larger hero */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -118,18 +117,45 @@ footer {
   text-align: center;
   color: #f9f9f9;
   padding: 2rem;
+  background: url('../images/hero.webp') center/cover no-repeat;
+  background-attachment: fixed; /* parallax/fixed effect */
+  overflow: hidden;
+}
+
+/* Dark overlay over hero */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 1;
+}
+
+.hero h1,
+.hero p,
+.hero .btn {
+  position: relative;
+  z-index: 2;
 }
 
 .hero h1 {
-  font-size: 3rem;
+  font-size: 4rem;
   margin-bottom: 1rem;
-  color: #6d2cb4;
+  color: #f9f9f9;
 }
 
 .hero p {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   margin-bottom: 2rem;
   max-width: 700px;
+}
+
+.hero .btn {
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
 }
 
 /* === Services Cards === */
