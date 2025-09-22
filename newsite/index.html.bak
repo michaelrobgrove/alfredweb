@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Alfred Web Design & Shirts – Modern web design, graphic design, and custom apparel printing in Alfred, NY and beyond.">
+  <title>Alfred Web Design & Shirts | Local & Beyond</title>
+  <link rel="stylesheet" href="./css/styles.css">
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("./includes/nav.html").then(r => r.text()).then(t => document.getElementById("nav").innerHTML = t);
+      fetch("./includes/footer.html").then(r => r.text()).then(t => document.getElementById("footer").innerHTML = t);
+
+      document.addEventListener("click", e => {
+        if(e.target.classList.contains("faq-question")){
+          e.target.parentElement.classList.toggle("active");
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+
+  <!-- NAV -->
+  <div id="nav"></div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Alfred Web Design & Shirts</h1>
+    <p>Modern websites, stunning graphics, and custom apparel printing – crafted locally, delivered anywhere.</p>
+    <a href="./contact.html" class="btn btn-gold">Start Your Project</a>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section section-purple">
+    <div class="container">
+      <h2>Our Services</h2>
+      <div class="services-grid">
+        <div class="card">
+          <h3>Web Design</h3>
+          <p>Responsive, SEO-friendly websites that highlight your business or organization.</p>
+        </div>
+        <div class="card">
+          <h3>Graphic Design</h3>
+          <p>Logos, flyers, social media graphics, and marketing materials that tell your story.</p>
+        </div>
+        <div class="card">
+          <h3>Apparel Printing</h3>
+          <p>Custom t-shirts, hoodies, hats, and more with high-quality prints for teams, events, and businesses.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section section-blue">
+    <div class="container">
+      <h2>About Us</h2>
+      <p>Alfred Web Design & Shirts is rooted in the local community, serving businesses, students, and organizations with modern design solutions. We extend our services nationwide while keeping a personal touch.</p>
+      <p>We blend creativity, technology, and print expertise to deliver results our clients love.</p>
+    </div>
+  </section>
+
+  <!-- BACKGROUND IMAGE SECTION -->
+  <section class="bg-section" style="background-image: url('./images/services-bg.webp');">
+    <div class="container">
+      <h2>Why Choose Us?</h2>
+      <p>We deliver polished, professional, and custom solutions for every project. Local insight meets modern design standards to ensure your brand stands out.</p>
+      <a href="./contact.html" class="btn btn-gold">Request a Quote</a>
+    </div>
+  </section>
+
+  <!-- CLIENTS / TESTIMONIALS -->
+  <section class="section section-purple">
+    <div class="container">
+      <h2>Clients & Testimonials</h2>
+      <p>"Alfred Web Design & Shirts transformed our website and graphics. Highly recommended!" – Local Business</p>
+      <p>"Fantastic quality and creativity on our team t-shirts. The kids love them!" – School Club</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section-blue">
+    <div class="container">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq">
+        <div class="faq-item">
+          <div class="faq-question">Do you design websites for businesses outside Alfred?</div>
+          <div class="faq-answer">Yes! While we love serving Alfred, NY, our services extend nationwide, always with a personal touch.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">What kind of apparel can you print?</div>
+          <div class="faq-answer">We print custom t-shirts, hoodies, hats, and more for teams, events, and personal use.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">How long does a website take?</div>
+          <div class="faq-answer">Most websites take 4–6 weeks depending on size, features, and client content availability.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Do you provide SEO services?</div>
+          <div class="faq-answer">Yes, every website we build includes SEO-friendly structure and content to improve visibility locally and beyond.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">How do I get started?</div>
+          <div class="faq-answer">Use our contact form or email info@alfredwebdesign.com to request a quote. We'll guide you from concept to finished product.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div id="footer"></div>
+
+</body>
+</html>
