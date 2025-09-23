@@ -3,218 +3,268 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Contact Alfred Web Design & Shirts - Your local family-owned design and print shop in Alfred Station, NY. Reach us for graphic design, logo design, print design and custom apparel services.">
+  <meta name="description" content="Contact Alfred Web Design & Shirts - Your local family-owned design and print shop in Alfred Station, NY. Reach us for custom apparel, graphic design, logo design, print design and web design services.">
   <title>Contact Us - Alfred Web Design & Shirts</title>
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
   <!-- Central Stylesheet -->
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-  <div class="background">
-    <div class="background-image" aria-label="Alfred Station Sunrise - Alfred NY"></div>
-    <div class="animated-gradient"></div>
-    <div class="dots" id="dots-container"></div>
-  </div>
 
-  <div class="container">
-    <nav>
-      <div class="nav-container">
-        <a href="/" class="nav-item">Home</a>
-        <a href="/about.html" class="nav-item">About Us</a>
-        <a href="/roots-reach-community-grant.html" class="nav-item">Community Grant</a>
-        <a href="/contact.html" class="nav-item active">Contact</a>
-        <a href="/blog/" class="nav-item">Blog</a>
-      </div>
-    </nav>
+  <!-- NAV -->
+  <div id="nav-placeholder"></div>
 
-    <div class="logo-container">
-      <a href="/">
-        <img src="/awd.webp" alt="Alfred Web Design & Shirts Logo" class="logo">
-      </a>
-    </div>
-
-    <main>
-      <section class="hero">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
         <h1>Get In Touch With Us</h1>
-        <p>Have a question about our graphic design, logo creation, print design, or custom apparel services? Contact Alfred Web Design & Shirts today! As your local design and print experts in Alfred Station, NY, we're here to help turn your creative vision into reality.</p>
-        <div class="hero-cta">
-          <a href="#contact-form" class="cta-button">Get In Touch</a>
+        <p class="hero-subtitle">Ready to bring your vision to life?</p>
+        <p class="hero-description">Have a question about our custom apparel, graphic design, logo creation, print design, or web design services? Contact Alfred Web Design & Shirts today! As your local design and print experts in Alfred Station, NY, we're here to help turn your creative vision into reality.</p>
+        <div class="hero-buttons">
+          <a href="#contact-info" class="btn btn-primary">Contact Info</a>
+          <a href="#contact-form" class="btn btn-secondary">Send Message</a>
         </div>
-      </section>
+      </div>
+    </div>
+  </section>
 
-      <section class="contact-box">
-        <h2>Our Contact Information</h2>
-        <div class="contact-item">
+  <!-- CONTACT INFO SECTION -->
+  <section class="section section-services" id="contact-info">
+    <div class="container">
+      <h2>Our Contact Information</h2>
+      <p class="section-intro">Multiple ways to reach us - choose what works best for you!</p>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">📞</div>
           <h3>Phone</h3>
-          <p><a href="tel:6076387887">607-638-7887</a></p>
+          <p><a href="tel:6076387887" style="color: #facc15; font-size: 1.2rem; font-weight: 600;">(607) 638-7887</a></p>
+          <p>Call us during business hours for immediate assistance with your project needs.</p>
         </div>
-        <div class="contact-item">
+        
+        <div class="service-card">
+          <div class="service-icon">📧</div>
           <h3>Email</h3>
-          <p><a href="mailto:team@alfredwebdesign.com">team@alfredwebdesign.com</a></p>
+          <p><a href="mailto:team@alfredwebdesign.com" style="color: #facc15; font-size: 1.1rem; font-weight: 600;">team@alfredwebdesign.com</a></p>
+          <p>Send us detailed project information and we'll respond within 24 hours.</p>
         </div>
-        <div class="contact-item">
-          <h3>Address</h3>
-          <p>6174 Depot St, Alfred Station, NY 14803</p>
+        
+        <div class="service-card">
+          <div class="service-icon">📍</div>
+          <h3>Location</h3>
+          <p style="color: #facc15; font-weight: 600;">6174 Depot St<br>Alfred Station, NY 14803</p>
           <p><small>Mailing: PO Box 11, Alfred Station, NY 14803</small></p>
+          <p><a href="https://maps.google.com/?q=6174+Depot+St,+Alfred+Station,+NY+14803" target="_blank" rel="noopener">Get Directions</a></p>
         </div>
-        <div class="contact-item">
+        
+        <div class="service-card">
+          <div class="service-icon">🕒</div>
           <h3>Business Hours</h3>
-          <p>Monday–Friday: 10am–6pm</p>
-          <p><small>Hours may vary. Appointments recommended.</small></p>
+          <p style="color: #facc15; font-weight: 600;">Monday–Friday: 10am–6pm</p>
+          <p><small>Hours may vary. Appointments recommended for consultations.</small></p>
+          <p>Serving Alfred, Almond, Hornell, Wellsville, and Belmont areas</p>
         </div>
-      </section>
+      </div>
+    </div>
+  </section>
 
-      <section class="form-section" id="contact-form">
-        <h2>Request a Quote</h2>
-        <form action="mailto:team@alfredwebdesign.com" method="post" enctype="text/plain">
-          <div class="form-group">
-            <label for="name">Name *</label>
-            <input type="text" id="name" name="name" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <label for="phone">Phone *</label>
-            <input type="tel" id="phone" name="phone" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Email *</label>
-            <input type="email" id="email" name="email" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <label>Services Needed:</label>
-            <div class="checkbox-group">
-              <div class="checkbox-item">
-                <input type="checkbox" id="logo-design" name="service" value="Logo Design">
-                <label for="logo-design">Logo Design</label>
-              </div>
-              <div class="checkbox-item">
-                <input type="checkbox" id="apparel-design" name="service" value="Apparel Design">
-                <label for="apparel-design">Apparel Design</label>
-              </div>
-              <div class="checkbox-item">
-                <input type="checkbox" id="graphic-design" name="service" value="Graphic Design">
-                <label for="graphic-design">Graphic Design</label>
-              </div>
-              <div class="checkbox-item">
-                <input type="checkbox" id="print-design" name="service" value="Print Design">
-                <label for="print-design">Print Design</label>
-              </div>
-              <div class="checkbox-item">
-                <input type="checkbox" id="apparel-printing" name="service" value="Apparel Printing">
-                <label for="apparel-printing">Apparel Printing</label>
-              </div>
-              <div class="checkbox-item">
-                <input type="checkbox" id="other" name="service" value="Other">
-                <label for="other">Other</label>
+  <!-- CONTACT FORM SECTION -->
+  <section class="section section-contact" id="contact-form">
+    <div class="container">
+      <div class="contact-form-container">
+        <div id="form-container">
+          <h2>Request a Quote</h2>
+          <form id="contact-form-element" method="post">
+            <div class="form-group">
+              <label for="name">Name *</label>
+              <input type="text" id="name" name="name" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone *</label>
+              <input type="tel" id="phone" name="phone" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Services Needed:</label>
+              <div class="checkbox-group">
+                <div class="checkbox-item">
+                  <input type="checkbox" id="custom-apparel" name="service" value="Custom Apparel">
+                  <label for="custom-apparel">Custom Apparel</label>
+                </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" id="web-design" name="service" value="Web Design">
+                  <label for="web-design">Web Design</label>
+                </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" id="graphic-design" name="service" value="Graphic Design">
+                  <label for="graphic-design">Graphic Design</label>
+                </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" id="print-design" name="service" value="Print Design">
+                  <label for="print-design">Print Design</label>
+                </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" id="logo-design" name="service" value="Logo Design">
+                  <label for="logo-design">Logo Design</label>
+                </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" id="other-service" name="service" value="Other">
+                  <label for="other-service">Other</label>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="details">Project Details</label>
-            <textarea id="details" name="details" rows="4" class="form-control"></textarea>
-          </div>
-          <button type="submit" class="submit-button">Submit Quote Request</button>
-        </form>
-      </section>
-    </main>
-  </div>
-
-  <footer>
-    <div class="footer-content">
-      <div class="footer-links">
-        <a href="/" class="footer-link">Home</a>
-        <a href="/about.html" class="footer-link">About Us</a>
-        <a href="/contact.html" class="footer-link">Contact</a>
+            <div class="form-group">
+              <label for="details">Project Details</label>
+              <textarea id="details" name="details" rows="5" class="form-control" placeholder="Tell us about your project - quantity, timeline, budget, specific needs, etc. The more details you provide, the better we can help you!"></textarea>
+            </div>
+            <button type="submit" class="submit-button">Send My Request</button>
+          </form>
+        </div>
+        <div id="success-message" class="success-message">
+          <h3>Thanks for reaching out!</h3>
+          <p>We've received your message and will get back to you within 24 hours. We're excited to work with you!</p>
+        </div>
       </div>
-      <p class="copyright">
-        © 2018–<span id="year">2025</span> Alfred Web Design & Shirts • Rolling out bold designs & shirts from Alfred Station, NY • Your next stop for local creative power
-      </p>
-      <span style="display: none;">
-        Alfred Station NY web design, custom apparel Alfred NY, local shirt printing, Alfred NY branding, Alfred State designs, small town website builder, screen printing Alfred Station, rural business design services
-      </span>
     </div>
-  </footer>
+  </section>
+
+  <!-- SERVICES OVERVIEW -->
+  <section class="section section-local">
+    <div class="container">
+      <div class="local-content">
+        <div class="local-text">
+          <h2>What We Do Best</h2>
+          <p>Alfred Web Design & Shirts specializes in bringing your creative visions to life. Whether you need custom apparel for your team, a professional website for your business, or eye-catching graphics for your next event, we've got you covered.</p>
+          <p>Our family business has been serving the Alfred Station community and surrounding areas since 2018, building lasting relationships with local businesses, schools, and organizations.</p>
+          <div class="local-highlights">
+            <div class="highlight">
+              <strong>Custom Apparel</strong>
+              <span>T-shirts, hoodies, hats, uniforms</span>
+            </div>
+            <div class="highlight">
+              <strong>Professional Design</strong>
+              <span>Logos, websites, print materials</span>
+            </div>
+            <div class="highlight">
+              <strong>Local Service</strong>
+              <span>Alfred Station based, community focused</span>
+            </div>
+          </div>
+        </div>
+        <div class="local-image">
+          <img src="./mg-kg.webp" alt="Alfred Web Design & Shirts Team" class="community-photo">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div id="footer-placeholder"></div>
 
   <script>
-    // Set current year
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Dynamic Active Navigation
-    document.addEventListener("DOMContentLoaded", function() {
-      const currentPath = window.location.pathname.replace(/\/$/, "");
-      const navLinks = document.querySelectorAll('.nav-container a.nav-item');
-      navLinks.forEach(link => {
-        const linkPath = link.getAttribute('href').replace(/\/$/, "");
-        if ((linkPath === '' && currentPath === '') || (linkPath !== '' && currentPath.includes(linkPath))) {
+    // Load includes
+    fetch('./includes/nav.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('nav-placeholder').innerHTML = data;
+        // Set active nav item
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+          if (link.getAttribute('href') === './contact.html') {
             link.classList.add('active');
+          }
+        });
+      });
+
+    fetch('./includes/footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer-placeholder').innerHTML = data;
+        // Set current year
+        setTimeout(() => {
+          const yearElement = document.getElementById('current-year');
+          if (yearElement) {
+            yearElement.textContent = new Date().getFullYear();
+          }
+        }, 100);
+      });
+
+    // Contact form submission
+    document.getElementById('contact-form-element').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = new FormData(this);
+      const submitButton = this.querySelector('.submit-button');
+      const originalText = submitButton.textContent;
+      
+      // Get selected services
+      const services = [];
+      const serviceCheckboxes = this.querySelectorAll('input[name="service"]:checked');
+      serviceCheckboxes.forEach(checkbox => {
+        services.push(checkbox.value);
+      });
+      
+      // Prepare data
+      const data = {
+        name: formData.get('name'),
+        phone: formData.get('phone'),
+        email: formData.get('email'),
+        services: services.join(', '),
+        details: formData.get('details'),
+        submittedAt: new Date().toISOString()
+      };
+      
+      // Show loading state
+      submitButton.textContent = 'Sending...';
+      submitButton.disabled = true;
+      
+      // Submit to contact form endpoint
+      fetch('/contact-form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => {
+        if (response.ok) {
+          // Hide form and show success message
+          document.getElementById('form-container').style.display = 'none';
+          document.getElementById('success-message').style.display = 'block';
         } else {
-            link.classList.remove('active');
+          throw new Error('Network response was not ok');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('There was an error sending your message. Please try again or call us directly at (607) 638-7887.');
+        submitButton.textContent = originalText;
+        submitButton.disabled = false;
+      });
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
         }
       });
     });
-
-    // Dots Animation
-    const colors = [
-      'rgba(205,166,24,0.4)',   // gold
-      'rgba(255,255,255,0.4)',  // white
-      'rgba(0,0,0,0.4)'         // black
-    ];
-
-    const dotCount = 350;
-    const container = document.getElementById("dots-container");
-    const dots = [];
-
-    for (let i = 0; i < dotCount; i++) {
-      const dot = document.createElement("div");
-      dot.classList.add("dot");
-
-      const size = 5 + Math.random() * 8;
-      dot.style.width = `${size}px`;
-      dot.style.height = `${size}px`;
-      dot.style.top = `${Math.random() * 100}%`;
-      dot.style.left = `${Math.random() * 100}%`;
-      dot.style.background = colors[Math.floor(Math.random() * colors.length)];
-
-      container.appendChild(dot);
-      dots.push({
-        el: dot,
-        x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight,
-        vx: -0.5 + Math.random(),
-        vy: -0.5 + Math.random()
-      });
-    }
-
-    // Animate movement and cursor-follow
-    let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-
-    document.addEventListener('mousemove', e => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    });
-
-    function animateDots() {
-      for (let i = 0; i < dots.length; i++) {
-        const dot = dots[i];
-        dot.x += (mouse.x - dot.x) * 0.002 + dot.vx;
-        dot.y += (mouse.y - dot.y) * 0.002 + dot.vy;
-
-        if (dot.x < 0) dot.x = window.innerWidth;
-        if (dot.x > window.innerWidth) dot.x = 0;
-        if (dot.y < 0) dot.y = window.innerHeight;
-        if (dot.y > window.innerHeight) dot.y = 0;
-
-        dot.el.style.transform = `translate(${dot.x}px, ${dot.y}px)`;
-      }
-
-      requestAnimationFrame(animateDots);
-    }
-
-    animateDots();
   </script>
+
 </body>
 </html>
